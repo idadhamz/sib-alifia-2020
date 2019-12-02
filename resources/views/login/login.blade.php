@@ -11,17 +11,15 @@
 
         <!-- <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}"> -->
 
-        <title>Login | RSIA Bahagia</title>
+        <title>Login | Laundry Al - Banna</title>
 
-        <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/core.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/components.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/pages.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/menu.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('admin/assets/css/responsive.css')}}" rel="stylesheet" type="text/css">
+        <!-- General CSS Files -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
-        <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
+        <!-- Template CSS -->
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,96 +31,68 @@
         
     </head>
     <body>
+          <div id="app">
+            <section class="section">
+              <div class="container mt-5">
+                <div class="row">
+                  <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <!-- <div class="login-brand">
+                      <img src="assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+                    </div> -->
 
+                    <div class="card card-primary">
+                      <div class="card-header"><h4>Login</h4></div>
 
-        <div class="wrapper-page">
-            <div class="panel panel-color panel-primary panel-pages">
-                <div class="panel-heading bg-img"> 
-                    <div class="bg-overlay"></div>
-                    <h3 class="text-center m-t-10 text-white">Sistem Informasi Manajemen Layanan <strong>RSIA Bahagia</strong></h3>
-                </div> 
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                    @csrf
-                        
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="md md-person"></i></span>
-                                    <input id="email" name="email" value="{{ old('email') }}" class="form-control input-lg  @error('email') is-invalid @enderror" autocomplete="off" type="email" placeholder="Email" required autofocus>
-                                </div>
-
-                                @error('email')
-                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                      <div class="card-body">
+                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                            <div class="invalid-feedback">
+                              Please fill in your email
                             </div>
-                        </div>
+                          </div>
 
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="md md-vpn-key"></i></span>
-                                    <input class="form-control input-lg @error('password') is-invalid @enderror" name="password" type="password" placeholder="Password" id="password" required>
-                                    <span class="input-group-addon"><a type="button" id="show"><i class="fa fa-eye"></i></a></span>
-                                </div>
+                          <div class="form-group">
+                            <div class="d-block">
+                                <label for="password" class="control-label">Password</label>
+                            </div>
+                            <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                            <div class="invalid-feedback">
+                              please fill in your password
+                            </div>
+                          </div>
 
-                                @error('password')
-                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group text-center">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-md w-lg waves-effect waves-light" type="submit" style="width: 100%;margin-top: 10px;">Login</button>
-                            </div>
-                        </div>
-                    </form> 
-                    <!-- <hr /> -->
-                    <div style="border: 1px solid white;">
-                        <p style="font-size: 13px;color: darkgrey;padding: 10px;text-align: center;">Hubungi admin untuk pendaftaran akun pegawai <br> <span style="font-weight: bold;">RSIA Bahagia</span></p>
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                              Login
+                            </button>
+                          </div>
+                          <!-- <hr /> -->
+                          <div class="mt-5 text-muted text-center">
+                            Hubungi Admin untuk pendaftaran akun pegawai <span style="font-weight: bold;">Laundry Al - Banna</span>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                </div>                                 
-                
-            </div>
-        </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
 
-        
-    	<script>
-            var resizefunc = [];
-        </script>
+          <!-- General JS Scripts -->
+          <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
+          <script src="{{asset('assets/js/popper.min.js')}}"></script>
+          <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+          <script src="{{asset('assets/js/jquery.nicescroll.min.js')}}"></script>
+          <script src="{{asset('assets/js/moment.min.js')}}"></script>
+          <script src="{{asset('assets/js/stisla.js')}}"></script>
 
-        <!-- Main  -->
-        <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/detect.js')}}"></script>
-        <script src="{{asset('admin/assets/js/fastclick.js')}}"></script>
-        <script src="{{asset('admin/assets/js/jquery.slimscroll.js')}}"></script>
-        <script src="{{asset('admin/assets/js/jquery.blockUI.js')}}"></script>
-        <script src="{{asset('admin/assets/js/waves.js')}}"></script>
-        <script src="{{asset('admin/assets/js/wow.min.js')}}"></script>
-        <script src="{{asset('admin/assets/js/jquery.nicescroll.js')}}"></script>
-        <script src="{{asset('admin/assets/js/jquery.scrollTo.min.js')}}"></script>
-
-        <script src="{{asset('assets/js/jquery.app.js')}}"></script>
-
-        <script>
-            $("#show").click(function() {
-              if ($("#password").attr("type") == "password") {
-                $("#password").attr("type", "text");
-
-              } else {
-                $("#password").attr("type", "password");
-              }
-            });
-        </script>
-	
-	</body>
+          <!-- Template JS File -->
+          <script src="{{asset('assets/js/scripts.js')}}"></script>
+          <script src="{{asset('assets/js/custom.js')}}"></script>
+    </body>
 
 <!-- Mirrored from moltran.coderthemes.com/menu_2/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:29:07 GMT -->
 </html>
