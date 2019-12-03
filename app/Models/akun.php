@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
 
-class m_ruang extends Model
+class akun extends Model
 {
-    protected $table = 'm_ruang';
-    protected $primaryKey = 'id';
+    protected $table = 'akun';
+    protected $primaryKey = 'no_akun';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'tipe_kamar',
-        'kamar',
-        'status',
+        'nm_akun',
+        'saldo_normal',
+        'gol_akun',
     ];
 
     protected $hidden = [
@@ -25,8 +25,8 @@ class m_ruang extends Model
     ];
 
     public static $rules = [
-        'tipe_kamar'		=> 'required|string|between:0,30',
-        'kamar'	=> 'required|string|between:0,50',
-        'status'	=> 'required|integer',
+        'nm_akun' => 'required|string|between:0,100',
+        'saldo_normal' => 'required|integer',
+        'gol_akun' => 'required|string|between:0,10',
     ];
 }

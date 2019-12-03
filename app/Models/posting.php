@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
-class jenis_resep extends Model
+
+class posting extends Model
 {
-    protected $table = 'jenis_resep';
-    protected $primaryKey = 'id';
+    protected $table = 'posting';
+    protected $primaryKey = 'id_posting';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'id_resep',
-        'id_obat',
-        'jenis',
+        'id_jurnal',
+        'id_bb',
+        'tgl_posting',
     ];
 
     protected $hidden = [
@@ -24,8 +25,8 @@ class jenis_resep extends Model
     ];
 
     public static $rules = [
-        'id_resep'		=> 'required|string|between:0,5',
-        'id_obat'	=> 'required|string|between:0,4',
-        'jenis'	=> 'required|string|between:0,20',
+        'id_jurnal' => 'required|string|between:0,5',
+        'id_bb' => 'required|string|between:0,5',
+        'tgl_posting' => 'required|date',
     ];
 }

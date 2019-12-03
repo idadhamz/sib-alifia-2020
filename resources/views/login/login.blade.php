@@ -44,33 +44,44 @@
                       <div class="card-header"><h4>Login</h4></div>
 
                       <div class="card-body">
-                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                          @csrf
                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                            <label for="username">Username</label>
+                            <input id="username" type="text" value="{{ old('username') }}" class="form-control" name="username" tabindex="1" required autofocus autocomplete="off">
                             <div class="invalid-feedback">
-                              Please fill in your email
+                              Username tidak boleh kosong
                             </div>
+                            @error('username')
+                            <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                              {{ $message }}
+                            </div>
+                            @enderror
                           </div>
 
                           <div class="form-group">
                             <div class="d-block">
                                 <label for="password" class="control-label">Password</label>
                             </div>
-                            <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                            <input id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" tabindex="2" required>
                             <div class="invalid-feedback">
-                              please fill in your password
+                              Password tidak boleh kosong
                             </div>
+                            @error('password')
+                            <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                              {{ $message }}
+                            </div>
+                            @enderror
                           </div>
 
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                              Login
+                              Masuk
                             </button>
                           </div>
                           <!-- <hr /> -->
-                          <div class="mt-5 text-muted text-center">
-                            Hubungi Admin untuk pendaftaran akun pegawai <span style="font-weight: bold;">Laundry Al - Banna</span>
+                          <div class="mt-1 text-muted text-center">
+                            Hubungi admin untuk pendaftaran akun <span style="font-weight: bold;">Laundry Al - Banna</span>
                           </div>
                         </form>
                       </div>

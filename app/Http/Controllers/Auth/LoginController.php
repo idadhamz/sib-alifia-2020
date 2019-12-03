@@ -27,6 +27,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/dashboard';
 
+    public function username()
+    {
+       return 'username'; //or whatever field
+    }
+
     /**
      * Show the application's login form.
      *

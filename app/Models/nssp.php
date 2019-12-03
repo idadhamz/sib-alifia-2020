@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
-class rawat_jalan extends Model
+
+class nssp extends Model
 {
-    protected $table = 'rawat_jalan';
-    protected $primaryKey = 'id';
+    protected $table = 'nssp';
+    protected $primaryKey = 'id_nssp';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'id_hasil_pemeriksaan',
-        'tanggal',
-        'durasi',
+        'id_bb',
+        'no_akun',
+        'total_neraca',
     ];
 
     protected $hidden = [
@@ -24,8 +25,8 @@ class rawat_jalan extends Model
     ];
 
     public static $rules = [
-        'id_hasil_pemeriksaan' => 'required|string|between:0,5',
-        'tanggal' => 'required',
-        'durasi' => 'required|integer',
+        'id_bb' => 'required|string|between:0,5',
+        'no_akun' => 'required|integer',
+        'total_neraca' => 'required|integer',
     ];
 }

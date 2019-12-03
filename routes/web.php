@@ -12,11 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.login');
 });
 
 Route::get('/login', function () {
 	return view('login.login');
 });
 
-Route::get('/dataAkun','akunController@index_akun');
+// Route::get('/dataAkun','akunController@index_akun');
+
+Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4']], function(){
+
+	// Dashboard
+	Route::get('/dashboard','DashboardController@index');
+
+	Route::get('/dataAkun','akunController@index_akun');
+
+});
+
+Auth::routes();
