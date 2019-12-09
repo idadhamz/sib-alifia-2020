@@ -23,8 +23,8 @@
       <li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Master Data</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="bootstrap-alert.html">Kelola Data Master</a></li>
-          <li><a class="nav-link" href="bootstrap-badge.html">Input Data Master</a></li>
+          <li><a class="nav-link" href="{{url('/dataUser')}}">Kelola Data User</a></li>
+          <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
         </ul>
       </li>
       @endif

@@ -25,8 +25,14 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4']], function(){
 
 	// Dashboard
 	Route::get('/dashboard','DashboardController@index');
+	// Route::get('/dataAkun','akunController@index_akun');
 
-	Route::get('/dataAkun','akunController@index_akun');
+	Route::get('/dataUser','AdminController@index_user');
+	Route::get('/tambahData','AdminController@create');
+	Route::post('/dataUser/create','AdminController@create_user');
+	Route::get('/dataUser/edit/{id_user}','AdminController@edit_user');
+	Route::post('/dataUser/update/{id_user}','AdminController@update_user');
+	Route::get('/dataUser/delete/{id_user}','AdminController@delete_user');
 
 });
 
