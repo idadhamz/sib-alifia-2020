@@ -52,7 +52,7 @@
                                                 </div>
                                               @endif
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                               <label>Nama</label>
                                               <input type="text" class="form-control" name="nama" autocomplete="off">
                                               @if($errors->has('nama'))
@@ -60,6 +60,30 @@
                                                     {{ $errors->first('nama')}}
                                                 </div>
                                               @endif
+                                            </div> -->
+                                            <div class="row">
+                                              <div class="col-6">
+                                                <div class="form-group">
+                                                  <label>Nama Depan</label>
+                                                  <input type="text" class="form-control" name="nama_depan" autocomplete="off">
+                                                </div>
+                                                @if($errors->has('nama_depan'))
+                                                  <div class="text-danger" style="padding: 5px;">
+                                                      {{ $errors->first('nama_depan')}}
+                                                  </div>
+                                                @endif
+                                              </div>
+                                              <div class="col-6">
+                                                <div class="form-group">
+                                                  <label>Nama Belakang</label>
+                                                  <input type="text" class="form-control" name="nama_belakang" autocomplete="off">
+                                                </div>
+                                                @if($errors->has('nama_belakang'))
+                                                  <div class="text-danger" style="padding: 5px;">
+                                                      {{ $errors->first('nama_belakang')}}
+                                                  </div>
+                                                @endif
+                                              </div>
                                             </div>
                                         </div>
                                     </div>

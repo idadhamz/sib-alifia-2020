@@ -13,11 +13,19 @@ class Data extends Migration
      */
     public function up()
     {
+        Schema::create('gol_akun', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('kode_golongan', 5);
+            $table->string('nm_golongan', 100);
+            $table->timestamps();
+        });
+
         Schema::create('akun', function (Blueprint $table) {
-            $table->integer('no_akun')->primary();
+            $table->bigIncrements('id');
+            $table->integer('no_akun');
             $table->string('nm_akun', 100);
+            $table->string('kode_golongan', 5);
             $table->integer('saldo_normal')->nullable();
-            $table->string('gol_akun', 10);
             $table->timestamps();
         });
 

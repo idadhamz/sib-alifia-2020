@@ -19,6 +19,7 @@
 
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/own.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,7 +42,7 @@
                     </div> -->
 
                     <div class="card card-primary">
-                      <div class="card-header"><h4>Login</h4></div>
+                      <div class="card-header"><h4>Login Sistem Laundry Al - Banna</h4></div>
 
                       <div class="card-body">
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
@@ -91,6 +92,12 @@
               </div>
             </section>
           </div>
+
+          <footer class="footer-login">
+            <div class="text-center">
+                Sistem Informasi Akuntansi Laundry Al-Banna - Sistem Informasi 5B
+            </div>
+        </footer>
 
           <!-- General JS Scripts -->
           <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>

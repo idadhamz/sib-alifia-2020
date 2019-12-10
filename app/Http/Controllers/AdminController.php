@@ -11,7 +11,7 @@ use App\User;
 
 class AdminController extends Controller
 {
-    // Data Jabatan
+    // Data User
     public function index_user()
     {
 
@@ -36,12 +36,14 @@ class AdminController extends Controller
 
         $rules = [
             'username' => 'required',
-            'nama' => 'required',
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
         ];
 
         $customMessages = [
             'username.required' => 'Username wajib diisi!',
-            'nama.required' => 'Nama wajib diisi!',
+            'nama_depan.required' => 'Nama Depan wajib diisi!',
+            'nama_belakang.required' => 'Nama Belakang wajib diisi!',
          ];
 
         $this->validate($request, $rules, $customMessages);
@@ -50,7 +52,7 @@ class AdminController extends Controller
         $DataUser->id_role = request('id_role');
         $DataUser->username = request('username');
         $DataUser->password = bcrypt('123456');
-        $DataUser->nama = request('nama');
+        $DataUser->nama = request('nama_depan')." ".request('nama_belakang');
         $DataUser->remember_token = Str::random(60);
         $DataUser->created_at = now();
         $DataUser->save();
