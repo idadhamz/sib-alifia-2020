@@ -50,18 +50,20 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 
 	Route::get('/dataAkun','AkuntanController@index_akun');
-	Route::get('/tambahDataAkun','AkuntanController@create_akun');
+	Route::get('/tambahDataAkun','AkuntanController@add_akun');
 	Route::post('/dataAkun/create','AkuntanController@create_akun');
 	Route::get('/dataAkun/edit/{id}','AkuntanController@edit_akun');
 	Route::post('/dataAkun/update/{id}','AkuntanController@update_akun');
 	Route::get('/dataAkun/delete/{id}','AkuntanController@delete_akun');
 
 	Route::get('/dataGolAkun','AkuntanController@index_gol_akun');
-	Route::get('/tambahDataGolAkun','AkuntanController@create_gol_akun');
+	Route::get('/tambahDataGolAkun','AkuntanController@add_gol_akun');
 	Route::post('/dataGolAkun/create','AkuntanController@create_gol_akun');
-	Route::get('/dataGolAkun/edit/{id}','AkuntanController@edit_gol_akun');
-	Route::post('/dataGolAkun/update/{id}','AkuntanController@update_gol_akun');
-	Route::get('/dataGolAkun/delete/{id}','AkuntanController@delete_gol_akun');
+	Route::get('/dataGolAkun/edit/{kode_golongan}','AkuntanController@edit_gol_akun');
+	Route::post('/dataGolAkun/update/{kode_golongan}','AkuntanController@update_gol_akun');
+	Route::get('/dataGolAkun/delete/{kode_golongan}','AkuntanController@delete_gol_akun');
+
+	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
 });
 

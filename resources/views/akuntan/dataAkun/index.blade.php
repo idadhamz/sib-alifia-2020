@@ -62,6 +62,7 @@
                                     <th>Kode Akun</th>
                                     <!-- <th>Role</th> -->
                                     <th>Nama Akun</th>
+                                    <th>Tipe Akun</th>
                                     <!-- <th>Nama</th> -->
                                     <th>Aksi</th>
                                 </tr>
@@ -70,29 +71,8 @@
                                 @foreach($DataAkun as $index => $dok)
                                 <tr>
                                     <td style="color: #000000;">{{$dok->no_akun}}</td>
-                                    <!-- @if($dok->id_role == 1)
-                                    <td><div class="badge badge-success">Admin</div></td>
-                                    @elseif($dok->id_role == 2)
-                                    <td><div class="badge badge-warning">Pemilik</div></td>
-                                    @elseif($dok->id_role == 3)
-                                    <td><div class="badge badge-primary">Akuntan</div></td>
-                                    @else
-                                    <td><div class="badge badge-info">Kasir</div></td>
-                                    @endif -->
-                                    <!-- <td style="color: #000000;">{{$dok->nm_akun}}</td> -->
-                                    <td><span style="color: #000000;">{{$dok->nm_akun}} </span> <br> 
-                                        @if($dok->gol_akun == 1)
-                                        <span style="color: #78828a;">Aset</span>
-                                        @elseif($dok->gol_akun == 2)
-                                        <span style="color: #78828a;">Kewajiban</span>
-                                        @elseif($dok->gol_akun == 3)
-                                        <span style="color: #78828a;">Modal</span>
-                                        @elseif($dok->gol_akun == 4)
-                                        <span style="color: #78828a;">Pendapatan</span>
-                                        @else
-                                        <span style="color: #78828a;">Beban</span>
-                                        @endif
-                                    </td>
+                                    <td><span style="color: #000000;">{{$dok->nm_akun}} </span></td>
+                                    <td><span style="color: #000000;">{{$dok->nm_golongan}} </span></td>
                                     <td>
                                         <a href="/dataAkun/edit/{{ $dok->id }}" class="btn btn-warning">Ubah</a>
                                         <a href="/dataAkun/delete/{{ $dok->id }}" class="btn btn-danger">Hapus</a>

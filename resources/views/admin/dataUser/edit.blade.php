@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer bg-whitesmoke">
-                                    <div style="float: left;">
+                                    <div style="float: right;">
                                         <a href="{{url('/dataUser')}}" class="btn btn-warning">Kembali</a>
                                         <button type="submit" class="btn btn-success">Simpan Data</button>
                                     </div>

@@ -56,11 +56,9 @@
                                             <div class="form-group">
                                               <label>Tipe Akun</label>
                                               <select class="form-control" name="kode_golongan">
-                                                <option value="1">Aset</option>
-                                                <option value="2">Kewajiban</option>
-                                                <option value="3">Modal</option>
-                                                <option value="4">Pendapatan</option>
-                                                <option value="5">Beban</option>
+                                                @foreach($DataGolAkun as $index => $dpo)
+                                                    <option value="{{$dpo->kode_golongan}}">({{$index +1}}) {{$dpo->nm_golongan}}</option>
+                                                @endforeach
                                               </select>
                                             </div>
                                             <div class="form-group">
@@ -74,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer bg-whitesmoke">
-                                    <div style="float: left;">
+                                    <div style="float: right;">
                                         <a href="{{url('/dataAkun')}}" class="btn btn-warning">Kembali</a>
                                         <button type="submit" class="btn btn-success">Simpan Data</button>
                                     </div>

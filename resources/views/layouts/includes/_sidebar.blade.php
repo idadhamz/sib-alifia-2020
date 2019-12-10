@@ -21,7 +21,7 @@
       <li class="menu-header">Admin</li>
       <li><a class="nav-link active" href="blank.html"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Master Data</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Master Data</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link {{ (request()->is('dataUser')) ? 'active' : '' }}" href="{{url('/dataUser')}}">Kelola Data User</a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
@@ -32,7 +32,7 @@
       @if(auth()->user()->id_role == '2')
       <li class="menu-header">Keuangan</li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="bootstrap-alert.html">2019</a></li>
           <li><a class="nav-link" href="bootstrap-badge.html">2018</a></li>
@@ -45,14 +45,14 @@
       @if(auth()->user()->id_role == '3')
       <li class="menu-header">Transaksi</li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-pause"></i> <span>Akun</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-pause"></i> <span>Akun</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link {{ (request()->is('dataAkun')) ? 'active' : '' }}" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
-          <li><a class="nav-link {{ (request()->is('golonganAkun')) ? 'active' : '' }}" href="{{url('/golonganAkun')}}"><span>Kelola Golongan Akun</span></a></li>
+          <li><a class="nav-link {{ (request()->is('dataGolAkun')) ? 'active' : '' }}" href="{{url('/dataGolAkun')}}"><span>Kelola Golongan Akun</span></a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
         </ul>
       </li>
-      <li><a class="nav-link" href="blank.html"><i class="fas fa-calculator"></i> <span>Data Transaksi</span></a></li>
+      <li><a class="nav-link {{ (request()->is('dataTransaksi')) ? 'active' : '' }}" href="{{url('/dataTransaksi')}}"><i class="fas fa-calculator"></i> <span>Data Transaksi</span></a></li>
       <li><a class="nav-link" href="blank.html"><i class="fas fa-book"></i> <span>Jurnal Umum</span></a></li>
       <li><a class="nav-link" href="blank.html"><i class="fas fa-book"></i> <span>Jurnal Penyesuaian</span></a></li>
       <li><a class="nav-link" href="blank.html"><i class="fas fa-book-open"></i> <span>Buku Besar</span></a></li>
@@ -63,7 +63,7 @@
       @if(auth()->user()->id_role == '4')
       <li class="menu-header">Keuangan</li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="bootstrap-alert.html">2019</a></li>
           <li><a class="nav-link" href="bootstrap-badge.html">2018</a></li>

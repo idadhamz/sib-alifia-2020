@@ -115,6 +115,8 @@
 
         <script>
             $('#data-user').dataTable();
+            $('#data-pemasukan').dataTable();
+            $('#data-pengeluaran').dataTable();
         </script>
 
     </body>
