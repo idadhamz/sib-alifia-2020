@@ -65,6 +65,10 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 
 	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
+	Route::get('/dataJurnalUmum','AkuntanController@index_jurnal_umum');
+
+	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');
+
 });
 
 Auth::routes();

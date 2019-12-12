@@ -197,7 +197,7 @@ class AkuntanController extends Controller
         return redirect('/dataGolAkun')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
-    // Data Akun
+    // Data Transaksi
     public function index_transaksi()
     {
 
@@ -209,6 +209,36 @@ class AkuntanController extends Controller
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
         return view('akuntan.dataTransaksi.index');
+ 
+    }
+
+    // Data Jurnal Umum
+    public function index_jurnal_umum()
+    {
+
+        // get data
+        // $DataAkun = akun::orderBy("no_akun", "asc")->get()
+
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataJurnalUmum.index');
+ 
+    }
+
+    // Data Jurnal Penyesuaian
+    public function index_jurnal_penyesuaian()
+    {
+
+        // get data
+        // $DataAkun = akun::orderBy("no_akun", "asc")->get()
+
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataJurnalPenyesuaian.index');
  
     }
 }

@@ -16,10 +16,10 @@
                     </div>
                     <div class="card-wrap">
                       <div class="card-header">
-                        <h4>Total Admin</h4>
+                        <h4>Total User</h4>
                       </div>
                       <div class="card-body">
-                        10
+                        3
                       </div>
                     </div>
                   </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="card-wrap">
                       <div class="card-header">
-                        <h4>News</h4>
+                        <h4>Transaksi</h4>
                       </div>
                       <div class="card-body">
                         42
@@ -46,10 +46,10 @@
                     </div>
                     <div class="card-wrap">
                       <div class="card-header">
-                        <h4>Reports</h4>
+                        <h4>Akun</h4>
                       </div>
                       <div class="card-body">
-                        1,201
+                        20
                       </div>
                     </div>
                   </div>
@@ -61,10 +61,10 @@
                     </div>
                     <div class="card-wrap">
                       <div class="card-header">
-                        <h4>Online Users</h4>
+                        <h4>Golongan Akun</h4>
                       </div>
                       <div class="card-body">
-                        47
+                        5
                       </div>
                     </div>
                   </div>
