@@ -722,6 +722,8 @@ select.form-control:not([size]):not([multiple]) {
     background-size: 80px;
     background-repeat: no-repeat;
     background-position: center; }
+  .card.card-warna {
+    border-top: 2px solid #95B9C7; }
   .card.card-primary {
     border-top: 2px solid #6777ef; }
   .card.card-secondary {
@@ -1319,14 +1321,15 @@ h6 .badge {
 
 .btn-primary, .btn-primary.disabled {
   box-shadow: 0 2px 6px #acb5f6;
-  background-color: #6777ef;
-  border-color: #6777ef; }
+  background-color: #394eea;
+  border-color: #394eea; }
   .btn-primary:focus, .btn-primary.disabled:focus {
     background-color: #394eea !important; }
     .btn-primary:focus:active, .btn-primary.disabled:focus:active {
       background-color: #394eea !important; }
   .btn-primary:active, .btn-primary:hover, .btn-primary.disabled:active, .btn-primary.disabled:hover {
-    background-color: #394eea !important; }
+    background-color: #394eea !important;
+  }
 
 .btn-outline-primary, .btn-outline-primary.disabled {
   border-color: #6777ef;

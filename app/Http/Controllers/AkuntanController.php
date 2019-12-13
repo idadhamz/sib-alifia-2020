@@ -227,6 +227,13 @@ class AkuntanController extends Controller
  
     }
 
+    public function add_jurnal_umum()
+    {
+
+        return view('akuntan.dataJurnalUmum.create');
+ 
+    }
+
     // Data Jurnal Penyesuaian
     public function index_jurnal_penyesuaian()
     {
@@ -239,6 +246,13 @@ class AkuntanController extends Controller
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
         return view('akuntan.dataJurnalPenyesuaian.index');
+ 
+    }
+
+    public function add_jurnal_penyesuaian()
+    {
+
+        return view('akuntan.dataJurnalPenyesuaian.create');
  
     }
 }

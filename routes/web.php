@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4']], function(){
 
 	// Dashboard
 	Route::get('/dashboard','DashboardController@index');
-	// Route::get('/dataAkun','akunController@index_akun');
+	Route::get('/laporanKeuangan','PemilikController@index_laporan_keuangan');
 
 	// Route::get('/dataUser','AdminController@index_user');
 	// Route::get('/tambahData','AdminController@create');
@@ -47,6 +47,12 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 
 });
 
+// Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
+
+	
+
+// });
+
 Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 
 	Route::get('/dataAkun','AkuntanController@index_akun');
@@ -66,8 +72,16 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
 	Route::get('/dataJurnalUmum','AkuntanController@index_jurnal_umum');
+	Route::get('/tambahJurnalUmum','AkuntanController@add_jurnal_umum');
 
 	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');
+	Route::get('/tambahJurnalPenyesuaian','AkuntanController@add_jurnal_penyesuaian');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
+
+	Route::get('/dataTransaksiKasir','KasirController@index_transaksi_kasir');
 
 });
 

@@ -41,7 +41,7 @@
                       <img src="assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
                     </div> -->
 
-                    <div class="card card-primary">
+                    <div class="card card-warna">
                       <div class="card-header"><h4>Login Sistem Laundry Al - Banna</h4></div>
 
                       <div class="card-body">
