@@ -1,8 +1,10 @@
 <div class="main-sidebar">
   <aside id="sidebar-wrapper" style="margin-bottom: 30px;">
-    <div class="sidebar-brand">
-      <a href="{{url('/dashboard')}}">Laundry Al - Banna</a>
-    </div>
+        <div class="sidebar-brand mb-5 mt-3">
+            <a href="index.html">
+                <img src="./assets/img/Logo-albanna.png" alt="">
+            </a>
+        </div>
     <div class="sidebar-brand sidebar-brand-sm">
       <a href="{{url('/dashboard')}}">AB</a>
     </div>

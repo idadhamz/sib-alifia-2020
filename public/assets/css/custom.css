@@ -6,3 +6,25 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
+.btn-login {
+    background: #007EA7;
+    color: #fff;
+}
+
+.btn-login:hover {
+    background: rgb(0, 148, 197) !important;
+    color: #fff;
+}
+
+.judul-login {
+    width: 70%;
+    color: #000000;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-primary, .btn-primary.disabled {
+    border-color: #007EA7 !important;
+    background-color:#007EA7;
+}
