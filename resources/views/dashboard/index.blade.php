@@ -69,6 +69,46 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-lg-5 col-md-6 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4>Penjualan Bulan Desember</h4>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="grafikLaporanKeuangan" height="182"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7 col-md-6 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4>Transaksi Terakhir</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-striped" id="data-pemasukan">
+                          <thead>
+                            <tr>
+                              <th>Tanggal</th>
+                              <th>Transaksi</th>
+                              <!-- <th>Nominal</th> -->
+                              <th>Jenis</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="color: #000000;">1/12/2019</td>
+                              <td><span style="color: #000000;">Laundry 2 Kg </span><br>
+                                  <span style="color: #333;">Rp. 13.000 </span>
+                              </td>
+                              <!-- <td><span style="color: #000000;">Rp. 13.000 </span></td> -->
+                              <td><span style="color: #000000;">Tunai </span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </section>
         </div>

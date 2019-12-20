@@ -1,10 +1,10 @@
 <div class="main-sidebar">
   <aside id="sidebar-wrapper" style="margin-bottom: 30px;">
     <div class="sidebar-brand">
-      <a href="index.html">Laundy Al - Banna</a>
+      <a href="{{url('/dashboard')}}">Laundry Al - Banna</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="index.html">AB</a>
+      <a href="{{url('/dashboard')}}">AB</a>
     </div>
     <ul class="sidebar-menu">
       <!-- <li class="nav-item dropdown active">
@@ -47,8 +47,8 @@
       <li class="nav-item dropdown {{ (request()->is('dataAkun')) ? 'active' : '' }} || {{ (request()->is('dataGolAkun')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-pause"></i> <span>Akun</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
-          <li><a class="nav-link" href="{{url('/dataGolAkun')}}"><span>Kelola Golongan Akun</span></a></li>
+          <li class="{ (request()->is('dataAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
+          <li class="{ (request()->is('dataGolAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataGolAkun')}}"><span>Kelola Golongan Akun</span></a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
         </ul>
       </li>

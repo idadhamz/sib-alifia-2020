@@ -60,6 +60,7 @@
                             <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile" aria-selected="false">Pengeluaran</a>
                           </li>
                         </ul>
+                        <br>
                         <div class="tab-content" id="myTab3Content">
                           <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
                             <div class="table-responsive">
@@ -75,8 +76,8 @@
                                   <tbody>
                                       <tr>
                                           <td style="color: #000000;">1/12/2019</td>
-                                          <td><span style="color: #000000;">Beban Listrik </span></td>
-                                          <td><span style="color: #000000;">Rp. 45.000 </span></td>
+                                          <td><span style="color: #000000;">Pendapatan Laundry </span></td>
+                                          <td><span style="color: #000000;">Rp. 150.000 </span></td>
                                           <td><span style="color: #000000;">Tunai </span></td>
                                       </tr>
                                   </tbody>

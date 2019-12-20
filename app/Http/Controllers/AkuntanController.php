@@ -103,10 +103,10 @@ class AkuntanController extends Controller
         return redirect('/dataAkun')->with('message_edit', 'Data Berhasil diubah!');
     }
 
-    public function delete_akun($no_akun)
+    public function delete_akun($id)
     {
         // menghapus data jabatan berdasarkan id yang dipilih
-        akun::where('no_akun',$no_akun)->delete();
+        akun::where('id', $id)->delete();
             
         // alihkan halaman ke halaman jabatan
         return redirect('/dataAkun')->with('message_delete', 'Data Berhasil dihapus!');
@@ -229,8 +229,9 @@ class AkuntanController extends Controller
 
     public function add_jurnal_umum()
     {
+        $DataAkun = akun::orderBy("created_at", "asc")->get();
 
-        return view('akuntan.dataJurnalUmum.create');
+        return view('akuntan.dataJurnalUmum.create', compact('DataAkun'));
  
     }
 
@@ -251,8 +252,9 @@ class AkuntanController extends Controller
 
     public function add_jurnal_penyesuaian()
     {
-
-        return view('akuntan.dataJurnalPenyesuaian.create');
+        $DataAkun = akun::orderBy("created_at", "asc")->get();
+        
+        return view('akuntan.dataJurnalPenyesuaian.create', compact('DataAkun'));
  
     }
 }

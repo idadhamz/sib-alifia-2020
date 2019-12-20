@@ -15,7 +15,7 @@
 
         <!-- General CSS Files -->
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('assets/css/all.css')}}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
           <!-- CSS Libraries -->
@@ -103,10 +103,11 @@
         <script src="{{asset('assets/js/scripts.js')}}"></script>
         <script src="{{asset('assets/js/custom.js')}}"></script>
 
-          <!-- JS Libraies -->
-          <script src="{{asset('assets/library/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-          <script src="{{asset('assets/library/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-          <script src="{{asset('assets/library/datatables.net-select-bs4/js/select.bootstrap4.min.js')}}"></script>
+        <!-- JS Libraies -->
+        <script src="{{asset('assets/library/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('assets/library/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('assets/library/datatables.net-select-bs4/js/select.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script>
 
         <!-- Page Specific JS File -->
         <script src="{{asset('assets/js/page/index-0.js')}}"></script>
@@ -117,6 +118,64 @@
             $('#data-user').dataTable();
             $('#data-pemasukan').dataTable();
             $('#data-pengeluaran').dataTable();
+
+            // Munculin Grafik
+            // $('.lihat-grafik').click(function() {
+            //     $('#card-grafik').css({
+            //         'display': 'block'
+            //     });
+            // });
+
+            // $('#home-tab2').click(function() {
+            //     $('#card-grafik').css({
+            //         'display': 'none'
+            //     });
+            // });
+
+            // Grafik Laporan Keuangan
+            var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
+                datasets: [{
+                  label: 'Statistics',
+                  data: [350, 458, 330, 502],
+                  borderWidth: 2,
+                  backgroundColor: '#6777ef',
+                  borderColor: '#6777ef',
+                  borderWidth: 2.5,
+                  pointBackgroundColor: '#ffffff',
+                  pointRadius: 4
+                }]
+              },
+              options: {
+                legend: {
+                  display: false
+                },
+                scales: {
+                  yAxes: [{
+                    gridLines: {
+                      drawBorder: false,
+                      color: '#f2f2f2',
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                      stepSize: 150
+                    }
+                  }],
+                  xAxes: [{
+                    ticks: {
+                      display: false
+                    },
+                    gridLines: {
+                      display: false
+                    }
+                  }]
+                },
+              }
+            });
+
         </script>
 
     </body>

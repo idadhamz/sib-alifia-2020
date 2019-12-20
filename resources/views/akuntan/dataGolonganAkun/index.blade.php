@@ -83,7 +83,7 @@
                                     <td><span style="color: #000000;">{{$dok->nm_golongan}}</td>
                                     <td>
                                         <a href="/dataGolAkun/edit/{{ $dok->kode_golongan }}" class="btn btn-warning">Ubah</a>
-                                        <a href="/dataGolAkun/delete/{{ $dok->kode_golongan }}" class="btn btn-danger">Hapus</a>
+                                        <!-- <a href="/dataGolAkun/delete/{{ $dok->kode_golongan }}" class="btn btn-danger">Hapus</a> -->
                                     </td>
                                 </tr>
                                 @endforeach
