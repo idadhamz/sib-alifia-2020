@@ -52,6 +52,9 @@
                         <h4>Data Transaksi</h4>
                       </div>
                       <div class="card-body">
+                        <div style="margin:0px 0px 10px 0px;"> 
+                            <a href="{{url('/tambahDataTransaksi')}}"class="btn btn-info" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus mr-2"></i>Tambah Data Transaksi</a>
+                        </div>
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                           <li class="nav-item">
                             <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">Pemasukan</a>
@@ -70,15 +73,24 @@
                                           <th>Deskripsi Transaksi</th>
                                           <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
+                                          <th>Diinput Oleh</th>
+                                          <th>Aksi</th>
                                       </tr>
                                   </thead>
                                   <tbody>
+                                      @foreach($transaksiPemasukan as $index => $dok)
                                       <tr>
-                                          <td style="color: #000000;">1/12/2019</td>
-                                          <td><span style="color: #000000;">Beban Listrik </span></td>
-                                          <td><span style="color: #000000;">Rp. 45.000 </span></td>
-                                          <td><span style="color: #000000;">Tunai </span></td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
+                                          <td>
+                                            <a href="/dataTransaksiKasir/edit/{{ $dok->id_transaksi }}" class="btn btn-warning">Ubah</a>
+                                            <a href="/dataTransaksiKasir/delete/{{ $dok->id_transaksi }}" class="btn btn-danger">Hapus</a>
+                                          </td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                               </table>
                             </div>
@@ -92,15 +104,24 @@
                                           <th>Deskripsi Transaksi</th>
                                           <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
+                                          <th>Diinput Oleh</th>
+                                          <th>Aksi</th>
                                       </tr>
                                   </thead>
                                   <tbody>
+                                      @foreach($transaksiPengeluaran as $index => $dok)
                                       <tr>
-                                          <td style="color: #000000;">1/12/2019</td>
-                                          <td><span style="color: #000000;">Beban Listrik </span></td>
-                                          <td><span style="color: #000000;">Rp. 45.000 </span></td>
-                                          <td><span style="color: #000000;">Tunai </span></td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
+                                          <td>
+                                            <a href="/dataTransaksiKasir/edit/{{ $dok->id_transaksi }}" class="btn btn-warning">Ubah</a>
+                                            <a href="/dataTransaksiKasir/delete/{{ $dok->id_transaksi }}" class="btn btn-danger">Hapus</a>
+                                          </td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                               </table>
                             </div>

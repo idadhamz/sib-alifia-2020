@@ -77,11 +77,20 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');
 	Route::get('/tambahJurnalPenyesuaian','AkuntanController@add_jurnal_penyesuaian');
 
+	Route::get('/dataBukuBesar','AkuntanController@index_buku_besar');
+
+	Route::get('/dataNeracaSaldo','AkuntanController@index_neraca_saldo');
+
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
 
 	Route::get('/dataTransaksiKasir','KasirController@index_transaksi_kasir');
+	Route::get('/tambahDataTransaksi','KasirController@add_transaksi_kasir');
+	Route::post('/dataTransaksiKasir/create','KasirController@create_transaksi_kasir');
+	Route::get('/dataTransaksiKasir/edit/{id_transaksi}','KasirController@edit_transaksi_kasir');
+	Route::post('/dataTransaksiKasir/update/{id_transaksi}','KasirController@update_transaksi_kasir');
+	Route::get('/dataTransaksiKasir/delete/{id_transaksi}','KasirController@delete_transaksi_kasir');
 
 });
 

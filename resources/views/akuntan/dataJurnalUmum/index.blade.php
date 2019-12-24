@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label>Dari Tanggal</label>
                                     <div class="input-group">
-                                        <input type="date" class="form-control" name="dari_tanggal" autocomplete="off">
+                                        <input type="text" class="form-control" name="dari_tanggal" id="dari_tanggal" autocomplete="off">
                                     </div>
                                     @if($errors->has('dari_tanggal'))
                                         <div class="text-danger" style="padding: 5px;">
@@ -68,11 +68,11 @@
                                     <div class="form-group">
                                         <label>Sampai Tanggal</label>
                                         <div class="input-group">
-                                            <input type="date" class="form-control" name="dari_tanggal" autocomplete="off">
+                                            <input type="text" class="form-control" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
                                         </div>
-                                        @if($errors->has('dari_tanggal'))
+                                        @if($errors->has('sampai_tanggal'))
                                             <div class="text-danger" style="padding: 5px;">
-                                                {{ $errors->first('dari_tanggal')}}
+                                                {{ $errors->first('sampai_tanggal')}}
                                             </div>
                                         @endif
                                         </div>
@@ -91,7 +91,7 @@
                             <div style="width:100%;">
                                 <h4 style="float:left;">Dashboard Jurnal Umum</h4>
                                 <div style="float: right;"> 
-                                    <a href="{{url('/tambahJurnalUmum')}}"class="btn btn-primary" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Umum</a>
+                                    <a href="{{url('/tambahJurnalUmum')}}"class="btn btn-info" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Umum</a>
                                 </div>
                             </div>
                       </div>

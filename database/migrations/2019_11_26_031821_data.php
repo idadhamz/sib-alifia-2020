@@ -30,11 +30,12 @@ class Data extends Migration
         });
 
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->string('id_transaksi', 5)->primary();
+            $table->bigIncrements('id_transaksi');
             $table->string('nm_transaksi', 100);
             $table->date('tgl_transaksi');
             $table->integer('nominal_transaksi');
             $table->text('deskripsi')->nullable();
+            $table->string('jenis', 30);
             $table->integer('id_user');
             $table->timestamps();
         });

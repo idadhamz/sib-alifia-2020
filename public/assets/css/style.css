@@ -647,9 +647,9 @@ select.form-control:not([size]):not([multiple]) {
       .card .card-header .form-control + .input-group-btn .btn {
         margin-top: -1px; }
     .card .card-header h4 {
-      font-size: 16px;
+      font-size: 15px;
       line-height: 28px;
-      color: #000000;
+      color: #78828A;
       padding-right: 10px;
       margin-bottom: 0; }
       .card .card-header h4 + .card-header-action,
@@ -1461,8 +1461,10 @@ h6 .badge {
   display: inline-block;
   width: 100%;
   margin-bottom: 10px; }
-  .accordion .accordion-header, .accordion .accordion-body {
+  .accordion .accordion-header, .accordion {
     padding: 10px 15px; }
+    .accordion-body {
+    padding: 10px 0px; }
   .accordion .accordion-header {
     background-color: #f9f9f9;
     border-radius: 3px;

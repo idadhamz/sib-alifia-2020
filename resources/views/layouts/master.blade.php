@@ -15,12 +15,13 @@
 
         <!-- General CSS Files -->
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="{{asset('assets/css/all.css')}}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
-          <!-- CSS Libraries -->
-          <link rel="stylesheet" href="{{asset('assets/library/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
-          <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
+        <!-- CSS Libraries -->
+        <link rel="stylesheet" href="{{asset('assets/library/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.css')}}">
         <!-- <link rel="stylesheet" href="{{asset('assets/css/all.css')}}"> -->
 
         <!-- Template CSS -->
@@ -108,6 +109,7 @@
         <script src="{{asset('assets/library/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/library/datatables.net-select-bs4/js/select.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script>
+        <script src="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
         <!-- Page Specific JS File -->
         <script src="{{asset('assets/js/page/index-0.js')}}"></script>
@@ -118,6 +120,39 @@
             $('#data-user').dataTable();
             $('#data-pemasukan').dataTable();
             $('#data-pengeluaran').dataTable();
+
+            $(document).ready(function () {
+                $('#dari_tanggal').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
+                $('#sampai_tanggal').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
+                $('#tanggal_pembuatan').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+            });
+
+            // Get current date in Transaksi
+            const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+              "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+            ];
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(namaBulan[today.getMonth()]);
+            var yyyy = today.getFullYear();
+
+            today = dd + ' ' + mm + ' ' + yyyy;
+
+            // Set value tanggal
+            // document.getElementById("tanggal").value = today;
+            $(".tanggal-transaksi").val(today);
 
             // Munculin Grafik
             // $('.lihat-grafik').click(function() {

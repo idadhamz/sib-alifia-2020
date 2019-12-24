@@ -18,6 +18,7 @@ class transaksi extends Model
         'tgl_transaksi',
         'nominal_transaksi',
         'deskripsi',
+        'jenis',
         'id_user',
     ];
 
@@ -31,6 +32,7 @@ class transaksi extends Model
         'tgl_transaksi' => 'required|date',
         'nominal_transaksi' => 'required|integer',
         'deskripsi' => 'required|text',
+        'jenis' => 'required|string|between:0,30',
         'id_user' => 'required|integer',
     ];
 }

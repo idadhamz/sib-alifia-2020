@@ -19,7 +19,7 @@
                         <h4>Total User</h4>
                       </div>
                       <div class="card-body">
-                        3
+                        {{$jmlUser}}
                       </div>
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                         <h4>Transaksi</h4>
                       </div>
                       <div class="card-body">
-                        42
+                        {{$jmlTransaksi}}
                       </div>
                     </div>
                   </div>
@@ -49,7 +49,7 @@
                         <h4>Akun</h4>
                       </div>
                       <div class="card-body">
-                        20
+                        {{$jmlAkun}}
                       </div>
                     </div>
                   </div>
@@ -64,7 +64,7 @@
                         <h4>Golongan Akun</h4>
                       </div>
                       <div class="card-body">
-                        5
+                        {{$jml_GolAkun}}
                       </div>
                     </div>
                   </div>
@@ -96,14 +96,15 @@
                             </tr>
                           </thead>
                           <tbody>
+                            @foreach($DataTransaksi as $index => $dok)
                             <tr>
-                              <td style="color: #000000;">1/12/2019</td>
-                              <td><span style="color: #000000;">Laundry 2 Kg </span><br>
-                                  <span style="color: #333;">Rp. 13.000 </span>
+                              <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                              <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
+                                  <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
                               </td>
-                              <!-- <td><span style="color: #000000;">Rp. 13.000 </span></td> -->
-                              <td><span style="color: #000000;">Tunai </span></td>
+                              <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                             </tr>
+                            @endforeach
                           </tbody>
                         </table>
                       </div>

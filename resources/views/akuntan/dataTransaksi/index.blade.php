@@ -71,15 +71,19 @@
                                           <th>Deskripsi Transaksi</th>
                                           <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
+                                          <th>Diinput Oleh</th>
                                       </tr>
                                   </thead>
                                   <tbody>
+                                      @foreach($transaksiPemasukan as $index => $dok)
                                       <tr>
-                                          <td style="color: #000000;">1/12/2019</td>
-                                          <td><span style="color: #000000;">Pendapatan Laundry </span></td>
-                                          <td><span style="color: #000000;">Rp. 150.000 </span></td>
-                                          <td><span style="color: #000000;">Tunai </span></td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                               </table>
                             </div>
@@ -93,15 +97,19 @@
                                           <th>Deskripsi Transaksi</th>
                                           <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
+                                          <th>Diinput Oleh</th>
                                       </tr>
                                   </thead>
                                   <tbody>
+                                      @foreach($transaksiPengeluaran as $index => $dok)
                                       <tr>
-                                          <td style="color: #000000;">1/12/2019</td>
-                                          <td><span style="color: #000000;">Beban Listrik </span></td>
-                                          <td><span style="color: #000000;">Rp. 45.000 </span></td>
-                                          <td><span style="color: #000000;">Tunai </span></td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                               </table>
                             </div>

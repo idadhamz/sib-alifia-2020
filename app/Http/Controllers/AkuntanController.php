@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 use App\Models\akun;
 use App\Models\gol_akun;
+use App\Models\transaksi;
+use App\User;
 
 class AkuntanController extends Controller
 {
@@ -208,7 +210,17 @@ class AkuntanController extends Controller
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('akuntan.dataTransaksi.index');
+        $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.created_at", "asc")
+                            ->get();
+        $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
+                                ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                                ->select('transaksi.*','users.nama')
+                                ->orderBy("transaksi.created_at", "asc")
+                                ->get();
+        return view('akuntan.dataTransaksi.index', compact('transaksiPemasukan','transaksiPengeluaran'));
  
     }
 
@@ -228,10 +240,20 @@ class AkuntanController extends Controller
     }
 
     public function add_jurnal_umum()
-    {
+    {   
+        $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.created_at", "asc")
+                            ->get();
+        $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
+                                ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                                ->select('transaksi.*','users.nama')
+                                ->orderBy("transaksi.created_at", "asc")
+                                ->get();
         $DataAkun = akun::orderBy("created_at", "asc")->get();
 
-        return view('akuntan.dataJurnalUmum.create', compact('DataAkun'));
+        return view('akuntan.dataJurnalUmum.create', compact('DataAkun','transaksiPemasukan','transaksiPengeluaran'));
  
     }
 
@@ -252,9 +274,50 @@ class AkuntanController extends Controller
 
     public function add_jurnal_penyesuaian()
     {
+
+        $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.created_at", "asc")
+                            ->get();
+        $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
+                                ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                                ->select('transaksi.*','users.nama')
+                                ->orderBy("transaksi.created_at", "asc")
+                                ->get();
         $DataAkun = akun::orderBy("created_at", "asc")->get();
         
-        return view('akuntan.dataJurnalPenyesuaian.create', compact('DataAkun'));
+        return view('akuntan.dataJurnalPenyesuaian.create', compact('DataAkun','transaksiPemasukan','transaksiPengeluaran'));
+ 
+    }
+
+    // Data Jurnal Penyesuaian
+    public function index_buku_besar()
+    {
+
+        // get data
+        $DataAkun = akun::orderBy("no_akun", "asc")->get();
+
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataBukuBesar.index', compact('DataAkun'));
+ 
+    }
+
+    // Data Jurnal Penyesuaian
+    public function index_neraca_saldo()
+    {
+
+        // get data
+        // $DataAkun = akun::orderBy("no_akun", "asc")->get()
+
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataNeracaSaldo.index');
  
     }
 }

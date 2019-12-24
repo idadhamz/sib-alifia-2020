@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label>Tanggal Pembuatan</label>
                                     <div class="input-group">
-                                        <input type="date" class="form-control" name="tanggal" autocomplete="off">
+                                        <input type="text" class="form-control" name="tanggal" id="tanggal_pembuatan" autocomplete="off">
                                     </div>
                                     @if($errors->has('tanggal'))
                                         <div class="text-danger" style="padding: 5px;">
@@ -38,12 +38,15 @@
                                     @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-sm-12 col-md-3">
                                     <div class="form-group">
                                         <label>No Jurnal Umum</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="no_jurnal_umum" autocomplete="off">
+                                            <input type="text" class="form-control" id="sampai-tanggal" name="no_jurnal_umum" autocomplete="off">
                                         </div>
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                            Contoh: JU-DEC19
+                                        </small>
                                         @if($errors->has('no_jurnal_umum'))
                                             <div class="text-danger" style="padding: 5px;">
                                                 {{ $errors->first('no_jurnal_umum')}}
@@ -51,12 +54,15 @@
                                         @endif
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-sm-12 col-md-5">
                                         <div class="form-group">
                                             <label>Nama Jurnal Umum</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="nm_jurnal_umum" autocomplete="off">
                                             </div>
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                Contoh: Jurnal Umum Desember 2019
+                                            </small>
                                             @if($errors->has('nm_jurnal_umum'))
                                                 <div class="text-danger" style="padding: 5px;">
                                                     {{ $errors->first('nm_jurnal_umum')}}
@@ -145,6 +151,73 @@
                         </div>
                       </div>
                     </div>
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Data Transaksi</h4>
+                      </div>
+                      <div class="card-body">
+                        <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">Pemasukan</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile" aria-selected="false">Pengeluaran</a>
+                          </li>
+                        </ul>
+                        <br>
+                        <div class="tab-content" id="myTab3Content">
+                          <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
+                            <div class="table-responsive">
+                              <table class="table table-striped" id="data-pemasukan">
+                                  <thead>
+                                        <tr>
+                                          <th>Tanggal Transaksi</th>
+                                          <th>Deskripsi Transaksi</th>
+                                          <th>Nominal</th>
+                                          <th>Jenis Pembayaran</th>
+                                          
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      @foreach($transaksiPemasukan as $index => $dok)
+                                      <tr>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                      </tr>
+                                      @endforeach
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
+                            <div class="table-responsive">
+                              <table class="table table-striped" id="data-pengeluaran">
+                                  <thead>
+                                        <tr>
+                                          <th>Tanggal Transaksi</th>
+                                          <th>Deskripsi Transaksi</th>
+                                          <th>Nominal</th>
+                                          <th>Jenis Pembayaran</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      @foreach($transaksiPengeluaran as $index => $dok)
+                                      <tr>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                      </tr>
+                                      @endforeach
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,6 +228,7 @@
 <!-- /.modal -->
 <!-- End Row -->
 <script>
+
     var i = 1;
     function tambah_akun() {   
         i++; 

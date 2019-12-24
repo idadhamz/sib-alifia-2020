@@ -38,20 +38,19 @@
         <section class="section">
             <div class="container mt-5 mb-5">
                 <div class="row">
-                    <h1 class="judul-login">SISTEM INFORMASI AKUNTANSI <br>AL - BANNA LAUNDRY </h1>
+                    <h2 class="judul-login">SISTEM INFORMASI AKUNTANSI <br><span style="text-decoration: underline;">LAUNDRY AL - BANNA </span></h2>
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-
-                        <div class="card card-primary">
-                            <div align="center" class="card-header" style="background: #043D56; border-bottom:none;">
-                                <img src="./assets/img/Logo-albanna.png" alt="Logo" style="display:block; margin: 0 auto; ">
+                        <div class="card card-primary mt-5">
+                            <div align="center" class="card-header" style="border-bottom:none;">
+                                <img src="./assets/img/Logo-albanna.png" width="125" height="150" alt="Logo" style="display:block; margin: 0 auto; padding-top: 20px;">
                             </div>
 
 
-                            <div class="card-body" style="background: #043D56;">
+                            <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="username" style=" color:#fff;">Username</label>
+                                        <label for="username">Username</label>
                                         <input id="username" type="text" value="{{ old('username') }}" class="form-control" name="username" tabindex="1" required autofocus autocomplete="off">
                                         <div class="invalid-feedback">
                                             Username tidak boleh kosong
@@ -65,7 +64,7 @@
 
                                     <div class="form-group">
                                         <div class="d-block">
-                                            <label for="password" class="control-label" style=" color:#fff;">Password</label>
+                                            <label for="password" class="control-label">Password</label>
                                         </div>
                                         <input id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" tabindex="2" required>
                                         <div class="invalid-feedback">
@@ -85,7 +84,7 @@
                                     </div>
                                     <!-- <hr /> -->
                                     <div class="mt-1 text-muted text-center">
-                                        Hubungi admin untuk pendaftaran akun <span style="font-weight: bold;">Al - Banna Laundry</span>
+                                        Hubungi admin untuk pendaftaran akun <span style="font-weight: bold;"><br>Al - Banna Laundry</span>
                                     </div>
                                 </form>
                             </div>
