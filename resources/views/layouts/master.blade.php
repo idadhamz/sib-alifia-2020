@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{asset('assets/library/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/library/select2/dist/css/select2.min.css')}}">
         <!-- <link rel="stylesheet" href="{{asset('assets/css/all.css')}}"> -->
 
         <!-- Template CSS -->
@@ -110,6 +111,7 @@
         <script src="{{asset('assets/library/datatables.net-select-bs4/js/select.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script>
         <script src="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+        <script src="{{asset('assets/library/select2/dist/js/select2.full.min.js')}}"></script>
 
         <!-- Page Specific JS File -->
         <script src="{{asset('assets/js/page/index-0.js')}}"></script>
@@ -120,6 +122,10 @@
             $('#data-user').dataTable();
             $('#data-pemasukan').dataTable();
             $('#data-pengeluaran').dataTable();
+
+            // $('#no_akun').select2({
+            //   theme: "bootstrap"
+            // });
 
             $(document).ready(function () {
                 $('#dari_tanggal').daterangepicker({
@@ -166,6 +172,192 @@
             //         'display': 'none'
             //     });
             // });
+
+            // Jurnal Umum
+
+            $("#simpan-jurnal").prop("disabled", true);
+
+            $("#tambah-akun").prop("disabled", true);
+
+            $('#no_akun').on('change',function(e)
+            {
+              console.log(e);
+              var no_akun = e.target.value;
+              console.log(no_akun);
+
+                //ajax
+                $.get('/cariAkun/' + no_akun, function (data)
+                {
+
+                  var hasil = $.parseJSON(data);
+                  console.log(hasil);
+
+                  $('#nm_akun').val(hasil[0].nm_akun);
+                  if(hasil[0].saldo_normal == 1){
+                    $("#nominal_kredit").prop("readonly", true);
+                    $("#nominal_debit").prop("readonly", false);
+                    $("#nominal_kredit").val("0");
+                    $('#nominal_debit').focus();
+                  }else{
+                    $("#nominal_kredit").prop("readonly", false);
+                    $("#nominal_debit").prop("readonly", true);
+                    $("#nominal_debit").val("0");
+                    $('#nominal_kredit').focus();
+                  }
+
+                  $("#tambah-akun").prop("disabled", false);
+
+              });
+
+            });
+
+            var total_debit = 0;
+            var total_kredit = 0;
+
+            var tabel_jurnal = $('#data-jurnal-umum').DataTable({
+                // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
+                "columns": [
+                    { "data": "no_akun" },
+                    { "data": "akun" },
+                    { "data": "nominal_debit" },
+                    { "data": "nominal_kredit" },
+                    {
+                        data: null,
+                        defaultContent: '<a href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</a>'
+                    }
+                ],
+                hasFirstRow: true
+            });
+
+            $('table#data-jurnal-umum tbody').on('click','.delete-data-jurnal', function(){
+
+                // console.log($(this).closest('tr').data("nominal_debit"));
+                var data = tabel_jurnal.row( $(this).parents('tr') ).data();
+
+                total_debit -= parseInt(data.nominal_debit);
+                total_kredit -= parseInt(data.nominal_kredit);
+                $('#total_debit').val(total_debit);
+                $('#total_kredit').val(total_kredit);
+
+                if(total_debit != total_kredit){
+
+                  $("#simpan-jurnal").prop("disabled", true);
+
+                  $("#text-belum-balance").css("visibility", "visible");
+                  $("#text-balance").css("visibility", "hidden");
+
+                }else {
+
+                  if(total_debit == 0 && total_kredit == 0){
+                    $("#simpan-jurnal").prop("disabled", true);
+                    $("#text-balance").css("visibility", "hidden");
+                    $("#text-belum-balance").css("visibility", "hidden");
+                  }else {
+                    $("#simpan-jurnal").prop("disabled", false);
+                    $("#text-belum-balance").css("visibility", "hidden");
+                    $("#text-balance").css("visibility", "visible");
+                  }
+
+                }
+
+                tabel_jurnal.row( $(this).parents('tr') ).remove().draw( false );
+
+            });
+
+            $('#tambah-akun').on('click',function(e) {
+              e.preventDefault();
+              var masuk_data = $("#form-tambah-akun").serializeArray();
+              console.log(masuk_data);
+
+              total_debit += parseInt(
+                masuk_data[2].value == "" ? 0 : masuk_data[2].value
+              );
+
+              total_kredit += parseInt(
+                masuk_data[3].value == "" ? 0 : masuk_data[3].value
+              );
+
+              console.log(total_debit);
+              console.log(total_kredit);
+
+              tabel_jurnal.row.add({
+                "no_akun": masuk_data[0].value,
+                "akun": masuk_data[1].value,
+                "nominal_debit": masuk_data[2].value == "" ? 0 : masuk_data[2].value,
+                "nominal_kredit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
+              }, function(e) {
+                console.log(e);
+              }).draw();
+              
+              $('#nominal_debit, #nominal_kredit').val('');
+              $('#total_debit').val(total_debit);
+              $('#total_kredit').val(total_kredit);
+              $("#tambah-akun").prop("disabled", true); 
+
+              // total_debit != total_kredit ? $("#text-belum-balance").css("display", "block") 
+              // : $("#text-balance").css("display", "block");
+
+              // total_debit != total_kredit ? $("#text-balance").css("display", "none") 
+              // : $("#text-belum-balance").css("display", "none");
+
+              if(total_debit != total_kredit){
+
+                $("#text-belum-balance").css("visibility", "visible");
+                $("#text-balance").css("visibility", "hidden");
+                $("#simpan-jurnal").prop("disabled", true);
+
+              }else {
+
+                $("#text-belum-balance").css("visibility", "hidden");
+                $("#text-balance").css("visibility", "visible");
+                $("#simpan-jurnal").prop("disabled", false);
+
+              }
+
+              // total_debit != total_kredit ? $("#simpan-jurnal").prop("disabled", true) 
+              // : $("#simpan-jurnal").prop("disabled", false);
+            
+            });
+
+            $('#simpan-jurnal').on('click',function(e) {
+              e.preventDefault();
+                    swal({
+                      title: "Anda yakin dengan isi dari jurnal umum ini?",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "Ya, Saya yakin",
+                      cancelButtonText: "Tidak, masih ada kesalahan",
+                      closeOnConfirm: false ,
+                      closeOnCancel: false
+                    },
+                    function(isConfirm){
+                      if (isConfirm) {
+                        //swal("Terhapus", "Data berhasil dihapus.", "success");
+                        swal({
+                            title: "Berhasil",
+                            text: "Pesanan berhasil diinput.",
+                            type: "success"
+                        },
+                        function(ok) {
+                            if(ok){
+                                $.post('/simpanJurnal/save', {sendData: JSON.stringify(tabel_jurnal.rows().data())}, function(res) {
+                                    console.log(res);
+                                }, "json");
+                                tabel_jurnal.clear().draw();
+                                total_debit = 0;
+                                total_kredit = 0;
+                                $('#total_kredit').val(0);
+                                window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+                            }
+                        });
+                      } else {
+                        swal("Batal", "Pesanan dibatalkan", "error");
+                      }
+                    });
+              //console.log(dTable.getData());
+              //alert(JSON.stringify(dTable.getData()));
+            });
 
             // Grafik Laporan Keuangan
             var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');

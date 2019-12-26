@@ -27,6 +27,14 @@
                                     <div class="col-8">
                                         <form action="/dataAkun/create" method="post" role="form" autocomplete="off">
                                             {{csrf_field()}}
+                                            <div class="form-group">
+                                              <label>Tipe Akun</label>
+                                              <select class="form-control" name="kode_golongan">
+                                                @foreach($DataGolAkun as $index => $dpo)
+                                                    <option value="{{$dpo->kode_golongan}}">({{$index +1}}) {{$dpo->nm_golongan}}</option>
+                                                @endforeach
+                                              </select>
+                                            </div>
                                             <div class="row">
                                               <div class="col-md-3">
                                                 <div class="form-group">
@@ -52,14 +60,6 @@
                                                   @endif
                                                 </div>
                                               </div>
-                                            </div>
-                                            <div class="form-group">
-                                              <label>Tipe Akun</label>
-                                              <select class="form-control" name="kode_golongan">
-                                                @foreach($DataGolAkun as $index => $dpo)
-                                                    <option value="{{$dpo->kode_golongan}}">({{$index +1}}) {{$dpo->nm_golongan}}</option>
-                                                @endforeach
-                                              </select>
                                             </div>
                                             <div class="form-group">
                                               <label>Saldo Normal</label>

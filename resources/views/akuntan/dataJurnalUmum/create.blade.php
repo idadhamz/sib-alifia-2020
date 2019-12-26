@@ -78,17 +78,26 @@
                       </div>
                     </div>
                     <div class="card">
+                      <div class="card-header">
+                            <div style="width:100%;">
+                                <!-- <br> -->
+                                <h4 style="margin-top:10px;">Jurnal Umum</h4>
+                                <!-- <hr /> -->
+                            </div>
+                      </div>
                       <div class="card-body">
-                        <td>
+                        <!-- <td>
                             <a href="javascript::void(0)" onclick="tambah_akun();" class="btn btn-success"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Akun</a>
-                        </td>
-                        <hr />
+                        </td> -->
+                        <!-- <hr /> -->
+                        <p>Form Jurnal Umum</p>
+                        <!-- <hr /> -->
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-md" style="text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>Nama Akun</th>
                                         <th>No. Akun</th>
+                                        <th>Akun</th>
                                         <th>Nominal Debit</th>
                                         <th>Nominal Kredit</th>
                                         <th>Aksi</th>
@@ -96,58 +105,109 @@
                                 </thead>
                                 <tbody id="input-jurnal-umum">
                                     <tr id="baris-akun">
-                                        <td>
-                                            <div class="input-group">
-                                                <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
-                                                <select class="form-control" name="nm_akun">
-                                                    @foreach($DataAkun as $dpo)
-                                                        <option value="{{$dpo->nm_akun}}">{{$dpo->nm_akun}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td width="125px;">
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" name="no_akun" autocomplete="off" readonly="readonly">
-                                            </div>
-                                        </td>
-                                        <td width="200px;">
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" name="nominal_debit" autocomplete="off">
-                                            </div>
-                                        </td>
-                                        <td width="200px;">
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" name="nominal_kredit" autocomplete="off">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript::void(0)" onclick="hapus_akun(this)" class="btn btn-danger hapus-akun">Hapus</a>
-                                        </td>
+                                        <form id="form-tambah-akun">
+                                          <td width="135px;">
+                                              <div class="form-group">
+                                                  <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
+                                                  <select class="form-control" name="no_akun" id="no_akun">
+                                                      <option>Pilih</option>
+                                                      @foreach($DataAkun as $dpo)
+                                                          <option value="{{$dpo->no_akun}}">No {{$dpo->no_akun}}</option>
+                                                      @endforeach
+                                                  </select>
+                                              </div>
+                                          </td>
+                                          <td width="190px;">
+                                              <div class="input-group">
+                                                  <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
+                                              </div>
+                                          </td>
+                                          <td width="220px;">
+                                              <div class="input-group">
+                                                  <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                      Rp.
+                                                    </div>
+                                                  </div>
+                                                  <input type="number" class="form-control" name="nominal_debit" id="nominal_debit" autocomplete="off">
+                                                  <small id="passwordHelpBlock" class="form-text text-muted" style="text-align: left;">
+                                                      Perhatikan Nominal Angkanya!
+                                                  </small>
+                                              </div>
+                                          </td>
+                                          <td width="220px;">
+                                              <div class="input-group">
+                                                  <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                      Rp.
+                                                    </div>
+                                                  </div>
+                                                  <input type="number" class="form-control" name="nominal_kredit" id="nominal_kredit" autocomplete="off">
+                                                  <small id="passwordHelpBlock" class="form-text text-muted" style="text-align: left;">
+                                                      Perhatikan Nominal Angkanya!
+                                                  </small>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <!-- <a href="javascript::void(0)" onclick="hapus_akun(this)" class="btn btn-danger hapus-akun">Hapus</a> -->
+                                              <!-- <button href="javascript::void(0)" id="tambah-akun" class="btn btn-info" type="submit"><i class="fa fa-plus mr-1"></i>Tambah</button> -->
+                                              <button href="javascript::void(0)" id="tambah-akun" class="btn btn-info" type="submit" style="width: 100%;">Tambah</button>
+                                          </td>
+                                        </form>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top:10px;">Data Jurnal Umum</p>
+                        <!-- <hr /> -->
+                        <div class="table-responsive">
+                            <table id="data-jurnal-umum" class="table table-striped table-md" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>No. Akun</th>
+                                        <th>Akun</th>
+                                        <th>Nominal Debit</th>
+                                        <th>Nominal Kredit</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="data-jurnal-umum">
+                                    <!-- <tr>
+
+                                    </tr> -->
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td></td>
-                                        <td style="text-align: right;font-weight: bold;">Total</td>
+                                        <td></td>
                                         <td width="200px;">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="total_debit" autocomplete="off" readonly="readonly">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                      Rp.
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control" name="total_debit" id="total_debit" autocomplete="off" readonly="readonly">
                                             </div>
                                         </td>
                                         <td width="200px;">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="total_kredit" autocomplete="off" readonly="readonly">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                      Rp.
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control" name="total_kredit" id="total_kredit" autocomplete="off" readonly="readonly">
                                             </div>
                                         </td>
                                         <td>
-                                            <span style="color: green;">Balance</span><br>
-                                            <span style="color: red;">Belum Balance</span>
+                                            <span id="text-balance" style="color: green;visibility: hidden;font-weight: bold;"><i class="fa fa-check-circle mr-2"></i>Balance</span><br>
+                                            <span id="text-belum-balance" style="color: red;visibility: hidden;font-weight: bold;"><i class="fa fa-times-circle mr-2"></i>Balance</span>
                                         </td>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="javascript::void(0)" class="btn btn-success" style="width: 100%;">Simpan</a>
+                            <button href="javascript::void(0)" id="simpan-jurnal" class="btn btn-success" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>
                         </div>
                       </div>
                     </div>
@@ -228,19 +288,18 @@
 <!-- /.modal -->
 <!-- End Row -->
 <script>
+    // var i = 1;
+    // function tambah_akun() {   
+    //     i++; 
+    //     document.getElementById("input-jurnal-umum").insertRow(0).innerHTML = '<tr id="baris-akun"><td width="135px;"><div class="form-group"><select class="form-control" name="no_akun" id="no_akun">@foreach($DataAkun as $dpo)<option value="{{$dpo->no_akun}} selected">No. {{$dpo->no_akun}}</option>@endforeach</select></div></td><td width="210px;"><div class="input-group"><input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly"></div></td><td width="200px;"><input id="nominal_debit" class="form-control" name="nominal_debit" type="number" autocomplete="off"></td><td width="200px;"><input id="nominal_kredit" class="form-control" name="nominal_kredit" type="number" autocomplete="off"></td><td><a href="javascript::void(0)" onclick="hapus_akun(this)" class="btn btn-danger hapus-akun">Hapus</a></td></tr>';
+    // }
 
-    var i = 1;
-    function tambah_akun() {   
-        i++; 
-        document.getElementById("input-jurnal-umum").insertRow(0).innerHTML = '<tr id="baris-akun"><td><select class="form-control" name="nm_akun">@foreach($DataAkun as $dpo)<option value="{{$dpo->nm_akun}}">{{$dpo->nm_akun}}</option>@endforeach</select></td><td width="125px;"><input id="no_akun'+i+'" class="form-control" name="no_akun" type="number" autocomplete="off" readonly="readonly"></td><td width="200px;"><input id="nominal_debit'+i+'" class="form-control" name="nominal_debit" type="number" autocomplete="off"></td><td width="200px;"><input id="nominal_kredit'+i+'" class="form-control" name="nominal_kredit" type="number" autocomplete="off"></td><td><a href="javascript::void(0)" onclick="hapus_akun(this)" class="btn btn-danger hapus-akun">Hapus</a></td></tr>';
-    }
+    // console.log(i);
 
-    console.log(i);
-
-    function hapus_akun(o) {
-        //no clue what to put here?
-        var p=o.parentNode.parentNode;
-        p.parentNode.removeChild(p);
-    }
+    // function hapus_akun(o) {
+    //     //no clue what to put here?
+    //     var p=o.parentNode.parentNode;
+    //     p.parentNode.removeChild(p);
+    // }
 </script>
 @endsection

@@ -56,13 +56,14 @@
                             <a href="{{url('/tambahDataAkun')}}"class="btn btn-primary" style="border-color: #95B9C7;color: #ffffff;">Tambah Data Akun</a>
                         </div>
                         <div class="table-responsive">
-                          <table class="table table-striped" id="data-user">
+                          <table class="table table-striped table-md" id="data-user">
                             <thead>
                                   <tr>
                                     <th>Kode Akun</th>
                                     <!-- <th>Role</th> -->
                                     <th>Nama Akun</th>
                                     <th>Tipe Akun</th>
+                                    <th>Saldo Normal</th>
                                     <!-- <th>Nama</th> -->
                                     <th>Aksi</th>
                                 </tr>
@@ -73,6 +74,13 @@
                                     <td style="color: #000000;">{{$dok->no_akun}}</td>
                                     <td><span style="color: #000000;">{{$dok->nm_akun}} </span></td>
                                     <td><span style="color: #000000;">{{$dok->nm_golongan}} </span></td>
+                                    <td>
+                                      @if($dok->saldo_normal == 1)
+                                      <div class="badge badge-success">Debit</div>
+                                      @else
+                                      <div class="badge badge-info">Kredit</div>
+                                      @endif
+                                    </td>
                                     <td>
                                         <a href="/dataAkun/edit/{{ $dok->id }}" class="btn btn-warning">Ubah</a>
                                         <!-- <a href="/dataAkun/delete/{{ $dok->id }}" class="btn btn-danger">Hapus</a> -->

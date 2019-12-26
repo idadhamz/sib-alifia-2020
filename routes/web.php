@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
 	Route::get('/dataJurnalUmum','AkuntanController@index_jurnal_umum');
+	Route::get('/cariAkun/{no_akun}','AkuntanController@cari_akun');
 	Route::get('/tambahJurnalUmum','AkuntanController@add_jurnal_umum');
 
 	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');

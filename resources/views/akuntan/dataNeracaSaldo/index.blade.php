@@ -52,7 +52,44 @@
                         <h4>Data Neraca Saldo</h4>
                       </div>
                       <div class="card-body">
-                        
+                        <div class="row">
+                          <div class="col-12" style="margin-bottom: 20px;">
+                            <p style="text-align: center;line-height: 25px;font-size: 15px;">Neraca Saldo <br> Al-Banna Laundry <br> 31 Desember 2019</p>
+                          </div>
+                          <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-md" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th>Akun</th>
+                                            <th>Debet</th>
+                                            <th>Kredit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody">
+                                        <tr>
+                                            <td style="color: #000000;">
+                                              <span style="font-weight: bold;">Aktiva</span> 
+                                              <br><span>Kas</span>
+                                              <br><span>Pendapatan</span>
+                                            </td>
+                                            <td><span style="color: #000000;"><br>Rp. 5.000.000<br>Rp. 2.000.000</span></td>
+                                            <td><span style="color: #000000;"><br>Rp. 0<br>Rp. 0</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #000000;">
+                                              <span style="font-weight: bold;">Aktiva</span> 
+                                              <br><span>Kas</span>
+                                              <br><span>Pendapatan</span>
+                                            </td>
+                                            <td><span style="color: #000000;"><br>Rp. 5.000.000<br>Rp. 2.000.000</span></td>
+                                            <td><span style="color: #000000;"><br>Rp. 0<br>Rp. 0</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

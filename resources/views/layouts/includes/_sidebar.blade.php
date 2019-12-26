@@ -22,7 +22,7 @@
       @if(auth()->user()->id_role == '1')
       <li class="menu-header">Admin</li>
       <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
-      <li class="nav-item dropdown {{ (request()->is('dataUser')) ? 'active' : '' }}">
+      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Master Data</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="{{url('/dataUser')}}">Kelola Data User</a></li>
@@ -49,8 +49,8 @@
       <li class="nav-item dropdown {{ (request()->is('dataAkun')) ? 'active' : '' }} || {{ (request()->is('dataGolAkun')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-pause"></i> <span>Akun</span></a>
         <ul class="dropdown-menu">
-          <li class="{ (request()->is('dataAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
           <li class="{ (request()->is('dataGolAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataGolAkun')}}"><span>Kelola Golongan Akun</span></a></li>
+          <li class="{ (request()->is('dataAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
         </ul>
       </li>

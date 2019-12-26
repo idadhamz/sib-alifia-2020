@@ -224,6 +224,14 @@ class AkuntanController extends Controller
  
     }
 
+    public function cari_akun($no_akun){
+
+        $DataAkunCari = akun::where('no_akun', $no_akun)->get();
+        // passing data jabatan yang didapat ke view edit.blade.php
+        echo json_encode($DataAkunCari);
+
+    }
+
     // Data Jurnal Umum
     public function index_jurnal_umum()
     {

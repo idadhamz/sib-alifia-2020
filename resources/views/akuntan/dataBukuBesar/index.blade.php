@@ -64,7 +64,7 @@
                               </div>
                               <div class="accordion-body collapse show" id="panel-body-{{$dok->id}}" data-parent="#accordion">
                                 <div class="table-responsive">
-                                  <table class="table table-striped" style="font-size: 11px;">
+                                  <table class="table table-striped table-md" style="font-size: 11px;">
                                       <thead>
                                           <tr>
                                               <th>Tanggal</th>
