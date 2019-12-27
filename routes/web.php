@@ -75,6 +75,10 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/cariAkun/{no_akun}','AkuntanController@cari_akun');
 	Route::get('/tambahJurnalUmum','AkuntanController@add_jurnal_umum');
 
+	Route::post('/simpanJurnal/save','AkuntanController@simpan_jurnal');
+	// Route::post('/dataJurnalUmum/delete/{kode_jurnal}','AkuntanController@delete_jurnal_umum');
+	Route::post('/hapusJurnal','AkuntanController@delete_jurnal_umum');
+
 	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');
 	Route::get('/tambahJurnalPenyesuaian','AkuntanController@add_jurnal_penyesuaian');
 

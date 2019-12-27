@@ -114,7 +114,6 @@
                                         <td><span style="color: #000000;">Jurnal Penyesuaian Desember</span></td>
                                         <td><span style="color: #000000;">Rp. 500.000</span></td>
                                         <td>
-                                            <a href="/dataJurnalUmum/edit" class="btn btn-warning">Ubah</a>
                                             <a href="/dataJurnalUmum/delete" class="btn btn-danger">Hapus</a>
                                         </td>
                                     </tr>

@@ -13,13 +13,24 @@ class JurnalUmum extends Migration
      */
     public function up()
     {
-        Schema::create('jurnal_umum', function (Blueprint $table) {
-            $table->string('id_jurnal', 5)->primary();
+        Schema::create('akun_jurnal_umum', function (Blueprint $table) {
+            $table->bigIncrements('id')->primary();
+            $table->string('kode_jurnal', 5);
             $table->string('id_transaksi', 5);
             $table->integer('no_akun');
             $table->date('tgl_jurnal');
             $table->integer('debit');
             $table->integer('kredit');
+            $table->timestamps();
+        });
+
+        Schema::create('jurnal_umum', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('kode_jurnal', 5);
+            $table->date('tanggal_pembuatan');
+            $table->integer('no_jurnal_umum');
+            $table->string('nm_jurnal_umum', 50);
+            $table->integer('nilai');
             $table->timestamps();
         });
     }

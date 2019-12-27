@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use App\Models\akun;
 use App\Models\gol_akun;
 use App\Models\transaksi;
+use App\Models\jurnal_umum;
+use App\Models\akun_jurnal_umum;
 use App\User;
 
 class AkuntanController extends Controller
@@ -237,13 +239,13 @@ class AkuntanController extends Controller
     {
 
         // get data
-        // $DataAkun = akun::orderBy("no_akun", "asc")->get()
+        $DataJurnalUmum = jurnal_umum::orderBy("tanggal_pembuatan", "asc")->get();
 
 
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('akuntan.dataJurnalUmum.index');
+        return view('akuntan.dataJurnalUmum.index', compact('DataJurnalUmum'));
  
     }
 
@@ -263,6 +265,61 @@ class AkuntanController extends Controller
 
         return view('akuntan.dataJurnalUmum.create', compact('DataAkun','transaksiPemasukan','transaksiPengeluaran'));
  
+    }
+
+    public function simpan_jurnal(Request $request){
+
+        $no_jurnal_umum  = $request->no_jurnal_umum;
+        $nm_jurnal_umum  = $request->nm_jurnal_umum;
+        $nilai  = $request->nilai;
+        $data  = json_decode($request->sendData);
+
+        $prefix = 'JL';
+        $get_last_kode = jurnal_umum::orderBy('kode_jurnal','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->kode_jurnal, strlen($prefix), 2)+1 : 1;
+        $digit = 1;
+        $kode_jurnal = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        foreach($data as $row) {
+            akun_jurnal_umum::create([
+                "kode_jurnal" => $kode_jurnal,
+                "no_akun" => $row->no_akun,
+                "tgl_jurnal" => now(),
+                "debit" => $row->nominal_debit,
+                "kredit" => $row->nominal_kredit,
+                "created_at" => now()
+            ]);
+        }
+
+        jurnal_umum::create([
+            "kode_jurnal" => $kode_jurnal,
+            "tanggal_pembuatan" => now(),
+            "no_jurnal_umum" => $no_jurnal_umum,
+            "nm_jurnal_umum" => $nm_jurnal_umum,
+            "nilai" => $nilai,
+            "created_at" => now()
+        ]);
+
+        return redirect('/dataJurnalUmum')->with('message', 'Data Berhasil diinput!');
+    }
+
+    public function delete_jurnal_umum(Request $request)
+    {
+
+        // if(isset($request->id)){
+            // menghapus data jabatan berdasarkan id yang dipilih
+            // jurnal_umum::where('kode_jurnal', $kode_jurnal)->delete();
+            // akun_jurnal_umum::where('kode_jurnal', $kode_jurnal)->delete();
+
+            // alihkan halaman ke halaman jabatan
+            // return redirect('/dataJurnalUmum')->with('message_delete', 'Data Berhasil dihapus!');
+        // }
+
+        // jurnal_umum::find($request->id)->delete();
+        // akun_jurnal_umum::find($request->id)->delete();
+        jurnal_umum::where('kode_jurnal', $request->id)->delete();
+        akun_jurnal_umum::where('kode_jurnal', $request->id)->delete();
+        return redirect('/dataJurnalUmum')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
     // Data Jurnal Penyesuaian

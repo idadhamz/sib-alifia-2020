@@ -9,16 +9,16 @@ use Illuminate\Validation\Rule;
 class jurnal_umum extends Model
 {
     protected $table = 'jurnal_umum';
-    protected $primaryKey = 'id_jurnal';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'id_transaksi',
-        'no_akun',
-        'tgl_jurnal',
-        'debit',
-        'kredit',
+        'kode_jurnal',
+        'tanggal_pembuatan',
+        'no_jurnal_umum',
+        'nm_jurnal_umum',
+        'nilai',
     ];
 
     protected $hidden = [
@@ -27,10 +27,9 @@ class jurnal_umum extends Model
     ];
 
     public static $rules = [
-        'id_transaksi' => 'required|string|between:0,5',
-        'no_akun' => 'required|integer',
-        'tgl_jurnal' => 'required|date',
-        'debit' => 'required|integer',
-        'kredit' => 'required|integer',
+        'tanggal_pembuatan' => 'required|date',
+        'no_jurnal_umum' => 'required|string|between:0,20',
+        'nm_jurnal_umum' => 'required|string|between:0,50',
+        'nilai' => 'required|integer'
     ];
 }

@@ -2,6 +2,8 @@
 
         @section('content')
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <!-- Main Content -->
         <div class="main-content">
             <section class="section">
@@ -20,16 +22,6 @@
                           <span>&times;</span>
                     </button>
                     {{ session()->get('message') }}
-                  </div>
-                </div>
-              @endif
-              @if(session()->has('message_edit'))
-                <div class="alert alert-warning alert-dismissible show fade">
-                  <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                          <span>&times;</span>
-                    </button>
-                    {{ session()->get('message_edit') }}
                   </div>
                 </div>
               @endif
@@ -108,16 +100,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($DataJurnalUmum as $index => $dok)
                                     <tr>
-                                        <td style="color: #000000;">1/12/2019</td>
-                                        <td><span style="color: #000000;">JU-DEC2019</span></td>
-                                        <td><span style="color: #000000;">Jurnal Umum Desember</span></td>
-                                        <td><span style="color: #000000;">Rp. 500.000</span></td>
+                                        <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}</td>
+                                        <td><span style="color: #000000;">{{$dok->no_jurnal_umum}}</span></td>
+                                        <td><span style="color: #000000;">{{$dok->nm_jurnal_umum}}</span></td>
+                                        <td><span style="color: #000000;">Rp. {{ number_format($dok->nilai, 0, ',', '.') }}</span></td>
                                         <td>
-                                            <a href="/dataJurnalUmum/edit" class="btn btn-warning">Ubah</a>
-                                            <a href="/dataJurnalUmum/delete" class="btn btn-danger">Hapus</a>
+                                            <a href="/dataJurnalUmum/delete" class="btn btn-success">Lihat</a>
+                                            <!-- <button href="/dataJurnalUmum/delete/{{$dok->kode_jurnal}}" class="btn btn-danger" id="hapus-jurnal">Hapus</button> -->
+                                            <a href="" class="btn btn-danger btn-hapus" data-id="{{$dok->kode_jurnal}}">Delete</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

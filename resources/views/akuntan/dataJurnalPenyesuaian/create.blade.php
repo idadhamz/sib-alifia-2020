@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <label>No Jurnal Penyesuaian</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="no_jurnal_penyesuaian" autocomplete="off">
+                                            <input type="text" class="form-control" name="no_jurnal_penyesuaian" autocomplete="off" required="required">
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
                                             Contoh: JP-DEC19
@@ -58,7 +58,7 @@
                                         <div class="form-group">
                                             <label>Nama Jurnal Penyesuaian</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="nm_jurnal_penyesuaian" autocomplete="off">
+                                                <input type="text" class="form-control" name="nm_jurnal_penyesuaian" autocomplete="off" required="required">
                                             </div>
                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                 Contoh: Jurnal Penyesuaian Desember 2019
@@ -90,11 +90,11 @@
                             <a href="javascript::void(0)" onclick="tambah_akun();" class="btn btn-success"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Akun</a>
                         </td> -->
                         <!-- <hr /> -->
-                        <p>Form Jurnal Umum</p>
+                        <!-- <p>Form Jurnal Umum</p> -->
                         <!-- <hr /> -->
                         <div class="table-responsive">
-                            <table class="table table-md" style="text-align: center;">
-                                <thead>
+                            <table class="table table-md">
+                                <!-- <thead>
                                     <tr>
                                         <th>No. Akun</th>
                                         <th>Akun</th>
@@ -102,40 +102,47 @@
                                         <th>Nominal Kredit</th>
                                         <th>Aksi</th>
                                     </tr>
-                                </thead>
+                                </thead> -->
                                 <tbody id="input-jurnal-umum">
                                     <tr id="baris-akun">
                                         <form id="form-tambah-akun">
                                           <td width="135px;">
                                               <div class="form-group">
+                                                  <label>No Akun</label>
                                                   <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
                                                   <select class="form-control" name="no_akun" id="no_akun">
                                                       <option>Pilih</option>
                                                       @foreach($DataAkun as $dpo)
-                                                          <option value="{{$dpo->no_akun}}">No {{$dpo->no_akun}}</option>
+                                                          <option value="{{$dpo->no_akun}}">{{$dpo->no_akun}}</option>
                                                       @endforeach
                                                   </select>
                                               </div>
                                           </td>
                                           <td width="190px;">
-                                              <div class="input-group">
+                                              <div class="form-group">
+                                                  <label>Nama Akun</label>
                                                   <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
                                               </div>
                                           </td>
                                           <td width="220px;">
-                                              <div class="input-group">
-                                                  <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                      Rp.
+                                              <div class="form-group">
+                                                <label>Nominal Debit</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                      <div class="input-group-text">
+                                                        Rp.
+                                                      </div>
                                                     </div>
-                                                  </div>
-                                                  <input type="number" class="form-control" name="nominal_debit" id="nominal_debit" autocomplete="off">
-                                                  <small id="passwordHelpBlock" class="form-text text-muted" style="text-align: left;">
-                                                      Perhatikan Nominal Angkanya!
-                                                  </small>
+                                                    <input type="number" class="form-control" name="nominal_debit" id="nominal_debit" autocomplete="off">
+                                                    <small id="passwordHelpBlock" class="form-text text-muted" style="text-align: left;">
+                                                        Perhatikan Nominal Angkanya!
+                                                    </small>
+                                                </div>
                                               </div>
                                           </td>
                                           <td width="220px;">
+                                            <div class="form-group">
+                                              <label>Nominal Kredit</label>
                                               <div class="input-group">
                                                   <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -147,11 +154,17 @@
                                                       Perhatikan Nominal Angkanya!
                                                   </small>
                                               </div>
+                                            </div>
                                           </td>
                                           <td>
+                                            <div class="form-group">
+                                              <label>Aksi</label>
+                                              <div class="input-group">
+                                                  <button href="javascript::void(0)" id="tambah-akun" class="btn btn-info" type="submit" style="width: 100%;">Tambah Data</button>
+                                              </div>
+                                            </div>
                                               <!-- <a href="javascript::void(0)" onclick="hapus_akun(this)" class="btn btn-danger hapus-akun">Hapus</a> -->
                                               <!-- <button href="javascript::void(0)" id="tambah-akun" class="btn btn-info" type="submit"><i class="fa fa-plus mr-1"></i>Tambah</button> -->
-                                              <button href="javascript::void(0)" id="tambah-akun" class="btn btn-info" type="submit" style="width: 100%;">Tambah</button>
                                           </td>
                                         </form>
                                     </tr>
@@ -159,7 +172,7 @@
                             </table>
                         </div>
                         <p style="margin-top:10px;">Data Jurnal Umum</p>
-                        <!-- <hr /> -->
+                        <hr />
                         <div class="table-responsive">
                             <table id="data-jurnal-umum" class="table table-striped table-md" style="text-align: center;">
                                 <thead>
@@ -201,8 +214,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span id="text-balance" style="color: green;display: none;font-weight: bold;">Balance</span><br>
-                                            <span id="text-belum-balance" style="color: red;display: none;font-weight: bold;">Belum Balance</span>
+                                            <span id="text-balance" style="color: green;visibility: hidden;font-weight: bold;"><i class="fa fa-check-circle mr-2"></i>Balance</span><br>
+                                            <span id="text-belum-balance" style="color: red;visibility: hidden;font-weight: bold;"><i class="fa fa-times-circle mr-2"></i>Balance</span>
                                         </td>
                                     </tr>
                                 </tfoot>

@@ -23,11 +23,14 @@
         <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.css')}}">
         <link rel="stylesheet" href="{{asset('assets/library/select2/dist/css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/library/sweetalert/sweetalert.css')}}">
         <!-- <link rel="stylesheet" href="{{asset('assets/css/all.css')}}"> -->
 
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     </head>
 
@@ -112,6 +115,7 @@
         <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script>
         <script src="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
         <script src="{{asset('assets/library/select2/dist/js/select2.full.min.js')}}"></script>
+        <script src="{{asset('assets/library/sweetalert/sweetalert.min.js')}}"></script>
 
         <!-- Page Specific JS File -->
         <script src="{{asset('assets/js/page/index-0.js')}}"></script>
@@ -175,7 +179,12 @@
 
             // Jurnal Umum
 
-            $("#simpan-jurnal").prop("disabled", true);
+            if($("#no_jurnal_umum").val(null) && $("#nm_jurnal_umum").val(null)){
+              $("#simpan-jurnal").prop("disabled", true);
+            } else {
+              $("#simpan-jurnal").prop("disabled", false);
+            }
+            // $("#simpan-jurnal").prop("disabled", true);
 
             $("#tambah-akun").prop("disabled", true);
 
@@ -197,11 +206,13 @@
                     $("#nominal_kredit").prop("readonly", true);
                     $("#nominal_debit").prop("readonly", false);
                     $("#nominal_kredit").val("0");
+                    $("#nominal_debit").val("");
                     $('#nominal_debit').focus();
                   }else{
                     $("#nominal_kredit").prop("readonly", false);
                     $("#nominal_debit").prop("readonly", true);
                     $("#nominal_debit").val("0");
+                    $("#nominal_kredit").val("");
                     $('#nominal_kredit').focus();
                   }
 
@@ -223,7 +234,7 @@
                     { "data": "nominal_kredit" },
                     {
                         data: null,
-                        defaultContent: '<a href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</a>'
+                        defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</button>'
                     }
                 ],
                 hasFirstRow: true
@@ -261,6 +272,7 @@
                 }
 
                 tabel_jurnal.row( $(this).parents('tr') ).remove().draw( false );
+                console.log(tabel_jurnal.rows().data().toArray());
 
             });
 
@@ -316,7 +328,15 @@
 
               // total_debit != total_kredit ? $("#simpan-jurnal").prop("disabled", true) 
               // : $("#simpan-jurnal").prop("disabled", false);
+
+              console.log(tabel_jurnal.rows().data().toArray());
             
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
 
             $('#simpan-jurnal').on('click',function(e) {
@@ -326,8 +346,8 @@
                       type: "warning",
                       showCancelButton: true,
                       confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "Ya, Saya yakin",
-                      cancelButtonText: "Tidak, masih ada kesalahan",
+                      confirmButtonText: "Ya",
+                      cancelButtonText: "Tidak",
                       closeOnConfirm: false ,
                       closeOnCancel: false
                     },
@@ -341,13 +361,14 @@
                         },
                         function(ok) {
                             if(ok){
-                                $.post('/simpanJurnal/save', {sendData: JSON.stringify(tabel_jurnal.rows().data())}, function(res) {
+                                console.log($('#no_jurnal_umum').val());
+                                $.post('/simpanJurnal/save', {sendData: JSON.stringify(tabel_jurnal.rows().data().toArray()), no_jurnal_umum: $('#no_jurnal_umum').val(), nm_jurnal_umum: $('#nm_jurnal_umum').val(), nilai: $('#total_debit').val()}, function(res) {
                                     console.log(res);
                                 }, "json");
                                 tabel_jurnal.clear().draw();
                                 total_debit = 0;
                                 total_kredit = 0;
-                                $('#total_kredit').val(0);
+
                                 window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
                             }
                         });
@@ -358,6 +379,79 @@
               //console.log(dTable.getData());
               //alert(JSON.stringify(dTable.getData()));
             });
+
+            $(document).on('click', '.btn-hapus', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                swal({
+                        title: "Anda yakin ingin menghapus Jurnal Umum ini?",
+                        type: "warning",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yakin",
+                        showCancelButton: true,
+                    },
+                    function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{url('/hapusJurnal')}}",
+                            data: {id:id},
+                            success: function (data) {
+                              console.log(data);
+                            }         
+                        });
+
+                        window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+                });
+            });
+
+            // $('#hapus-jurnal').on('click',function(e) {
+              // e.preventDefault();
+              //       swal({
+              //         title: "Anda yakin ingin menghapus jurnal umum ini?",
+              //         type: "warning",
+              //         showCancelButton: true,
+              //         confirmButtonColor: "#DD6B55",
+              //         confirmButtonText: "Ya",
+              //         cancelButtonText: "Tidak",
+              //         closeOnConfirm: false ,
+              //         closeOnCancel: false
+              //       },
+              //       function(isConfirm){
+              //         if (isConfirm) {
+              //           //swal("Terhapus", "Data berhasil dihapus.", "success");
+              //           swal({
+              //               title: "Berhasil",
+              //               text: "Jurnal Umum berhasil dihapus.",
+              //               type: "success"
+              //           },
+              //           function(ok) {
+              //               if(ok){
+              //                   let kode_jurnal = $(this).attr("data-id");
+              //                   $.ajax({
+              //                    type: 'POST',
+              //                    url: '/dataJurnalUmum/delete',
+              //                    dataType: 'json',
+              //                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+              //                    data: {id:kode_jurnal},
+
+              //                    success: function (data) {
+              //                     alert('success');            
+              //                   },
+              //                   error: function (data) {
+              //                    alert(data);
+              //                  }
+              //                });
+
+              //                   // window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+              //               }
+              //           });
+              //         } else {
+              //           swal("Batal", "Hapus dibatalkan", "error");
+              //         }
+              //       });
+              //console.log(dTable.getData());
+              //alert(JSON.stringify(dTable.getData()));
+            // });
 
             // Grafik Laporan Keuangan
             var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');
