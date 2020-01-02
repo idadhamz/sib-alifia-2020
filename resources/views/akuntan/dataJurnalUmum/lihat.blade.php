@@ -58,8 +58,18 @@
                                               <br><span>Pendapatan</span>
                                             </td> -->
                                             <td>{{$dps->nm_akun}}</td>
-                                            <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
-                                            <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
+                                            <!-- <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
+                                            <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td> -->
+                                            @if($dps->debit == null)
+                                              <td>-</td>
+                                            @else
+                                              <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
+                                            @endif
+                                            @if($dps->kredit == null)
+                                              <td>-</td>
+                                            @else
+                                              <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -2,7 +2,7 @@
   <aside id="sidebar-wrapper" style="margin-bottom: 30px;">
         <div class="sidebar-brand mb-5 mt-3">
             <a href="{{url('/dashboard')}}">
-                <img src="./assets/img/Logo-albanna.png" alt="">
+                <img src="{{ asset('assets/img/Logo-albanna.png') }}" alt="">
             </a>
         </div>
     <div class="sidebar-brand sidebar-brand-sm">

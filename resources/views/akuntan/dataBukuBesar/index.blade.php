@@ -87,8 +87,20 @@
                                                       <td>{{$index +1}}</td>
                                                       <td>{{ Carbon\Carbon::parse($dok->tgl_posting)->formatLocalized('%d %B %Y') }}</td>
                                                       <td><span>{{$dok->deskripsi}}</span></td>
-                                                      <td><span>Rp. {{ number_format($dok->debit, 0, ',', '.') }} </span></td>
-                                                      <td><span>Rp. {{ number_format($dok->kredit, 0, ',', '.') }} </span></td>
+                                                      <td>
+                                                        @if($dok->debit == null)
+                                                          -
+                                                        @else
+                                                          <span>Rp. {{ number_format($dok->debit, 0, ',', '.') }} </span>
+                                                        @endif
+                                                      </td>
+                                                      <td>
+                                                        @if($dok->kredit == null)
+                                                          -
+                                                        @else
+                                                          <span>Rp. {{ number_format($dok->kredit, 0, ',', '.') }} </span>
+                                                        @endif
+                                                      </td>
                                                   </tr>
                                               @endforeach
                                             </tbody>

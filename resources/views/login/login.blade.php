@@ -38,11 +38,11 @@
         <section class="section">
             <div class="container mt-5 mb-5">
                 <div class="row">
-                    <h2 class="judul-login">SISTEM INFORMASI AKUNTANSI <br><span style="text-decoration: underline;">LAUNDRY AL - BANNA </span></h2>
+                    <h4 class="judul-login">SISTEM INFORMASI AKUNTANSI <br><span style="text-decoration: underline;">LAUNDRY AL - BANNA </span></h4>
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="card card-primary mt-5">
                             <div align="center" class="card-header" style="border-bottom:none;">
-                                <img src="./assets/img/Logo-albanna.png" width="125" height="150" alt="Logo" style="display:block; margin: 0 auto; padding-top: 20px;">
+                                <img src="{{ asset('assets/img/Logo-albanna.png') }}" width="125" height="150" alt="Logo" style="display:block; margin: 0 auto; padding-top: 20px;">
                             </div>
 
 

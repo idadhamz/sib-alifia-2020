@@ -53,7 +53,7 @@
                       </div>
                       <div class="card-body">
                         <div style="margin:0px 0px 10px 0px;"> 
-                            <a href="{{url('/tambahDataTransaksi')}}"class="btn btn-info" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus mr-2"></i>Tambah Data Transaksi</a>
+                            <a href="{{url('/tambahDataTransaksi')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus mr-2"></i>Tambah Data Transaksi</a>
                         </div>
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                           <li class="nav-item">
@@ -69,22 +69,22 @@
                               <table class="table table-striped" id="data-pemasukan">
                                   <thead>
                                         <tr>
+                                          <th>Diinput Oleh</th>
                                           <th>Tanggal Transaksi</th>
                                           <th>Deskripsi Transaksi</th>
-                                          <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
-                                          <th>Diinput Oleh</th>
+                                          <th>Nominal</th>
                                           <th>Aksi</th>
                                       </tr>
                                   </thead>
                                   <tbody>
                                       @foreach($transaksiPemasukan as $index => $dok)
                                       <tr>
+                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
-                                          <td><span style="color: #000000;">{{$dok->nama}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                           <td>
                                             <a href="/dataTransaksiKasir/edit/{{ $dok->id_transaksi }}" class="btn btn-warning">Ubah</a>
                                             <a href="/dataTransaksiKasir/delete/{{ $dok->id_transaksi }}" class="btn btn-danger">Hapus</a>
