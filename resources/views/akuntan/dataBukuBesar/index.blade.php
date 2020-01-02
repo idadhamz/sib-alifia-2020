@@ -59,10 +59,10 @@
                               Klik untuk melihat data buku besar akun <span style="font-weight: bold;">{{$dok->nm_akun}}</span>
                             </small>
                             <div class="accordion">
-                              <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-{{$dok->id}}" aria-expanded="true">
+                              <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body" aria-expanded="true">
                                 <h4>Akun {{$dok->nm_akun}}</h4>
                               </div>
-                              <div class="accordion-body collapse show" id="panel-body-{{$dok->id}}" data-parent="#accordion">
+                              <div class="accordion-body collapse show" id="panel-body" data-parent="#accordion">
                                 <div class="table-responsive">
                                   <table class="table table-striped table-md" style="font-size: 11px;">
                                       <thead>
@@ -73,22 +73,30 @@
                                               <th>Kredit</th>
                                           </tr>
                                       </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td>24/12/2019</td>
-                                              <td><span>Setoran Modal</span></td>
-                                              <td><span>Rp. 35.000.000 </span></td>
-                                              <td><span> - </span></td>
-                                          </tr>
-                                      </tbody>
-                                      <tfoot>
-                                          <tr>
-                                              <td style="color: #000000;"></td>
-                                              <td style="color: #000000;">Total Saldo</td>
-                                              <td style="color: #000000;">Rp.35.000.000</td>
-                                              <td style="color: #000000;"> - </td>
-                                          </tr>
-                                      </tfoot>
+                                      @if($dok->no_akun == $dok->no_akun)
+                                          <tbody>
+                                            @foreach(${"DataBukuBesar" . $dok->no_akun} as $index => $dok)
+                                                <tr>
+                                                    <td>{{ Carbon\Carbon::parse($dok->tgl_posting)->formatLocalized('%d %B %Y') }}</td>
+                                                    <td><span>{{$dok->deskripsi}}</span></td>
+                                                    <td><span>Rp. {{ number_format($dok->debit, 0, ',', '.') }} </span></td>
+                                                    <td><span>Rp. {{ number_format($dok->kredit, 0, ',', '.') }} </span></td>
+                                                </tr>
+                                            @endforeach
+                                          </tbody>
+                                          <tfoot>
+                                            @foreach(${"DataBukuBesar" . $dok->no_akun} as $index => $dok)
+                                              @if ($loop->first)
+                                              <tr>
+                                                  <td style="color: #000000;font-weight: bold;"></td>
+                                                  <td style="color: #000000;font-weight: bold;">Total Saldo</td>
+                                                  <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
+                                                  <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                              </tr>
+                                              @endif
+                                            @endforeach
+                                          </tfoot>
+                                      @endif
                                   </table>
                                 </div>
                               </div>

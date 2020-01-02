@@ -9,7 +9,7 @@
                     <!-- <h1>Data Akun</h1> -->
                     <div class="section-header-breadcrumb">
                       <div class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></div>
-                      <div class="breadcrumb-item"><a href="{{url('/dataJurnalPenyesuaian')}}">Data Jurnal Umum</a></div>
+                      <div class="breadcrumb-item"><a href="{{url('/dataJurnalPenyesuaian')}}">Data Jurnal Penyesuaian</a></div>
                   </div>
               </div>
 
@@ -48,50 +48,11 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
-                      <div class="card-body">
-                        <form action="/dataJurnalPenyesuaian/cari" method="get" role="form" autocomplete="off">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <label>Dari Tanggal</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="dari_tanggal" id="dari_tanggal" autocomplete="off">
-                                    </div>
-                                    @if($errors->has('dari_tanggal'))
-                                        <div class="text-danger" style="padding: 5px;">
-                                            {{ $errors->first('dari_tanggal')}}
-                                        </div>
-                                    @endif
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="form-group">
-                                        <label>Sampai Tanggal</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
-                                        </div>
-                                        @if($errors->has('dari_tanggal'))
-                                            <div class="text-danger" style="padding: 5px;">
-                                                {{ $errors->first('dari_tanggal')}}
-                                            </div>
-                                        @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 col-md-2">
-                                        <button type="submit" class="btn btn-success" style="margin-top:29px"><i class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="card">
                       <div class="card-header">
                             <div style="width:100%;">
                                 <h4 style="float:left;">Dashboard Jurnal Penyesuaian</h4>
                                 <div style="float: right;"> 
-                                    <a href="{{url('/tambahJurnalPenyesuaian')}}"class="btn btn-info" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Penyesuaian</a>
+                                    <a href="{{url('/tambahJurnalPenyesuaian')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Penyesuaian</a>
                                 </div>
                             </div>
                       </div>
@@ -103,20 +64,22 @@
                                         <th>Tanggal Jurnal</th>
                                         <th>No Jurnal Penyesuaian</th>
                                         <th>Nama</th>
-                                        <th>Nilai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($DataJurnalPenyesuaian as $index => $dok)
                                     <tr>
-                                        <td style="color: #000000;">1/12/2019</td>
-                                        <td><span style="color: #000000;">JP-DEC2019</span></td>
-                                        <td><span style="color: #000000;">Jurnal Penyesuaian Desember</span></td>
-                                        <td><span style="color: #000000;">Rp. 500.000</span></td>
+                                        <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}</td>
+                                        <td><span style="color: #000000;">{{$dok->no_jurnal_penyesuaian}}</span></td>
+                                        <td><span style="color: #000000;">{{$dok->nm_jurnal_penyesuaian}}</span></td>
                                         <td>
-                                            <a href="/dataJurnalUmum/delete" class="btn btn-danger">Hapus</a>
+                                            <a href="/dataJurnalPenyesuaian/lihat/{{$dok->kode_jurnal_penyesuaian}}" class="btn btn-success">Lihat</a>
+                                            <!-- <button href="/dataJurnalUmum/delete/{{$dok->kode_jurnal_penyesuaian}}" class="btn btn-danger" id="hapus-jurnal">Hapus</button> -->
+                                            <a href="" class="btn btn-danger btn-hapus-penyesuaian" data-id="{{$dok->kode_jurnal_penyesuaian}}">Delete</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

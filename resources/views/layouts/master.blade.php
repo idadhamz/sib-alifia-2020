@@ -178,15 +178,59 @@
             // });
 
             // Jurnal Umum
+            $('.btn-cari').on('click',function(e)
+            {
+
+            e.preventDefault();
+            var dari = $("#dari_tanggal").val();
+            var sampai = $("#sampai_tanggal").val();
+
+            console.log(dari);
+            console.log(sampai);
+
+              // $.ajax({  
+              //   url:'/dataJurnalUmum/cari/' + dari + '/' + sampai,  
+              //   type:"POST",
+              //   datatype: 'json',
+              //   success:function(data){
+              //     console.log(data);
+              //     sendData: data;
+              //   },
+              //   error: function(error) {  
+              //     alert('fail');
+              //     console.log(error);
+              //   }
+              // });
+
+              // $.ajax({
+              //  url:'/dataJurnalUmum/filter',
+              //  method:"POST",
+              //  data:{dari:dari, sampai:sampai},
+              //  dataType:"json",
+              //  success: function(data){
+              //   console.log(data);
+              //  }
+              // });
+
+              // window.location.assign('/dataJurnalUmum/filter');
+              var url = '{{ route("filter", [":dari", ":sampai"] ) }}';
+              url = url.replace(':dari', dari);
+              url = url.replace(':sampai', sampai);
+
+              window.location.assign(url);
+
+            });
 
             if($("#no_jurnal_umum").val(null) && $("#nm_jurnal_umum").val(null)){
               $("#simpan-jurnal").prop("disabled", true);
             } else {
               $("#simpan-jurnal").prop("disabled", false);
             }
+
             // $("#simpan-jurnal").prop("disabled", true);
 
             $("#tambah-akun").prop("disabled", true);
+            $("#tambah-akun-penyesuaian").prop("disabled", true);
 
             $('#no_akun').on('change',function(e)
             {
@@ -217,6 +261,7 @@
                   }
 
                   $("#tambah-akun").prop("disabled", false);
+                  $("#tambah-akun-penyesuaian").prop("disabled", false);
 
               });
 
@@ -228,6 +273,7 @@
             var tabel_jurnal = $('#data-jurnal-umum').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
                 "columns": [
+                    { "data": "id_transaksi" },
                     { "data": "no_akun" },
                     { "data": "akun" },
                     { "data": "nominal_debit" },
@@ -236,6 +282,13 @@
                         data: null,
                         defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</button>'
                     }
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    },
                 ],
                 hasFirstRow: true
             });
@@ -282,21 +335,22 @@
               console.log(masuk_data);
 
               total_debit += parseInt(
-                masuk_data[2].value == "" ? 0 : masuk_data[2].value
+                masuk_data[3].value == "" ? 0 : masuk_data[3].value
               );
 
               total_kredit += parseInt(
-                masuk_data[3].value == "" ? 0 : masuk_data[3].value
+                masuk_data[4].value == "" ? 0 : masuk_data[4].value
               );
 
               console.log(total_debit);
               console.log(total_kredit);
 
               tabel_jurnal.row.add({
-                "no_akun": masuk_data[0].value,
-                "akun": masuk_data[1].value,
-                "nominal_debit": masuk_data[2].value == "" ? 0 : masuk_data[2].value,
-                "nominal_kredit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
+                "id_transaksi": masuk_data[0].value,
+                "no_akun": masuk_data[1].value,
+                "akun": masuk_data[2].value,
+                "nominal_debit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
+                "nominal_kredit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
               }, function(e) {
                 console.log(e);
               }).draw();
@@ -404,54 +458,147 @@
                 });
             });
 
-            // $('#hapus-jurnal').on('click',function(e) {
-              // e.preventDefault();
-              //       swal({
-              //         title: "Anda yakin ingin menghapus jurnal umum ini?",
-              //         type: "warning",
-              //         showCancelButton: true,
-              //         confirmButtonColor: "#DD6B55",
-              //         confirmButtonText: "Ya",
-              //         cancelButtonText: "Tidak",
-              //         closeOnConfirm: false ,
-              //         closeOnCancel: false
-              //       },
-              //       function(isConfirm){
-              //         if (isConfirm) {
-              //           //swal("Terhapus", "Data berhasil dihapus.", "success");
-              //           swal({
-              //               title: "Berhasil",
-              //               text: "Jurnal Umum berhasil dihapus.",
-              //               type: "success"
-              //           },
-              //           function(ok) {
-              //               if(ok){
-              //                   let kode_jurnal = $(this).attr("data-id");
-              //                   $.ajax({
-              //                    type: 'POST',
-              //                    url: '/dataJurnalUmum/delete',
-              //                    dataType: 'json',
-              //                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-              //                    data: {id:kode_jurnal},
+            // Jurnal Penyesuaian
 
-              //                    success: function (data) {
-              //                     alert('success');            
-              //                   },
-              //                   error: function (data) {
-              //                    alert(data);
-              //                  }
-              //                });
+            if($("#no_jurnal_penyesuaian").val(null) && $("#nm_jurnal_penyesuaian").val(null)){
+              $("#simpan-jurnal-penyesuaian").prop("disabled", true);
+            } else {
+              $("#simpan-jurnal-penyesuaian").prop("disabled", false);
+            }
 
-              //                   // window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
-              //               }
-              //           });
-              //         } else {
-              //           swal("Batal", "Hapus dibatalkan", "error");
-              //         }
-              //       });
+            var tabel_jurnal_penyesuaian = $('#data-jurnal-penyesuaian').DataTable({
+                // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
+                "columns": [
+                    { "data": "id_transaksi" },
+                    { "data": "no_akun" },
+                    { "data": "akun" },
+                    { "data": "nominal_debit" },
+                    { "data": "nominal_kredit" },
+                    {
+                        data: null,
+                        defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal-penyesuaian">Hapus</button>'
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    },
+                ],
+                hasFirstRow: true
+            });
+
+            $('table#data-jurnal-penyesuaian tbody').on('click','.delete-data-jurnal-penyesuaian', function(){
+
+                // console.log($(this).closest('tr').data("nominal_debit"));
+                var data = tabel_jurnal_penyesuaian.row( $(this).parents('tr') ).data();
+
+                tabel_jurnal_penyesuaian.row( $(this).parents('tr') ).remove().draw( false );
+                console.log(tabel_jurnal_penyesuaian.rows().data().toArray());
+
+            });
+
+            $('#tambah-akun-penyesuaian').on('click',function(e) {
+              e.preventDefault();
+              var masuk_data = $("#form-tambah-akun-penyesuaian").serializeArray();
+              console.log(masuk_data);
+
+              tabel_jurnal_penyesuaian.row.add({
+                "id_transaksi": masuk_data[0].value,
+                "no_akun": masuk_data[1].value,
+                "akun": masuk_data[2].value,
+                "nominal_debit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
+                "nominal_kredit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
+              }, function(e) {
+                console.log(e);
+              }).draw();
+
+              $('#nominal_debit, #nominal_kredit').val('');
+              $("#tambah-akun-penyesuaian").prop("disabled", true); 
+              $("#simpan-jurnal-penyesuaian").prop("disabled", false);
+
+              // total_debit != total_kredit ? $("#text-belum-balance").css("display", "block") 
+              // : $("#text-balance").css("display", "block");
+
+              // total_debit != total_kredit ? $("#text-balance").css("display", "none") 
+              // : $("#text-belum-balance").css("display", "none");
+
+              // total_debit != total_kredit ? $("#simpan-jurnal").prop("disabled", true) 
+              // : $("#simpan-jurnal").prop("disabled", false);
+
+              console.log(tabel_jurnal.rows().data().toArray());
+            
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#simpan-jurnal-penyesuaian').on('click',function(e) {
+              e.preventDefault();
+                    swal({
+                      title: "Anda yakin dengan isi dari jurnal penyesuaian ini?",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "Ya",
+                      cancelButtonText: "Tidak",
+                      closeOnConfirm: false ,
+                      closeOnCancel: false
+                    },
+                    function(isConfirm){
+                      if (isConfirm) {
+                        //swal("Terhapus", "Data berhasil dihapus.", "success");
+                        swal({
+                            title: "Berhasil",
+                            text: "Pesanan berhasil diinput.",
+                            type: "success"
+                        },
+                        function(ok) {
+                            if(ok){
+                                console.log($('#no_jurnal_umum').val());
+                                $.post('/simpanJurnalPenyesuaian/save', {sendData: JSON.stringify(tabel_jurnal_penyesuaian.rows().data().toArray()), no_jurnal_penyesuaian: $('#no_jurnal_penyesuaian').val(), nm_jurnal_penyesuaian: $('#nm_jurnal_penyesuaian').val()}, function(res) {
+                                    console.log(res);
+                                }, "json");
+                                tabel_jurnal_penyesuaian.clear().draw();
+
+                                window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
+                            }
+                        });
+                      } else {
+                        swal("Batal", "Pesanan dibatalkan", "error");
+                      }
+                    });
               //console.log(dTable.getData());
               //alert(JSON.stringify(dTable.getData()));
-            // });
+            });
+
+            $(document).on('click', '.btn-hapus-penyesuaian', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                swal({
+                        title: "Anda yakin ingin menghapus Jurnal Penyesuaian ini?",
+                        type: "warning",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yakin",
+                        showCancelButton: true,
+                    },
+                    function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{url('/hapusJurnalPenyesuaian')}}",
+                            data: {id:id},
+                            success: function (data) {
+                              console.log(data);
+                            }         
+                        });
+
+                        window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
+                });
+            });
 
             // Grafik Laporan Keuangan
             var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');
