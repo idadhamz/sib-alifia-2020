@@ -72,19 +72,26 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
 	Route::get('/dataJurnalUmum','AkuntanController@index_jurnal_umum');
+	Route::get('/dataJurnalUmum/filter/{dari}/{sampai}','AkuntanController@filter_jurnal_umum')->name('filter');
+
 	Route::get('/cariAkun/{no_akun}','AkuntanController@cari_akun');
 	Route::get('/tambahJurnalUmum','AkuntanController@add_jurnal_umum');
-
 	Route::post('/simpanJurnal/save','AkuntanController@simpan_jurnal');
 	// Route::post('/dataJurnalUmum/delete/{kode_jurnal}','AkuntanController@delete_jurnal_umum');
 	Route::post('/hapusJurnal','AkuntanController@delete_jurnal_umum');
+	Route::get('/dataJurnalUmum/lihat/{kode_jurnal}','AkuntanController@lihat_jurnal_umum');
 
 	Route::get('/dataJurnalPenyesuaian','AkuntanController@index_jurnal_penyesuaian');
 	Route::get('/tambahJurnalPenyesuaian','AkuntanController@add_jurnal_penyesuaian');
+	Route::post('/simpanJurnalPenyesuaian/save','AkuntanController@simpan_jurnal_penyesuaian');
+	// Route::post('/dataJurnalUmum/delete/{kode_jurnal_penyesuaian}','AkuntanController@delete_jurnal_umum');
+	Route::post('/hapusJurnalPenyesuaian','AkuntanController@delete_jurnal_penyesuaian');
+	Route::get('/dataJurnalPenyesuaian/lihat/{kode_jurnal_penyesuaian}','AkuntanController@lihat_jurnal_penyesuaian');
 
 	Route::get('/dataBukuBesar','AkuntanController@index_buku_besar');
 
-	Route::get('/dataNeracaSaldo','AkuntanController@index_neraca_saldo');
+	Route::get('/dataNeracaSaldo','AkuntanController@cari_neraca_saldo');
+	Route::get('/dataNeracaSaldo/hasil/{dari}/{sampai}','AkuntanController@hasil_neraca_saldo')->name('hasil');
 
 });
 

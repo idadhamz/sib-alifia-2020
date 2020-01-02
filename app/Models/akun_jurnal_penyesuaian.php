@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
 
-class buku_besar extends Model
+class akun_jurnal_penyesuaian extends Model
 {
-    protected $table = 'buku_besar';
-    protected $primaryKey = 'id_bb';
+    protected $table = 'akun_jurnal_penyesuaian';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'id_jurnal',
+        'kode_jurnal_penyesuaian',
         'id_transaksi',
         'no_akun',
+        'tgl_jurnal',
         'debit',
         'kredit',
-        'total_bb',
-        'tgl_posting',
     ];
 
     protected $hidden = [
@@ -29,12 +28,10 @@ class buku_besar extends Model
     ];
 
     public static $rules = [
-        'id_jurnal' => 'required|string|between:0,5',
         'id_transaksi' => 'required|string|between:0,5',
         'no_akun' => 'required|integer',
+        'tgl_jurnal' => 'required|date',
         'debit' => 'required|integer',
         'kredit' => 'required|integer',
-        'total_bb' => 'integer',
-        'tgl_posting' => 'required|date',
     ];
 }

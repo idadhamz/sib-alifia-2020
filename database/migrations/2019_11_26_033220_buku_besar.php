@@ -14,10 +14,10 @@ class BukuBesar extends Migration
     public function up()
     {
         Schema::create('buku_besar', function (Blueprint $table) {
-            $table->string('id_bb', 5)->primary();
+            $table->bigIncrements('id_bb');
             $table->string('id_jurnal', 5);
             $table->integer('no_akun');
-            $table->integer('total_bb');
+            $table->integer('total_bb')->nullable();
             $table->date('tgl_posting');
             $table->timestamps();
         });

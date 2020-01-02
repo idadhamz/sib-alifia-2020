@@ -41,7 +41,7 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
-                        <form action="/dataJurnalUmum/cari" method="get" role="form" autocomplete="off">
+                        <!-- <form action="/dataJurnalUmum/cari" method="get" role="form" autocomplete="off"> -->
                         <div class="row">
                             <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
@@ -70,12 +70,12 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4 col-md-2">
-                                        <button type="submit" class="btn btn-success" style="margin-top:29px"><i class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
+                                        <button type="submit" class="btn btn-success btn-cari" style="margin-top:29px"><i class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </form>
+                        <!-- </form> -->
                       </div>
                     </div>
                     <div class="card">
@@ -83,7 +83,7 @@
                             <div style="width:100%;">
                                 <h4 style="float:left;">Dashboard Jurnal Umum</h4>
                                 <div style="float: right;"> 
-                                    <a href="{{url('/tambahJurnalUmum')}}"class="btn btn-info" style="border-color: #95B9C7;color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Umum</a>
+                                    <a href="{{url('/tambahJurnalUmum')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Jurnal Umum</a>
                                 </div>
                             </div>
                       </div>
@@ -107,7 +107,7 @@
                                         <td><span style="color: #000000;">{{$dok->nm_jurnal_umum}}</span></td>
                                         <td><span style="color: #000000;">Rp. {{ number_format($dok->nilai, 0, ',', '.') }}</span></td>
                                         <td>
-                                            <a href="/dataJurnalUmum/delete" class="btn btn-success">Lihat</a>
+                                            <a href="/dataJurnalUmum/lihat/{{$dok->kode_jurnal}}" class="btn btn-success">Lihat</a>
                                             <!-- <button href="/dataJurnalUmum/delete/{{$dok->kode_jurnal}}" class="btn btn-danger" id="hapus-jurnal">Hapus</button> -->
                                             <a href="" class="btn btn-danger btn-hapus" data-id="{{$dok->kode_jurnal}}">Delete</a>
                                         </td>

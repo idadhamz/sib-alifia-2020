@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Validation\Rule;
 
-class vw_dokter extends Model
+class total_per_akun extends Model
 {
-    protected $table = 'vw_dokter';
+    protected $table = 'total_per_akun';
 }

@@ -49,43 +49,54 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Data Neraca Saldo</h4>
+                        <div style="width:100%;">
+                          <div style="width:100%;">
+                            <td>
+                              <a href="/dataNeracaSaldo" class="btn btn-warning"><i class="fa fa-arrow-left" style="margin-right: 5px;"></i>Kembali</a>
+                            </td>
+                          </div>
+                        </div>
                       </div>
                       <div class="card-body">
                         <div class="row">
                           <div class="col-12" style="margin-bottom: 20px;">
-                            <p style="text-align: center;line-height: 25px;font-size: 15px;">Neraca Saldo <br> Al-Banna Laundry <br> 31 Desember 2019</p>
+                            <!-- <img src="" /> -->
+                            <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
+                            <hr/>
+                            <p style="text-align: center;line-height: 25px;font-size: 15px;font-weight: bold;">Neraca Saldo<br> <!-- {{ Carbon\Carbon::parse(\Carbon\Carbon::now()->endOfMonth()->toDateString())->formatLocalized('%d %B %Y') }} -->
+                              Periode {{ Carbon\Carbon::parse($dari)->formatLocalized('%d %B %Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d %B %Y') }}
+                            </p>
                           </div>
                           <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-md" style="text-align: center;">
+                                <table class="table table-striped table-md">
                                     <thead>
                                         <tr>
-                                            <th>Akun</th>
+                                            <th style="text-align: center;">Akun</th>
                                             <th>Debet</th>
                                             <th>Kredit</th>
                                         </tr>
                                     </thead>
-                                    <tbody">
+                                    <tbody>
+                                        @foreach($dataNeracaSaldoHasil as $index => $dok)
                                         <tr>
-                                            <td style="color: #000000;">
-                                              <span style="font-weight: bold;">Aktiva</span> 
-                                              <br><span>Kas</span>
-                                              <br><span>Pendapatan</span>
+                                            <td style="color: #000000;text-align: center;">
+                                              <span>{{$dok->nm_akun}}</span>
                                             </td>
-                                            <td><span style="color: #000000;"><br>Rp. 5.000.000<br>Rp. 2.000.000</span></td>
-                                            <td><span style="color: #000000;"><br>Rp. 0<br>Rp. 0</span></td>
+                                            <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
                                         </tr>
-                                        <tr>
-                                            <td style="color: #000000;">
-                                              <span style="font-weight: bold;">Aktiva</span> 
-                                              <br><span>Kas</span>
-                                              <br><span>Pendapatan</span>
-                                            </td>
-                                            <td><span style="color: #000000;"><br>Rp. 5.000.000<br>Rp. 2.000.000</span></td>
-                                            <td><span style="color: #000000;"><br>Rp. 0<br>Rp. 0</span></td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td style="color: #000000;font-weight: bold;text-align: center;">
+                                              <span>Total</span>
+                                            </td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit, 0, ',', '.') }}</td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit, 0, ',', '.') }}</td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                           </div>
