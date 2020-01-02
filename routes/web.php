@@ -97,6 +97,8 @@ Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
 	Route::post('/dataTransaksiKasir/update/{id_transaksi}','KasirController@update_transaksi_kasir');
 	Route::get('/dataTransaksiKasir/delete/{id_transaksi}','KasirController@delete_transaksi_kasir');
 
+	Route::get('/dataArusKas','KasirController@index_arus_kas');
+
 });
 
 Auth::routes();

@@ -1,15 +1,21 @@
 .footer-login {
-  padding: 25px 0px;
-  margin-top: 40px;
-  color: #98a6ad;
-  background-color: white;
-  border-top: 1px solid #e3eaef;
-  display: inline-block;
-  width: 100%; }
+    padding: 25px 0px;
+    margin-top: 40px;
+    color: #98a6ad;
+    background-color: white;
+    border-top: 1px solid #e3eaef;
+    display: inline-block;
+    width: 100%;
+}
 
 .footer-login .footer-left {
-    float: left; }
+    float: left;
+}
+
 .footer-login .footer-right {
-    float: right; }
+    float: right;
+}
+
 .footer-login .text-center {
-    text-align: center; }
+    text-align: center;
+}

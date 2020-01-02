@@ -24,7 +24,8 @@
     margin-bottom: 20px;
 }
 
-.btn-primary, .btn-primary.disabled {
+.btn-primary,
+.btn-primary.disabled {
     border-color: #007EA7 !important;
-    background-color:#007EA7;
+    background-color: #007EA7;
 }
