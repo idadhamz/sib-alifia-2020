@@ -164,7 +164,7 @@
                                   <select class="form-control" name="no_akun" id="no_akun">
                                     <option>Pilih</option>
                                     @foreach($DataAkun as $dpo)
-                                    <option value="{{$dpo->no_akun}}">No. {{$dpo->no_akun}}</option>
+                                    <option value="{{$dpo->no_akun}}">No. {{$dpo->no_akun}} ({{$dpo->nm_akun}})</option>
                                     @endforeach
                                   </select>
                                 </div>
@@ -301,8 +301,8 @@
                                         <tr>
                                           <th>Tanggal Transaksi</th>
                                           <th>Deskripsi Transaksi</th>
-                                          <th>Nominal</th>
                                           <th>Jenis Pembayaran</th>
+                                          <th>Nominal</th>
                                           
                                         </tr>
                                       </thead>
@@ -311,8 +311,8 @@
                                         <tr>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                         </tr>
                                         @endforeach
                                       </tbody>
@@ -335,8 +335,8 @@
                                         <tr>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
+                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                         </tr>
                                         @endforeach
                                       </tbody>

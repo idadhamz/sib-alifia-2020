@@ -126,10 +126,7 @@
             $('#data-user').dataTable();
             $('#data-pemasukan').dataTable();
             $('#data-pengeluaran').dataTable();
-
-            // $('#no_akun').select2({
-            //   theme: "bootstrap"
-            // });
+            // $('#id_transaksi').select2();
 
             $(document).ready(function () {
                 $('#dari_tanggal').daterangepicker({
@@ -143,6 +140,16 @@
                 });
 
                 $('#tanggal_pembuatan').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
+                $('#dari_tanggal_neraca_saldo').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
+                $('#sampai_tanggal_neraca_saldo').daterangepicker({
                   locale: {format: 'YYYY-MM-DD'},
                   singleDatePicker: true,
                 });
@@ -598,6 +605,25 @@
 
                         window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
                 });
+            });
+
+            $('.btn-cari-neraca-saldo').on('click',function(e)
+            {
+
+              e.preventDefault();
+              var dari = $("#dari_tanggal_neraca_saldo").val();
+              var sampai = $("#sampai_tanggal_neraca_saldo").val();
+
+              console.log(dari);
+              console.log(sampai);
+
+                // window.location.assign('/dataJurnalUmum/filter');
+                var url = '{{ route("hasil", [":dari", ":sampai"] ) }}';
+                url = url.replace(':dari', dari);
+                url = url.replace(':sampai', sampai);
+
+                window.location.assign(url);
+
             });
 
             // Grafik Laporan Keuangan

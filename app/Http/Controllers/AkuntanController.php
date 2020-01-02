@@ -611,8 +611,8 @@ class AkuntanController extends Controller
  
     }
 
-    // Data Jurnal Penyesuaian
-    public function index_neraca_saldo()
+    // Data Neraca Saldo
+    public function hasil_neraca_saldo($dari, $sampai)
     {
 
         // get data
@@ -623,14 +623,46 @@ class AkuntanController extends Controller
             ->where('total_per_akun.tgl_posting', '>=', \Carbon\Carbon::now()->startOfMonth())
             ->get();
 
-        $dataTotalNeracaSaldo = total_keseluruhan::where('bulan', '=', Carbon::today()->month)->get();
+        // $dataTotalNeracaSaldo = total_keseluruhan::where('bulan', '=', Carbon::today()->month)->get();
+            
+        // $tanggal_dari = Carbon::parse($dari)->format('Y-m');
+        // $tanggal_sampai = Carbon::parse($sampai)->format('Y-m');
+        // $dataTotalNeracaSaldo = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->get();
+
+        // $total_debit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_debit_all');
+        // $total_kredit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_kredit_all');
+
+        $total_debit = total_per_akun::whereBetween('tgl_posting', [$dari, $sampai])->sum('total_debit');
+        $total_kredit = total_per_akun::whereBetween('tgl_posting', [$dari, $sampai])->sum('total_kredit');
+
+        // dd(Carbon::parse($dari)->format('Y-m'));
+
         // dd(Carbon::today()->month);
+
+        $dataNeracaSaldoHasil = total_per_akun::leftJoin('akun', 'total_per_akun.no_akun', '=', 'akun.no_akun')
+            ->select('total_per_akun.total_debit', 'total_per_akun.total_kredit', 'total_per_akun.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->get();
+
+        $dari = $dari;
+        $sampai = $sampai;
+
 
 
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('akuntan.dataNeracaSaldo.index', compact('dataNeracaSaldo', 'dataTotalNeracaSaldo'));
+        return view('akuntan.dataNeracaSaldo.hasil', compact('dataNeracaSaldoHasil', 'total_debit', 'total_kredit', 'dari', 'sampai'));
+ 
+    }
+
+    public function cari_neraca_saldo()
+    {
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataNeracaSaldo.cari');
  
     }
 }

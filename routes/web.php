@@ -90,7 +90,8 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 
 	Route::get('/dataBukuBesar','AkuntanController@index_buku_besar');
 
-	Route::get('/dataNeracaSaldo','AkuntanController@index_neraca_saldo');
+	Route::get('/dataNeracaSaldo','AkuntanController@cari_neraca_saldo');
+	Route::get('/dataNeracaSaldo/hasil/{dari}/{sampai}','AkuntanController@hasil_neraca_saldo')->name('hasil');
 
 });
 

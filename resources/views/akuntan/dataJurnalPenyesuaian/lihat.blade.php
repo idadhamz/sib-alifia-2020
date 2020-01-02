@@ -27,12 +27,14 @@
                         </div>
                       </div>
                       <div class="card-body">
-                        <p style="font-weight: bold;">Data Jurnal Penyesuaian</p>
-                        <hr />
+                        <!-- <p style="font-weight: bold;">Data Jurnal Penyesuaian</p>
+                        <hr /> -->
                         <div class="row">
                           <div class="col-12" style="margin: 20px 0px;">
+                            <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
+                            <hr/>
                             @foreach($DataJurnalPenyesuaian as $index => $dps)
-                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Penyesuaian<br> Al-Banna Laundry <br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}</p>
+                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Penyesuaian<br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}<br><span style="font-weight: normal;">No. {{$dps->no_jurnal_penyesuaian}}</span></p>
                             @endforeach
                           </div>
                           <div class="col-12">
