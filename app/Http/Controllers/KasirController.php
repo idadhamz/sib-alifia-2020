@@ -117,4 +117,22 @@ class KasirController extends Controller
         // alihkan halaman ke halaman jabatan
         return redirect('/dataTransaksiKasir')->with('message_delete', 'Data Berhasil dihapus!');
     }   
+
+
+    public function index_arus_kas()
+    {
+        $transaksiArusPemasukan = transaksi::where('nm_transaksi', 1)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.created_at", "asc")
+                            ->get();
+        $transaksiArusPengeluaran = transaksi::where('nm_transaksi', 2)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.created_at", "asc")
+                            ->get();
+
+        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'));
+
+    }
 }

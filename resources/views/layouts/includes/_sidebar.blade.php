@@ -74,7 +74,7 @@
           <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2016</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('dataArusKas')) ? 'active' : '' }}"><a class="nav-link" href=""><i class="fas fa-chart-pie"></i> <span>Laporan Arus Kas</span></a></li>
+      <li class="{{ (request()->is('dataArusKas')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataArusKas')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Arus Kas</span></a></li>
       @endif
       
   </aside>
