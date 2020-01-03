@@ -83,8 +83,8 @@
                                             <td style="color: #000000;text-align: center;">
                                               <span>{{$dok->nm_akun}}</span>
                                             </td>
-                                            <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
-                                            <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->debit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->kredit, 0, ',', '.') }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -42,6 +42,7 @@
                                 <table class="table table-striped table-md" style="text-align: center;">
                                     <thead>
                                         <tr>
+                                            <!-- <th>No.</th> -->
                                             <th>Tanggal</th>
                                             <th>Keterangan</th>
                                             <th>Debet</th>
@@ -51,6 +52,7 @@
                                     <tbody">
                                         @foreach($DataAkunJurnal as $index => $dps)
                                         <tr>
+                                            <!-- <td>{{$index +1}}</td> -->
                                             <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 

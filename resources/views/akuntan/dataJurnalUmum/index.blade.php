@@ -92,6 +92,7 @@
                             <table class="table table-striped" id="data-user">
                                 <thead>
                                     <tr>
+                                        <th>No.</th>
                                         <th>Tanggal Jurnal</th>
                                         <th>No Jurnal Umum</th>
                                         <th>Nama</th>
@@ -102,6 +103,7 @@
                                 <tbody>
                                     @foreach($DataJurnalUmum as $index => $dok)
                                     <tr>
+                                        <td>{{$index +1}}</td>
                                         <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}</td>
                                         <td><span style="color: #000000;">{{$dok->no_jurnal_umum}}</span></td>
                                         <td><span style="color: #000000;">{{$dok->nm_jurnal_umum}}</span></td>

@@ -276,6 +276,7 @@
 
             var total_debit = 0;
             var total_kredit = 0;
+            var selisih = 0;
 
             var tabel_jurnal = $('#data-jurnal-umum').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
@@ -307,6 +308,22 @@
 
                 total_debit -= parseInt(data.nominal_debit);
                 total_kredit -= parseInt(data.nominal_kredit);
+
+                if(data.nominal_debit != null){
+                  if(total_debit == 0){
+                    selisih = 0;
+                  }else {
+                    selisih = total_debit - data.nominal_debit;
+                  }
+                }else {
+                  if(total_kredit == 0){
+                    selisih = 0;
+                  }else {
+                    selisih = total_kredit - data.nominal_kredit;
+                  }
+                }
+
+                $('#selisih').val(selisih);
                 $('#total_debit').val(total_debit);
                 $('#total_kredit').val(total_kredit);
 
@@ -349,6 +366,12 @@
                 masuk_data[4].value == "" ? 0 : masuk_data[4].value
               );
 
+              if(total_debit > total_kredit){
+                selisih = total_debit - total_kredit;
+              }else {
+                selisih = total_kredit - total_debit;
+              }
+
               console.log(total_debit);
               console.log(total_kredit);
 
@@ -365,6 +388,7 @@
               $('#nominal_debit, #nominal_kredit').val('');
               $('#total_debit').val(total_debit);
               $('#total_kredit').val(total_kredit);
+              $('#selisih').val(selisih);
               $("#tambah-akun").prop("disabled", true); 
 
               // total_debit != total_kredit ? $("#text-belum-balance").css("display", "block") 

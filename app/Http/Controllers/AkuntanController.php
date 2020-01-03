@@ -244,7 +244,7 @@ class AkuntanController extends Controller
     {
 
         // get data
-        $DataJurnalUmum = jurnal_umum::orderBy("tanggal_pembuatan", "asc")->get();
+        $DataJurnalUmum = jurnal_umum::orderBy('kode_jurnal', 'DESC')->get();
 
 
  
@@ -329,6 +329,7 @@ class AkuntanController extends Controller
         $DataAkunJurnal = akun_jurnal_umum::leftJoin('transaksi', 'akun_jurnal_umum.id_transaksi', '=', 'transaksi.id_transaksi')->leftJoin('akun', 'akun_jurnal_umum.no_akun', '=', 'akun.no_akun')
                 ->select('akun_jurnal_umum.*','transaksi.tgl_transaksi', 'akun.nm_akun')
                 ->where('akun_jurnal_umum.kode_jurnal', $kode_jurnal)
+                ->orderBy('transaksi.tgl_transaksi', 'ASC')
                 ->get();
         $DataJurnal = jurnal_umum::where("kode_jurnal", $kode_jurnal)->get();
  
@@ -382,7 +383,7 @@ class AkuntanController extends Controller
 
         // get data
         // $DataAkun = akun::orderBy("no_akun", "asc")->get()
-        $DataJurnalPenyesuaian = jurnal_penyesuaian::orderBy("tanggal_pembuatan", "asc")->get();
+        $DataJurnalPenyesuaian = jurnal_penyesuaian::orderBy("kode_jurnal_penyesuaian", "DESC")->get();
 
 
  
@@ -467,6 +468,7 @@ class AkuntanController extends Controller
         $DataAkunJurnalPenyesuaian = akun_jurnal_penyesuaian::leftJoin('transaksi', 'akun_jurnal_penyesuaian.id_transaksi', '=', 'transaksi.id_transaksi')->leftJoin('akun', 'akun_jurnal_penyesuaian.no_akun', '=', 'akun.no_akun')
                 ->select('akun_jurnal_penyesuaian.*','transaksi.tgl_transaksi', 'akun.nm_akun')
                 ->where('akun_jurnal_penyesuaian.kode_jurnal_penyesuaian', $kode_jurnal_penyesuaian)
+                ->orderBy('transaksi.tgl_transaksi', 'ASC')
                 ->get();
         $DataJurnalPenyesuaian = jurnal_penyesuaian::where("kode_jurnal_penyesuaian", $kode_jurnal_penyesuaian)->get();
  
@@ -632,16 +634,32 @@ class AkuntanController extends Controller
         // $total_debit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_debit_all');
         // $total_kredit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_kredit_all');
 
-        $total_debit = total_per_akun::whereBetween('tgl_posting', [$dari, $sampai])->sum('total_debit');
-        $total_kredit = total_per_akun::whereBetween('tgl_posting', [$dari, $sampai])->sum('total_kredit');
+        $total_debit = buku_besar::whereBetween('tgl_posting', [$dari, $sampai])->sum('debit');
+        $total_kredit = buku_besar::whereBetween('tgl_posting', [$dari, $sampai])->sum('kredit');
 
         // dd(Carbon::parse($dari)->format('Y-m'));
 
         // dd(Carbon::today()->month);
 
-        $dataNeracaSaldoHasil = total_per_akun::leftJoin('akun', 'total_per_akun.no_akun', '=', 'akun.no_akun')
-            ->select('total_per_akun.total_debit', 'total_per_akun.total_kredit', 'total_per_akun.tgl_posting', 'akun.*')
+        // $DataAkun = akun::orderBy("no_akun", "asc")->get();
+
+
+        // foreach($DataAkun as $index => $akun){
+        //     $dataNeracaSaldoSum = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        //     ->select('buku_besar.debit', 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+        //     ->whereBetween('tgl_posting', [$dari, $sampai])
+        //     ->where('buku_besar.no_akun', $akun->no_akun)
+        //     // ->groupBy('akun.no_akun')
+        //     ->sum('buku_besar.debit');
+        // };
+
+        // dd($dataNeracaSaldoSum);
+
+        $dataNeracaSaldoHasil = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as debit'), DB::raw('SUM(buku_besar.kredit) as kredit'), 'buku_besar.tgl_posting', 'akun.*')
             ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->groupBy('akun.no_akun')
             ->get();
 
         $dari = $dari;

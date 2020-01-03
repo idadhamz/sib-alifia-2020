@@ -248,6 +248,23 @@
                                       <td style="display: none;"></td>
                                       <td></td>
                                       <td></td>
+                                      <td><p style="font-weight: bold;">Selisih</p></td>
+                                      <td width="200px;">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              Rp.
+                                            </div>
+                                          </div>
+                                          <input type="text" class="form-control" name="selisih" id="selisih" autocomplete="off" readonly="readonly">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                    <tr>
+                                      <td style="display: none;"></td>
+                                      <td></td>
+                                      <td></td>
                                       <td width="200px;">
                                         <div class="input-group">
                                           <div class="input-group-prepend">
@@ -276,7 +293,7 @@
                                   </tfoot>
                                 </table>
                               </div>
-                              <button href="javascript::void(0)" id="simpan-jurnal" class="btn btn-success" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>
+                              <button href="javascript::void(0)" id="simpan-jurnal" class="btn btn-info" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>
                             </div>
                           </div>
                           <div class="card">
