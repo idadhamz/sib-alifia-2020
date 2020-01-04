@@ -131,8 +131,10 @@ class KasirController extends Controller
                             ->select('transaksi.*','users.nama')
                             ->orderBy("transaksi.created_at", "asc")
                             ->get();
+        $totalPemasukan = transaksi::where('nm_transaksi', 1)->sum('nominal_transaksi');
+        $totalPengeluaran = transaksi::where('nm_transaksi', 2)->sum('nominal_transaksi');
 
-        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'));
+        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
 
     }
 

@@ -74,7 +74,7 @@
                               </tr>
                               
                               <tr >
-                                <th scope="row" colspan="6">Bulan/Tahun:</th>
+                                <th scope="row" colspan="6">Tanggal: <span style="font-weight: bold;">({{ Carbon\Carbon::parse($dari)->formatLocalized('%d %B %Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d %B %Y') }})</span></th>
                               </tr>
                             </thead>
                             <tbody>
