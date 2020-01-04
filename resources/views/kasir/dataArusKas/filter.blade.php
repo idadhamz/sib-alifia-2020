@@ -72,15 +72,16 @@
                               <tr style="font-size: 24px;" class="text-center text-bold">
                                 <th scope="col" colspan="6">Laporan Arus Kas Al-Banna Laundry</th>
                               </tr>
+                              
                               <tr >
-                                <th scope="row" colspan="6">Bulan/Tahun:  </th>
+                                <th scope="row" colspan="6">Bulan/Tahun:</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr style="background-color: #F5F5F5;">
                                 <th scope="row" colspan="6" >Arus Kas Masuk</th>
                               </tr>
-                              @foreach($transaksiArusPemasukan as $index => $dok)
+                              @foreach($DataArusKasPemasukanFilters as $index => $dok)
                               <tr>
                                 <td></td>
                                 <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
@@ -90,7 +91,7 @@
                               <tr style="font-weight: bold;">
                                 <th></th>
                                 <td>Total</td>
-                                <td>Rp. 1.000.000</td>
+                                <td>Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</td>
                                 <td></td>
                                 <td></td>
                               </tr>
@@ -100,7 +101,7 @@
                                 <th scope="row" colspan="6">Arus Kas Keluar</th>
                               </tr>
                               <tr>
-                                @foreach($transaksiArusPengeluaran as $index => $dok)
+                                @foreach($DataArusKasPengeluaranFilters as $index => $dok)
                                 <tr>
                                   <td></td>
                                   <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
@@ -111,7 +112,7 @@
                               <tr style="font-weight: bold;">
                                 <th></th>
                                 <td>Total</td>
-                                <td>Rp. 1.000.000</td>
+                                <td>Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
                                 <td></td>
                                 <td></td>
                               </tr>

@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
 	Route::get('/dataTransaksiKasir/delete/{id_transaksi}','KasirController@delete_transaksi_kasir');
 
 	Route::get('/dataArusKas','KasirController@index_arus_kas');
+	Route::get('/dataArusKas/filter/{dari}/{sampai}','KasirController@filter_Arus_kas')->name('filter');
 
 });
 
