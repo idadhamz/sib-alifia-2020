@@ -77,7 +77,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr style="background:rgba(196, 196, 196, 0.1);">
+                              <tr style="background-color: #F5F5F5;">
                                 <th scope="row" colspan="6" >Arus Kas Masuk</th>
                               </tr>
                               @foreach($transaksiArusPemasukan as $index => $dok)
@@ -87,17 +87,16 @@
                                 <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                               </tr>
                               @endforeach
-                              <tr>
+                              <tr style="font-weight: bold;">
                                 <th></th>
-                                <td></td>
-                                <td></td>
+                                <td>Total</td>
                                 <td>Rp. 1.000.000</td>
                                 <td></td>
                                 <td></td>
                               </tr>
                             </tbody>
                             <tbody>
-                              <tr style="background:rgba(196, 196, 196, 0.1);">
+                              <tr style="background-color: #F5F5F5;">
                                 <th scope="row" colspan="6">Arus Kas Keluar</th>
                               </tr>
                               <tr>
@@ -109,11 +108,10 @@
                                 </tr>
                                 @endforeach
                               </tr>
-                              <tr>
+                              <tr style="font-weight: bold;">
                                 <th></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>Total</td>
+                                <td>Rp. 1.000.000</td>
                                 <td></td>
                                 <td></td>
                               </tr>

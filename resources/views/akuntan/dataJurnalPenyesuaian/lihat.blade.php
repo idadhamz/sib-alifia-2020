@@ -44,8 +44,8 @@
                                         <tr>
                                             <!-- <th>No.</th> -->
                                             <th>Tanggal</th>
-                                            <th>Keterangan</th>
                                             <th>No. Akun</th>
+                                            <th>Keterangan</th>
                                             <th>Debet</th>
                                             <th>Kredit</th>
                                         </tr>
@@ -60,8 +60,8 @@
                                               <br><span>Kas</span>
                                               <br><span>Pendapatan</span>
                                             </td> -->
-                                            <td>{{$dps->deskripsi}}</td>
                                             <td>{{$dps->no_akun}}</td>
+                                            <td>{{$dps->deskripsi}}</td>
                                             @if($dps->debit == null)
                                               <td>-</td>
                                             @else

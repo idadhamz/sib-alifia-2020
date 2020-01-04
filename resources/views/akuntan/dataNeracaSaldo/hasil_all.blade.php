@@ -64,7 +64,6 @@
                             <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
                             <hr/>
                             <p style="text-align: center;line-height: 25px;font-size: 16px;font-weight: bold;">Neraca Saldo<br> <!-- {{ Carbon\Carbon::parse(\Carbon\Carbon::now()->endOfMonth()->toDateString())->formatLocalized('%d %B %Y') }} -->
-                              Periode {{ Carbon\Carbon::parse($dari)->formatLocalized('%d/%m/%Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d/%m/%Y') }}
                             </p>
                           </div>
                           <div class="col-12">

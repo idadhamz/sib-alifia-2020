@@ -89,9 +89,11 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataJurnalPenyesuaian/lihat/{kode_jurnal_penyesuaian}','AkuntanController@lihat_jurnal_penyesuaian');
 
 	Route::get('/dataBukuBesar','AkuntanController@index_buku_besar');
+	Route::get('/dataBukuBesar/akun/{no_akun}','AkuntanController@detail_buku_besar');
 
 	Route::get('/dataNeracaSaldo','AkuntanController@cari_neraca_saldo');
 	Route::get('/dataNeracaSaldo/hasil/{dari}/{sampai}','AkuntanController@hasil_neraca_saldo')->name('hasil');
+	Route::get('/dataNeracaSaldo/hasil','AkuntanController@hasil_all_neraca_saldo')->name('hasil_all');
 
 });
 

@@ -613,6 +613,23 @@ class AkuntanController extends Controller
  
     }
 
+    public function detail_buku_besar($no_akun){
+        // get data
+        // $DataJurnal = jurnal_umum::where("kode_jurnal", $kode_jurnal)->get();
+        $DataBukuBesarDetail = buku_besar::where('buku_besar.no_akun', $no_akun)
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->leftJoin('total_per_akun', 'buku_besar.no_akun', '=', 'total_per_akun.no_akun')
+            ->select('buku_besar.*','transaksi.deskripsi', 'transaksi.tgl_transaksi', 'total_per_akun.total_debit', 'total_per_akun.total_kredit')
+            ->orderBy('buku_besar.tgl_posting', 'DESC')
+            ->get(); 
+
+        $DataAkunDetail = akun::where('no_akun', $no_akun)->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataBukuBesar.lihat', compact('DataBukuBesarDetail', 'DataAkunDetail'));
+    }
+
     // Data Neraca Saldo
     public function hasil_neraca_saldo($dari, $sampai)
     {
@@ -671,6 +688,28 @@ class AkuntanController extends Controller
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
         return view('akuntan.dataNeracaSaldo.hasil', compact('dataNeracaSaldoHasil', 'total_debit', 'total_kredit', 'dari', 'sampai'));
+ 
+    }
+
+    // Data Neraca Saldo
+    public function hasil_all_neraca_saldo()
+    {
+
+        $total_debit = buku_besar::sum('debit');
+        $total_kredit = buku_besar::sum('kredit');
+
+        $dataNeracaSaldoHasil = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as debit'), DB::raw('SUM(buku_besar.kredit) as kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->groupBy('akun.no_akun')
+            ->get();
+
+
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('akuntan.dataNeracaSaldo.hasil_all', compact('dataNeracaSaldoHasil', 'total_debit', 'total_kredit'));
  
     }
 

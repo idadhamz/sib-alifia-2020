@@ -32,7 +32,55 @@
                         <br>
                         <div class="tab-content" id="myTab3Content">
                           <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
-                            <div class="table-responsive">
+                            <div class="row">
+                              <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                  <label>Dari Tanggal</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" name="dari_tanggal_lap" id="dari_tanggal_lap" autocomplete="off">
+                                  </div>
+                                  <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Contoh: 2020-01-01
+                                  </small>
+                                  @if($errors->has('dari_tanggal_lap'))
+                                  <div class="text-danger" style="padding: 5px;">
+                                    {{ $errors->first('dari_tanggal_lap')}}
+                                  </div>
+                                  @endif
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                  <label>Sampai Tanggal</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" name="sampai_tanggal_lap" id="sampai_tanggal_lap" autocomplete="off">
+                                  </div>
+                                  <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Contoh: 2020-01-01
+                                  </small>
+                                  @if($errors->has('sampai_tanggal_lap'))
+                                  <div class="text-danger" style="padding: 5px;">
+                                    {{ $errors->first('sampai_tanggal_lap')}}
+                                  </div>
+                                  @endif
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                  <label>Jenis Laporan</label>
+                                  <select class="form-control" name="pilihan_akun" id="pilihan_akun">
+                                    <option value="0">--Pilih Laporan--</option>
+                                    <option value="1">Laba Rugi</option>
+                                    <option value="2">Perubahan Modal</option>
+                                    <option value="3">Neraca</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-2">
+                                <button type="submit" class="btn btn-success btn-cari-neraca-saldo" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                              </div>
+                            </div>
+                            <!-- <div class="table-responsive">
                               <table class="table table-striped" id="data-pemasukan">
                                   <thead>
                                         <tr>
@@ -47,7 +95,7 @@
                                       </tr>
                                   </tbody>
                               </table>
-                            </div>
+                            </div> -->
                           </div>
                           <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
                             <div class="row">

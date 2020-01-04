@@ -154,6 +154,16 @@
                   singleDatePicker: true,
                 });
 
+                $('#dari_tanggal_lap').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
+                $('#sampai_tanggal_lap').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
+
                 $('.tanggal-transaksi').daterangepicker({
                   locale: {format: 'YYYY-MM-DD'},
                   singleDatePicker: true,
@@ -685,6 +695,18 @@
                 var url = '{{ route("hasil", [":dari", ":sampai"] ) }}';
                 url = url.replace(':dari', dari);
                 url = url.replace(':sampai', sampai);
+
+                window.location.assign(url);
+
+            });
+
+            $('.btn-all-neraca-saldo').on('click',function(e)
+            {
+
+              e.preventDefault();
+
+                // window.location.assign('/dataJurnalUmum/filter');
+                var url = '{{ route("hasil_all") }}';
 
                 window.location.assign(url);
 
