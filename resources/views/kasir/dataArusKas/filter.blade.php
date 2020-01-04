@@ -71,18 +71,19 @@
                             <thead>
                               <tr style="font-size: 24px;" class="text-center text-bold">
                                 <th scope="col" colspan="6">Laporan Arus Kas Al-Banna Laundry</th>
-                              </tr>                   
-                              <!-- <tr >
-                                <th scope="row" colspan="6"></th>
-                              </tr> -->
+                              </tr>
+                              
+                              <tr >
+                                <th scope="row" colspan="6">Tanggal: <span style="font-weight: bold;">({{ Carbon\Carbon::parse($dari)->formatLocalized('%d %B %Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d %B %Y') }})</span></th>
+                              </tr>
                             </thead>
                             <tbody>
                               <tr style="background-color: #F5F5F5;">
-                                <th scope="row" colspan="6" >Arus Kas Masuk : </th>
+                                <th scope="row" colspan="6" >Arus Kas Masuk</th>
                               </tr>
-                              @foreach($transaksiArusPemasukan as $index => $dok)
+                              @foreach($DataArusKasPemasukanFilters as $index => $dok)
                               <tr>
-                                <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                <td></td>
                                 <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                 <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                               </tr>
@@ -97,12 +98,12 @@
                             </tbody>
                             <tbody>
                               <tr style="background-color: #F5F5F5;">
-                                <th scope="row" colspan="6">Arus Kas Keluar : </th>
+                                <th scope="row" colspan="6">Arus Kas Keluar</th>
                               </tr>
                               <tr>
-                                @foreach($transaksiArusPengeluaran as $index => $dok)
+                                @foreach($DataArusKasPengeluaranFilters as $index => $dok)
                                 <tr>
-                                  <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                  <td></td>
                                   <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                   <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                 </tr>

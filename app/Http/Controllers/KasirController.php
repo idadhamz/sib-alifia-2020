@@ -131,8 +131,25 @@ class KasirController extends Controller
                             ->select('transaksi.*','users.nama')
                             ->orderBy("transaksi.created_at", "asc")
                             ->get();
+        $totalPemasukan = transaksi::where('nm_transaksi', 1)->sum('nominal_transaksi');
+        $totalPengeluaran = transaksi::where('nm_transaksi', 2)->sum('nominal_transaksi');
 
-        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'));
+        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
 
+    }
+
+    public function filter_arus_kas($dari, $sampai){
+        
+        $DataArusKasPemasukanFilters = transaksi::where('nm_transaksi', 1)->whereBetween('tgl_transaksi', [$dari, $sampai])
+        ->orderBy("tgl_transaksi", "asc")->get();
+        $DataArusKasPengeluaranFilters = transaksi::where('nm_transaksi', 2)->whereBetween('tgl_transaksi', [$dari, $sampai])
+        ->orderBy("tgl_transaksi", "asc")->get();
+        $dari = $dari;
+        $sampai = $sampai;
+
+        $totalPemasukan = transaksi::where('nm_transaksi', 1)->whereBetween('tgl_transaksi', [$dari, $sampai])->sum('nominal_transaksi');
+        $totalPengeluaran = transaksi::where('nm_transaksi', 2)->whereBetween('tgl_transaksi', [$dari, $sampai])->sum('nominal_transaksi');
+
+        return view('kasir.dataArusKas.filter', compact('DataArusKasPemasukanFilters','DataArusKasPengeluaranFilters', 'dari', 'sampai'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
     }
 }
