@@ -49,12 +49,17 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Data Transaksi</h4>
+                        <div style="width:100%;">
+                          <h4 style="float:left;">Data Transaksi</h4>
+                          <div style="float: right;"> 
+                            <a href="{{url('/tambahDataTransaksi')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Transaksi</a>
+                          </div>
+                        </div>
                       </div>
                       <div class="card-body">
-                        <div style="margin:0px 0px 10px 0px;"> 
+                        <!-- <div style="margin:0px 0px 10px 0px;"> 
                             <a href="{{url('/tambahDataTransaksi')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus mr-2"></i>Tambah Data Transaksi</a>
-                        </div>
+                        </div> -->
                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
                           <li class="nav-item">
                             <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">Pemasukan</a>

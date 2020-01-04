@@ -72,7 +72,7 @@
                 <div class="col-lg-5 col-md-6 col-sm-6 col-12">
                   <div class="card">
                     <div class="card-header">
-                      <h4>Penjualan Bulan Desember</h4>
+                      <h4>Penjualan Bulan Januari</h4>
                     </div>
                     <div class="card-body">
                       <canvas id="grafikLaporanKeuangan" height="182"></canvas>
@@ -89,6 +89,7 @@
                         <table class="table table-striped" id="data-pemasukan">
                           <thead>
                             <tr>
+                              <th>No.</th>
                               <th>Tanggal</th>
                               <th>Transaksi</th>
                               <!-- <th>Nominal</th> -->
@@ -98,6 +99,7 @@
                           <tbody>
                             @foreach($DataTransaksi as $index => $dok)
                             <tr>
+                              <td>{{$index +1}}</td>
                               <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                               <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
                                   <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>

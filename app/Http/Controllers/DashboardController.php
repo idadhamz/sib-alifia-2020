@@ -22,7 +22,7 @@ class dashboardController extends Controller
     	$jml_GolAkun = gol_akun::count();
 
     	$DataAkun = akun::orderBy("created_at", "asc")->get();
-    	$DataTransaksi = transaksi::orderBy("created_at", "asc")->take(3)->get();
+    	$DataTransaksi = transaksi::orderBy("tgl_transaksi", "desc")->take(3)->get();
 
         return view('dashboard.index', compact('DataAkun', 'DataTransaksi', 'jmlUser', 'jmlTransaksi', 'jmlAkun', 'jml_GolAkun'));
  

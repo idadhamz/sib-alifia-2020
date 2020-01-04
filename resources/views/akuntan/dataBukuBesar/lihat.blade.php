@@ -56,7 +56,7 @@
                                 <table class="table table-striped table-md" style="text-align: center;" id="data-user">
                                     <thead>
                                         <tr>
-                                            <!-- <th>No.</th> -->
+                                            <th>No.</th>
                                             <th>Tanggal</th>
                                             <th>Keterangan</th>
                                             <th>Debet</th>
@@ -66,7 +66,7 @@
                                     <tbody>
                                         @foreach($DataBukuBesarDetail as $index => $dps)
                                         <tr>
-                                            <!-- <td>{{$index +1}}</td> -->
+                                            <td>{{$index +1}}</td>
                                             <td>{{ Carbon\Carbon::parse($dps->tgl_posting)->formatLocalized('%d/%m/%Y') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 
@@ -93,6 +93,7 @@
                                       @foreach($DataBukuBesarDetail as $index => $dok)
                                       @if ($loop->first)
                                       <tr>
+                                        <td></td>
                                         <td style="color: #000000;font-weight: bold;"></td>
                                         <td style="color: #000000;font-weight: bold;">Total Saldo</td>
                                         <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>

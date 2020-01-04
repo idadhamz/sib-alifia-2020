@@ -49,12 +49,14 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Kelola Golongan Akun</h4>
+                        <div style="width:100%;">
+                          <h4 style="float:left;">Kelola Golongan Akun</h4>
+                          <div style="float: right;"> 
+                            <a href="{{url('/tambahDataGolAkun')}}"class="btn btn-info" style="color: #ffffff;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Tambah Golongan Akun</a>
+                          </div>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div style="margin:0px 0px 10px 0px;"> 
-                            <a href="{{url('/tambahDataGolAkun')}}"class="btn btn-primary" style="border-color: #95B9C7;color: #ffffff;">Tambah Golongan Akun</a>
-                        </div>
                         <div class="table-responsive">
                           <table class="table table-striped table-md" id="data-user">
                             <thead>

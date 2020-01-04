@@ -225,6 +225,7 @@
                                     <table class="table table-striped table-md" id="data-pemasukan">
                                       <thead>
                                         <tr>
+                                          <th>No.</th>
                                           <th>Tanggal Transaksi</th>
                                           <th>Deskripsi Transaksi</th>
                                           <th>Jenis Pembayaran</th>
@@ -235,6 +236,7 @@
                                       <tbody>
                                         @foreach($transaksiPemasukan as $index => $dok)
                                         <tr>
+                                          <td>{{$index +1}}</td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
@@ -250,6 +252,7 @@
                                     <table class="table table-striped table-md" id="data-pengeluaran">
                                       <thead>
                                         <tr>
+                                          <th>No.</th>
                                           <th>Tanggal Transaksi</th>
                                           <th>Deskripsi Transaksi</th>
                                           <th>Nominal</th>
@@ -259,6 +262,7 @@
                                       <tbody>
                                         @foreach($transaksiPengeluaran as $index => $dok)
                                         <tr>
+                                          <td>{{$index +1}}</td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>

@@ -220,12 +220,12 @@ class AkuntanController extends Controller
         $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
                             ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                             ->select('transaksi.*','users.nama')
-                            ->orderBy("transaksi.created_at", "asc")
+                            ->orderBy("transaksi.tgl_transaksi", "desc")
                             ->get();
         $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
                                 ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                                 ->select('transaksi.*','users.nama')
-                                ->orderBy("transaksi.created_at", "asc")
+                                ->orderBy("transaksi.tgl_transaksi", "desc")
                                 ->get();
         return view('akuntan.dataTransaksi.index', compact('transaksiPemasukan','transaksiPengeluaran'));
  
@@ -259,15 +259,15 @@ class AkuntanController extends Controller
         $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
                             ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                             ->select('transaksi.*','users.nama')
-                            ->orderBy("transaksi.created_at", "asc")
+                            ->orderBy("transaksi.tgl_transaksi", "desc")
                             ->get();
         $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
                                 ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                                 ->select('transaksi.*','users.nama')
-                                ->orderBy("transaksi.created_at", "asc")
+                                ->orderBy("transaksi.tgl_transaksi", "desc")
                                 ->get();
         $DataAkun = akun::orderBy("no_akun", "asc")->get();
-        $DataTransaksi = transaksi::orderBy("created_at", "asc")->get();
+        $DataTransaksi = transaksi::orderBy("tgl_transaksi", "desc")->get();
 
         return view('akuntan.dataJurnalUmum.create', compact('DataAkun','transaksiPemasukan','transaksiPengeluaran','DataTransaksi'));
  
