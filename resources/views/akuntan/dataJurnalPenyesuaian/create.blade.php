@@ -227,10 +227,8 @@
                                         <tr>
                                           <th>No.</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Deskripsi Transaksi</th>
+                                          <th>Transaksi</th>
                                           <th>Jenis Pembayaran</th>
-                                          <th>Nominal</th>
-                                          
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -238,9 +236,11 @@
                                         <tr>
                                           <td>{{$index +1}}</td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
-                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
+                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                          </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
-                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <!-- <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td> -->
                                         </tr>
                                         @endforeach
                                       </tbody>
@@ -254,8 +254,7 @@
                                         <tr>
                                           <th>No.</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Deskripsi Transaksi</th>
-                                          <th>Nominal</th>
+                                          <th>Transaksi</th>
                                           <th>Jenis Pembayaran</th>
                                         </tr>
                                       </thead>
@@ -264,9 +263,11 @@
                                         <tr>
                                           <td>{{$index +1}}</td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
-                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                          <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
+                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                          </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
-                                          <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                          <!-- <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td> -->
                                         </tr>
                                         @endforeach
                                       </tbody>

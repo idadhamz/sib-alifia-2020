@@ -712,6 +712,78 @@
 
             });
 
+            $(".btn-lihat").prop("disabled", true);
+
+            $('#pilihan_laporan').on('change',function(e)
+              {  
+
+                var pilihan_laporan = e.target.value;
+
+                $(".btn-lihat").prop("disabled", false);
+
+                if(pilihan_laporan == 1){
+
+                  $('.btn-lihat').on('click',function(e){
+
+                    e.preventDefault();
+                    var dari = $("#dari_tanggal_lap").val();
+                    var sampai = $("#sampai_tanggal_lap").val();
+
+                    console.log(dari);
+                    console.log(sampai);
+
+                    var url = '{{ route("laba_rugi", [":dari", ":sampai"] ) }}';
+                    url = url.replace(':dari', dari);
+                    url = url.replace(':sampai', sampai);
+
+                    window.location.assign(url);
+
+                  });
+
+                }else if(pilihan_laporan == 2){
+
+                  $('.btn-lihat').on('click',function(e){
+
+                    e.preventDefault();
+                    var dari = $("#dari_tanggal_lap").val();
+                    var sampai = $("#sampai_tanggal_lap").val();
+
+                    console.log(dari);
+                    console.log(sampai);
+
+                    var url = '{{ route("perubahan_modal", [":dari", ":sampai"] ) }}';
+                    url = url.replace(':dari', dari);
+                    url = url.replace(':sampai', sampai);
+
+                    window.location.assign(url);
+
+                  });
+
+                }else if(pilihan_laporan == 3){
+
+                  $('.btn-lihat').on('click',function(e){
+
+                    e.preventDefault();
+                    var dari = $("#dari_tanggal_lap").val();
+                    var sampai = $("#sampai_tanggal_lap").val();
+
+                    console.log(dari);
+                    console.log(sampai);
+
+                    var url = '{{ route("neraca", [":dari", ":sampai"] ) }}';
+                    url = url.replace(':dari', dari);
+                    url = url.replace(':sampai', sampai);
+
+                    window.location.assign(url);
+
+                  });
+
+                }else {
+                  $(".btn-lihat").prop("disabled", true);
+                }
+
+              });
+
             // Grafik Laporan Keuangan
             var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');
             var myChart = new Chart(ctx, {

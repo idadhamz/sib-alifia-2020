@@ -68,7 +68,7 @@
                               <div class="col-sm-12 col-md-3">
                                 <div class="form-group">
                                   <label>Jenis Laporan</label>
-                                  <select class="form-control" name="pilihan_akun" id="pilihan_akun">
+                                  <select class="form-control" name="pilihan_laporan" id="pilihan_laporan">
                                     <option value="0">--Pilih Laporan--</option>
                                     <option value="1">Laba Rugi</option>
                                     <option value="2">Perubahan Modal</option>
@@ -77,7 +77,7 @@
                                 </div>
                               </div>
                               <div class="col-sm-12 col-md-2">
-                                <button type="submit" class="btn btn-success btn-cari-neraca-saldo" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                                <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
                               </div>
                             </div>
                             <!-- <div class="table-responsive">

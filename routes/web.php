@@ -95,6 +95,10 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataNeracaSaldo/hasil/{dari}/{sampai}','AkuntanController@hasil_neraca_saldo')->name('hasil');
 	Route::get('/dataNeracaSaldo/hasil','AkuntanController@hasil_all_neraca_saldo')->name('hasil_all');
 
+	Route::get('/dataLabaRugi/{dari}/{sampai}','AkuntanController@data_laba_rugi')->name('laba_rugi');
+	Route::get('/dataPerubahanModal/{dari}/{sampai}','AkuntanController@data_perubahan_modal')->name('perubahan_modal');
+	Route::get('/dataNeraca/{dari}/{sampai}','AkuntanController@data_neraca')->name('neraca');
+
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
