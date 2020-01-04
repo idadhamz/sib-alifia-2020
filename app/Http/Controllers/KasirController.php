@@ -30,12 +30,12 @@ class KasirController extends Controller
         $transaksiPemasukan = transaksi::where('nm_transaksi', 1)
                             ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                             ->select('transaksi.*','users.nama')
-                            ->orderBy("transaksi.created_at", "asc")
+                            ->orderBy("transaksi.tgl_transaksi", "desc")
                             ->get();
         $transaksiPengeluaran = transaksi::where('nm_transaksi', 2)
                                 ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                                 ->select('transaksi.*','users.nama')
-                                ->orderBy("transaksi.created_at", "asc")
+                                ->orderBy("transaksi.tgl_transaksi", "desc")
                                 ->get();
         return view('kasir.dataTransaksiKasir.index', compact('transaksiPemasukan','transaksiPengeluaran'));
  
@@ -64,7 +64,7 @@ class KasirController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $DataTransaksi = new transaksi;
-        $DataTransaksi->tgl_transaksi = now();
+        $DataTransaksi->tgl_transaksi = request('tgl_transaksi');
         $DataTransaksi->nm_transaksi = request('nm_transaksi');
         $DataTransaksi->nominal_transaksi = request('nominal_transaksi');
         $DataTransaksi->deskripsi = request('deskripsi');

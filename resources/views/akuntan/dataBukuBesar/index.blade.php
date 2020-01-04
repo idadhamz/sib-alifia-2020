@@ -85,7 +85,7 @@
                                               @foreach(${"DataBukuBesar" . $dok->no_akun} as $index => $dok)
                                                   <tr>
                                                       <td>{{$index +1}}</td>
-                                                      <td>{{ Carbon\Carbon::parse($dok->tgl_posting)->formatLocalized('%d %B %Y') }}</td>
+                                                      <td>{{ Carbon\Carbon::parse($dok->tgl_posting)->formatLocalized('%d/%m/%Y') }}</td>
                                                       <td><span>{{$dok->deskripsi}}</span></td>
                                                       <td>
                                                         @if($dok->debit == null)

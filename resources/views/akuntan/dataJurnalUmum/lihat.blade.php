@@ -34,7 +34,7 @@
                             <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
                             <hr/>
                             @foreach($DataJurnal as $index => $dps)
-                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Umum (General Ledger)<br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}<br><span style="font-weight: normal;">No. {{$dps->no_jurnal_umum}}</span></p>
+                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Umum (General Ledger)<br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d/%m/%Y') }}<br><span style="font-weight: normal;">No. {{$dps->no_jurnal_umum}}</span></p>
                             @endforeach
                           </div>
                           <div class="col-12">
@@ -45,21 +45,23 @@
                                             <!-- <th>No.</th> -->
                                             <th>Tanggal</th>
                                             <th>Keterangan</th>
+                                            <th>No Akun</th>
                                             <th>Debet</th>
                                             <th>Kredit</th>
                                         </tr>
                                     </thead>
-                                    <tbody">
+                                    <tbody>
                                         @foreach($DataAkunJurnal as $index => $dps)
                                         <tr>
                                             <!-- <td>{{$index +1}}</td> -->
-                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 
                                               <br><span>Kas</span>
                                               <br><span>Pendapatan</span>
                                             </td> -->
-                                            <td>{{$dps->nm_akun}}</td>
+                                            <td>{{$dps->deskripsi}}</td>
+                                            <td>{{$dps->no_akun}}</td>
                                             <!-- <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
                                             <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td> -->
                                             @if($dps->debit == null)
@@ -78,6 +80,7 @@
                                     <tfoot>
                                         @foreach($DataJurnal as $index => $dps)
                                         <tr>
+                                            <td></td>
                                             <td></td>
                                             <td style="color: #000000; font-weight: bold;">Total</td>
                                             <td style="color: #000000; font-weight: bold;">Rp. {{ number_format($dps->nilai, 0, ',', '.') }}</td>

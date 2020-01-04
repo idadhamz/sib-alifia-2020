@@ -74,36 +74,62 @@
                           <hr />
                           <form id="form-tambah-akun-penyesuaian" style="width: 80%;margin: 0 auto;">
                             <div class="row">
-                              <div class="col-sm-12 col-md-12">
+                              <div class="col-sm-12 col-md-8">
                                 <div class="form-group">
-                                  <label>Pilih Transaksi</label>
+                                  <label>Transaksi</label>
                                   <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
                                   <select class="form-control" name="id_transaksi" id="id_transaksi">
-                                    <option>Pilih</option>
+                                    <option value="0">--Pilih Transaksi--</option>
                                     @foreach($DataTransaksi as $dpo)
                                     <option value="{{$dpo->id_transaksi}}">{{$dpo->deskripsi}} - Rp. {{ number_format($dpo->nominal_transaksi, 0, ',', '.') }}</option>
                                     @endforeach
                                   </select>
                                 </div>
                               </div>
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                  <label>Nominal</label>
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        Rp.
+                                      </div>
+                                    </div>
+                                    <input type="number" class="form-control" id="nominal" min="0" autocomplete="off">
+                                  </div>
+                                  <small id="passwordHelpBlock" class="form-text text-muted">
+                                    *) Perhatikan Nominalnya
+                                  </small>
+                                </div>
+                              </div>
                             </div>
                             <div class="row">
-                              <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
-                                  <label>Pilih Akun</label>
+                                  <label>Akun</label>
                                   <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
                                   <select class="form-control" name="no_akun" id="no_akun">
-                                    <option>Pilih</option>
+                                    <option value="0">--Pilih Akun--</option>
                                     @foreach($DataAkun as $dpo)
                                     <option value="{{$dpo->no_akun}}">No. {{$dpo->no_akun}} ({{$dpo->nm_akun}})</option>
                                     @endforeach
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Nama Akun</label>
                                   <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                  <label>Jenis</label>
+                                  <select class="form-control" name="pilihan_akun" id="pilihan_akun">
+                                    <option value="0">--Pilih Jenis--</option>
+                                    <option value="1">Bertambah</option>
+                                    <option value="2">Berkurang</option>
+                                  </select>
                                 </div>
                               </div>
                             </div>
@@ -117,7 +143,7 @@
                                         Rp.
                                       </div>
                                     </div>
-                                    <input type="number" class="form-control" name="nominal_debit" id="nominal_debit" min="0" autocomplete="off">
+                                    <input type="number" class="form-control" name="nominal_debit" id="nominal_debit" min="0" autocomplete="off" readonly="readonly">
                                   </div>
                                 </div>
                               </div>
@@ -130,7 +156,7 @@
                                         Rp.
                                       </div>
                                     </div>
-                                    <input type="number" class="form-control" name="nominal_kredit" id="nominal_kredit" min="0" autocomplete="off">
+                                    <input type="number" class="form-control" name="nominal_kredit" id="nominal_kredit" min="0" autocomplete="off" readonly="readonly">
                                   </div>
                                 </div>
                               </div>
@@ -176,7 +202,7 @@
                                   </tbody>
                                 </table>
                               </div>
-                              <button href="javascript::void(0)" id="simpan-jurnal-penyesuaian" class="btn btn-success" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>
+                              <button href="javascript::void(0)" id="simpan-jurnal-penyesuaian" class="btn btn-info" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>
                             </div>
                           </div>
                           <div class="card">

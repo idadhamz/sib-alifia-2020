@@ -34,7 +34,7 @@
                             <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
                             <hr/>
                             @foreach($DataJurnalPenyesuaian as $index => $dps)
-                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Penyesuaian<br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}<br><span style="font-weight: normal;">No. {{$dps->no_jurnal_penyesuaian}}</span></p>
+                            <p style="text-align: center;line-height: 25px;font-size: 17px;font-weight: bold;">Jurnal Penyesuaian<br> {{ Carbon\Carbon::parse($dps->tanggal_pembuatan)->formatLocalized('%d/%m/%Y') }}<br><span style="font-weight: normal;">No. {{$dps->no_jurnal_penyesuaian}}</span></p>
                             @endforeach
                           </div>
                           <div class="col-12">
@@ -45,21 +45,23 @@
                                             <!-- <th>No.</th> -->
                                             <th>Tanggal</th>
                                             <th>Keterangan</th>
+                                            <th>No. Akun</th>
                                             <th>Debet</th>
                                             <th>Kredit</th>
                                         </tr>
                                     </thead>
-                                    <tbody">
+                                    <tbody>
                                         @foreach($DataAkunJurnalPenyesuaian as $index => $dps)
                                         <tr>
                                             <!-- <td>{{$index +1}}</td> -->
-                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 
                                               <br><span>Kas</span>
                                               <br><span>Pendapatan</span>
                                             </td> -->
-                                            <td>{{$dps->nm_akun}}</td>
+                                            <td>{{$dps->deskripsi}}</td>
+                                            <td>{{$dps->no_akun}}</td>
                                             @if($dps->debit == null)
                                               <td>-</td>
                                             @else

@@ -64,7 +64,7 @@
                             <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
                             <hr/>
                             <p style="text-align: center;line-height: 25px;font-size: 15px;font-weight: bold;">Neraca Saldo<br> <!-- {{ Carbon\Carbon::parse(\Carbon\Carbon::now()->endOfMonth()->toDateString())->formatLocalized('%d %B %Y') }} -->
-                              Periode {{ Carbon\Carbon::parse($dari)->formatLocalized('%d %B %Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d %B %Y') }}
+                              Periode {{ Carbon\Carbon::parse($dari)->formatLocalized('%d/%m/%Y') }} - {{ Carbon\Carbon::parse($sampai)->formatLocalized('%d/%m/%Y') }}
                             </p>
                           </div>
                           <div class="col-12">
@@ -72,6 +72,7 @@
                                 <table class="table table-striped table-md">
                                     <thead>
                                         <tr>
+                                            <th style="text-align: center;">Kode Akun</th>
                                             <th style="text-align: center;">Akun</th>
                                             <th>Debet</th>
                                             <th>Kredit</th>
@@ -80,6 +81,9 @@
                                     <tbody>
                                         @foreach($dataNeracaSaldoHasil as $index => $dok)
                                         <tr>
+                                            <td style="color: #000000;text-align: center;">
+                                              <span>{{$dok->no_akun}}</span>
+                                            </td>
                                             <td style="color: #000000;text-align: center;">
                                               <span>{{$dok->nm_akun}}</span>
                                             </td>
@@ -90,6 +94,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <td></td>
                                             <td style="color: #000000;font-weight: bold;text-align: center;">
                                               <span>Total</span>
                                             </td>

@@ -32,8 +32,11 @@
                                                 <div class="form-group">
                                                   <label>Tanggal Transaksi</label>
                                                   <div class="input-group">
-                                                    <input type="text" class="form-control tanggal-transaksi" autocomplete="off" readonly="readonly">
+                                                    <input type="text" class="form-control tanggal-transaksi" name="tgl_transaksi" autocomplete="off">
                                                   </div>
+                                                  <small id="passwordHelpBlock" class="form-text text-muted">
+                                                    Contoh: 2020-01-04 atau 04 Jan 2019
+                                                  </small>
                                                 </div>
                                               </div>
                                             </div>

@@ -153,6 +153,11 @@
                   locale: {format: 'YYYY-MM-DD'},
                   singleDatePicker: true,
                 });
+
+                $('.tanggal-transaksi').daterangepicker({
+                  locale: {format: 'YYYY-MM-DD'},
+                  singleDatePicker: true,
+                });
             });
 
             // Get current date in Transaksi
@@ -169,7 +174,7 @@
 
             // Set value tanggal
             // document.getElementById("tanggal").value = today;
-            $(".tanggal-transaksi").val(today);
+            // $(".tanggal-transaksi").val(today);
 
             // Munculin Grafik
             // $('.lihat-grafik').click(function() {
@@ -253,19 +258,52 @@
                   console.log(hasil);
 
                   $('#nm_akun').val(hasil[0].nm_akun);
-                  if(hasil[0].saldo_normal == 1){
-                    $("#nominal_kredit").prop("readonly", true);
-                    $("#nominal_debit").prop("readonly", false);
-                    $("#nominal_kredit").val("0");
-                    $("#nominal_debit").val("");
-                    $('#nominal_debit').focus();
-                  }else{
-                    $("#nominal_kredit").prop("readonly", false);
-                    $("#nominal_debit").prop("readonly", true);
-                    $("#nominal_debit").val("0");
-                    $("#nominal_kredit").val("");
-                    $('#nominal_kredit').focus();
-                  }
+                  $('#pilihan_akun').focus();
+
+
+                  $('#pilihan_akun').on('change',function(e)
+                  {  
+
+                    var isi_nominal = $('#nominal').val();
+                    var pilihan_akun = e.target.value;
+
+                    if(pilihan_akun == 1){
+
+                      if(hasil[0].saldo_normal == 1){
+                        $("#nominal_debit").val(isi_nominal);
+                        $("#nominal_kredit").val("0");
+                      } else {
+                        $("#nominal_kredit").val(isi_nominal);
+                        $("#nominal_debit").val("0");
+                      }
+
+                    }else{
+
+                      if(hasil[0].saldo_normal == 1){
+                        $("#nominal_kredit").val(isi_nominal);
+                        $("#nominal_debit").val("0");
+                      } else {
+                        $("#nominal_debit").val(isi_nominal);
+                        $("#nominal_kredit").val("0");
+                      }
+
+                    }
+
+                  });
+
+                  // if(hasil[0].saldo_normal == 1){
+                  //   $("#nominal_kredit").prop("readonly", true);
+                  //   $("#nominal_debit").prop("readonly", false);
+                  //   $("#nominal_kredit").val("0");
+                  //   $("#nominal_debit").val("");
+                  //   $('#nominal_debit').focus();
+                  // }else{
+                  //   $("#nominal_kredit").prop("readonly", false);
+                  //   $("#nominal_debit").prop("readonly", true);
+                  //   $("#nominal_debit").val("0");
+                  //   $("#nominal_kredit").val("");
+                  //   $('#nominal_kredit').focus();
+                  // }
 
                   $("#tambah-akun").prop("disabled", false);
                   $("#tambah-akun-penyesuaian").prop("disabled", false);
@@ -359,11 +397,11 @@
               console.log(masuk_data);
 
               total_debit += parseInt(
-                masuk_data[3].value == "" ? 0 : masuk_data[3].value
+                masuk_data[4].value == "" ? 0 : masuk_data[4].value
               );
 
               total_kredit += parseInt(
-                masuk_data[4].value == "" ? 0 : masuk_data[4].value
+                masuk_data[5].value == "" ? 0 : masuk_data[5].value
               );
 
               if(total_debit > total_kredit){
@@ -379,13 +417,14 @@
                 "id_transaksi": masuk_data[0].value,
                 "no_akun": masuk_data[1].value,
                 "akun": masuk_data[2].value,
-                "nominal_debit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
-                "nominal_kredit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
+                "nominal_debit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
+                "nominal_kredit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
               }, function(e) {
                 console.log(e);
               }).draw();
               
-              $('#nominal_debit, #nominal_kredit').val('');
+              $('#id_transaksi, #no_akun, #pilihan_akun').val(0);
+              $('#nominal, #nominal_debit, #nominal_kredit').val(0);
               $('#total_debit').val(total_debit);
               $('#total_kredit').val(total_kredit);
               $('#selisih').val(selisih);
@@ -539,13 +578,14 @@
                 "id_transaksi": masuk_data[0].value,
                 "no_akun": masuk_data[1].value,
                 "akun": masuk_data[2].value,
-                "nominal_debit": masuk_data[3].value == "" ? 0 : masuk_data[3].value,
-                "nominal_kredit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
+                "nominal_debit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
+                "nominal_kredit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
               }, function(e) {
                 console.log(e);
               }).draw();
 
-              $('#nominal_debit, #nominal_kredit').val('');
+              $('#id_transaksi, #no_akun, #pilihan_akun').val(0);
+              $('#nominal, #nominal_debit, #nominal_kredit').val(0);
               $("#tambah-akun-penyesuaian").prop("disabled", true); 
               $("#simpan-jurnal-penyesuaian").prop("disabled", false);
 

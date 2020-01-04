@@ -31,6 +31,9 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="dari_tanggal_neraca_saldo" id="dari_tanggal_neraca_saldo" autocomplete="off">
                                     </div>
+                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                      Contoh: 2020-01-01
+                                    </small>
                                     @if($errors->has('dari_tanggal_neraca_saldo'))
                                         <div class="text-danger" style="padding: 5px;">
                                             {{ $errors->first('dari_tanggal_neraca_saldo')}}
@@ -44,6 +47,9 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="sampai_tanggal_neraca_saldo" id="sampai_tanggal_neraca_saldo" autocomplete="off">
                                         </div>
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                          Contoh: 2020-01-01
+                                        </small>
                                         @if($errors->has('sampai_tanggal_neraca_saldo'))
                                             <div class="text-danger" style="padding: 5px;">
                                                 {{ $errors->first('sampai_tanggal_neraca_saldo')}}

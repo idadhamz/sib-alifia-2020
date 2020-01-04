@@ -327,7 +327,7 @@ class AkuntanController extends Controller
         // get data
         // $DataJurnal = jurnal_umum::where("kode_jurnal", $kode_jurnal)->get();
         $DataAkunJurnal = akun_jurnal_umum::leftJoin('transaksi', 'akun_jurnal_umum.id_transaksi', '=', 'transaksi.id_transaksi')->leftJoin('akun', 'akun_jurnal_umum.no_akun', '=', 'akun.no_akun')
-                ->select('akun_jurnal_umum.*','transaksi.tgl_transaksi', 'akun.nm_akun')
+                ->select('akun_jurnal_umum.*','transaksi.tgl_transaksi', 'transaksi.deskripsi', 'akun.no_akun')
                 ->where('akun_jurnal_umum.kode_jurnal', $kode_jurnal)
                 ->orderBy('transaksi.tgl_transaksi', 'ASC')
                 ->get();
@@ -466,7 +466,7 @@ class AkuntanController extends Controller
         // get data
         // $DataJurnal = jurnal_penyesuaian::where("kode_jurnal_penyesuaian", $kode_jurnal_penyesuaian)->get();
         $DataAkunJurnalPenyesuaian = akun_jurnal_penyesuaian::leftJoin('transaksi', 'akun_jurnal_penyesuaian.id_transaksi', '=', 'transaksi.id_transaksi')->leftJoin('akun', 'akun_jurnal_penyesuaian.no_akun', '=', 'akun.no_akun')
-                ->select('akun_jurnal_penyesuaian.*','transaksi.tgl_transaksi', 'akun.nm_akun')
+                ->select('akun_jurnal_penyesuaian.*','transaksi.tgl_transaksi', 'transaksi.deskripsi', 'akun.no_akun')
                 ->where('akun_jurnal_penyesuaian.kode_jurnal_penyesuaian', $kode_jurnal_penyesuaian)
                 ->orderBy('transaksi.tgl_transaksi', 'ASC')
                 ->get();

@@ -49,6 +49,9 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="dari_tanggal" id="dari_tanggal" autocomplete="off">
                                     </div>
+                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                      Contoh: 2020-01-01 atau 1 Jan 2020
+                                    </small>
                                     @if($errors->has('dari_tanggal'))
                                         <div class="text-danger" style="padding: 5px;">
                                             {{ $errors->first('dari_tanggal')}}
@@ -62,6 +65,9 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
                                         </div>
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                          Contoh: 2020-01-04 atau 4 Jan 2020
+                                        </small>
                                         @if($errors->has('sampai_tanggal'))
                                             <div class="text-danger" style="padding: 5px;">
                                                 {{ $errors->first('sampai_tanggal')}}
