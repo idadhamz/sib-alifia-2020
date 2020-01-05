@@ -33,15 +33,7 @@
       
       @if(auth()->user()->id_role == '2')
       <li class="menu-header">Keuangan</li>
-      <li class="nav-item dropdown {{ (request()->is('laporanKeuangan')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2019</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2018</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2017</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2016</a></li>
-        </ul>
-      </li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '3')
@@ -65,16 +57,8 @@
       @if(auth()->user()->id_role == '4')
       <li class="menu-header">Keuangan</li>
       <li class="{{ (request()->is('dataTransaksiKasir')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataTransaksiKasir')}}"><i class="fas fa-calculator"></i> <span>Data Transaksi</span></a></li>
-      <li class="nav-item dropdown {{ (request()->is('laporanKeuangan')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2019</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2018</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2017</a></li>
-          <li><a class="nav-link" href="{{url('/laporanKeuangan')}}">2016</a></li>
-        </ul>
-      </li>
-      <li class="{{ (request()->is('dataArusKas')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataArusKas')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Arus Kas</span></a></li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
+      <li class="{{ (request()->is('dataArusKas')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataArusKas')}}"><i class="fas fa-exchange-alt"></i> <span>Laporan Arus Kas</span></a></li>
       @endif
       
   </aside>

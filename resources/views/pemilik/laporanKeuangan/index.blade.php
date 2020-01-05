@@ -65,21 +65,29 @@
                                   @endif
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-3">
+                              <div class="col-sm-12 col-md-2">
                                 <div class="form-group">
                                   <label>Jenis Laporan</label>
                                   <select class="form-control" name="pilihan_laporan" id="pilihan_laporan">
                                     <option value="0">--Pilih Laporan--</option>
                                     <option value="1">Laba Rugi</option>
-                                    <option value="2">Perubahan Modal</option>
+                                    <!-- <option value="2">Perubahan Modal</option> -->
                                     <option value="3">Neraca</option>
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-2">
+                              <div class="col-sm-12 col-md-1" style="padding-right: 0;">
                                 <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
                               </div>
+                              <div class="col-sm-12 col-md-2" style="padding-left: 0;">
+                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Perubahan Modal</button>
+                              </div>
                             </div>
+                            <!-- <div class="row">
+                              <div class="col-sm-12 col-md-4">
+                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                              </div>
+                            </div> -->
                             <!-- <div class="table-responsive">
                               <table class="table table-striped" id="data-pemasukan">
                                   <thead>

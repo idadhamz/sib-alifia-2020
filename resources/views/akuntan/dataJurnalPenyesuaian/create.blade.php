@@ -200,6 +200,54 @@
 
                                     </tr> -->
                                   </tbody>
+                                  <tfoot>
+                                    <tr>
+                                      <td style="display: none;"></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td><p style="font-weight: bold;">Selisih</p></td>
+                                      <td width="200px;">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              Rp.
+                                            </div>
+                                          </div>
+                                          <input type="text" class="form-control" name="selisih" id="selisih" autocomplete="off" value="0" readonly="readonly">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                    <tr style="background-color: #F5F5F5">
+                                      <td style="display: none;"></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td width="200px;">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              Rp.
+                                            </div>
+                                          </div>
+                                          <input type="text" class="form-control" name="total_debit" id="total_debit" autocomplete="off" value="0" readonly="readonly">
+                                        </div>
+                                      </td>
+                                      <td width="200px;">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              Rp.
+                                            </div>
+                                          </div>
+                                          <input type="text" class="form-control" name="total_kredit" id="total_kredit" autocomplete="off" value="0" readonly="readonly">
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <span id="text-balance" style="color: green;visibility: hidden;font-weight: bold;"><i class="fa fa-check-circle mr-2"></i>Balance</span><br>
+                                        <span id="text-belum-balance" style="color: red;visibility: hidden;font-weight: bold;"><i class="fa fa-times-circle mr-2"></i>Balance</span>
+                                      </td>
+                                    </tr>
+                                  </tfoot>
                                 </table>
                               </div>
                               <button href="javascript::void(0)" id="simpan-jurnal-penyesuaian" class="btn btn-info" type="submit" style="width: 100%;margin-top: 10px;">Simpan</button>

@@ -574,6 +574,48 @@
                 // console.log($(this).closest('tr').data("nominal_debit"));
                 var data = tabel_jurnal_penyesuaian.row( $(this).parents('tr') ).data();
 
+                total_debit -= parseInt(data.nominal_debit);
+                total_kredit -= parseInt(data.nominal_kredit);
+
+                if(data.nominal_debit != null){
+                  if(total_debit == 0){
+                    selisih = 0;
+                  }else {
+                    selisih = total_debit - data.nominal_debit;
+                  }
+                }else {
+                  if(total_kredit == 0){
+                    selisih = 0;
+                  }else {
+                    selisih = total_kredit - data.nominal_kredit;
+                  }
+                }
+
+                $('#selisih').val(selisih);
+                $('#total_debit').val(total_debit);
+                $('#total_kredit').val(total_kredit);
+
+                if(total_debit != total_kredit){
+
+                  $("#simpan-jurnal-penyesuaian").prop("disabled", true);
+
+                  $("#text-belum-balance").css("visibility", "visible");
+                  $("#text-balance").css("visibility", "hidden");
+
+                }else {
+
+                  if(total_debit == 0 && total_kredit == 0){
+                    $("#simpan-jurnal-penyesuaian").prop("disabled", true);
+                    $("#text-balance").css("visibility", "hidden");
+                    $("#text-belum-balance").css("visibility", "hidden");
+                  }else {
+                    $("#simpan-jurnal-penyesuaian").prop("disabled", false);
+                    $("#text-belum-balance").css("visibility", "hidden");
+                    $("#text-balance").css("visibility", "visible");
+                  }
+
+                }
+
                 tabel_jurnal_penyesuaian.row( $(this).parents('tr') ).remove().draw( false );
                 console.log(tabel_jurnal_penyesuaian.rows().data().toArray());
 
@@ -583,6 +625,23 @@
               e.preventDefault();
               var masuk_data = $("#form-tambah-akun-penyesuaian").serializeArray();
               console.log(masuk_data);
+
+              total_debit += parseInt(
+                masuk_data[4].value == "" ? 0 : masuk_data[4].value
+              );
+
+              total_kredit += parseInt(
+                masuk_data[5].value == "" ? 0 : masuk_data[5].value
+              );
+
+              if(total_debit > total_kredit){
+                selisih = total_debit - total_kredit;
+              }else {
+                selisih = total_kredit - total_debit;
+              }
+
+              console.log(total_debit);
+              console.log(total_kredit);
 
               tabel_jurnal_penyesuaian.row.add({
                 "id_transaksi": masuk_data[0].value,
@@ -596,6 +655,9 @@
 
               $('#id_transaksi, #no_akun, #pilihan_akun').val(0);
               $('#nominal, #nominal_debit, #nominal_kredit').val(0);
+              $('#total_debit').val(total_debit);
+              $('#total_kredit').val(total_kredit);
+              $('#selisih').val(selisih);
               $("#tambah-akun-penyesuaian").prop("disabled", true); 
               $("#simpan-jurnal-penyesuaian").prop("disabled", false);
 
@@ -609,6 +671,26 @@
               // : $("#simpan-jurnal").prop("disabled", false);
 
               console.log(tabel_jurnal.rows().data().toArray());
+
+              // total_debit != total_kredit ? $("#text-belum-balance").css("display", "block") 
+              // : $("#text-balance").css("display", "block");
+
+              // total_debit != total_kredit ? $("#text-balance").css("display", "none") 
+              // : $("#text-belum-balance").css("display", "none");
+
+              if(total_debit != total_kredit){
+
+                $("#text-belum-balance").css("visibility", "visible");
+                $("#text-balance").css("visibility", "hidden");
+                $("#simpan-jurnal-penyesuaian").prop("disabled", true);
+
+              }else {
+
+                $("#text-belum-balance").css("visibility", "hidden");
+                $("#text-balance").css("visibility", "visible");
+                $("#simpan-jurnal-penyesuaian").prop("disabled", false);
+
+              }
             
             });
 
@@ -645,6 +727,8 @@
                                     console.log(res);
                                 }, "json");
                                 tabel_jurnal_penyesuaian.clear().draw();
+                                total_debit = 0;
+                                total_kredit = 0;
 
                                 window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
                             }
@@ -740,25 +824,6 @@
 
                   });
 
-                }else if(pilihan_laporan == 2){
-
-                  $('.btn-lihat').on('click',function(e){
-
-                    e.preventDefault();
-                    var dari = $("#dari_tanggal_lap").val();
-                    var sampai = $("#sampai_tanggal_lap").val();
-
-                    console.log(dari);
-                    console.log(sampai);
-
-                    var url = '{{ route("perubahan_modal", [":dari", ":sampai"] ) }}';
-                    url = url.replace(':dari', dari);
-                    url = url.replace(':sampai', sampai);
-
-                    window.location.assign(url);
-
-                  });
-
                 }else if(pilihan_laporan == 3){
 
                   $('.btn-lihat').on('click',function(e){
@@ -783,6 +848,16 @@
                 }
 
               });
+
+            $('.btn-lihat-perubahan-modal').on('click',function(e){
+
+              e.preventDefault();
+
+              var url = '{{ route("perubahan_modal") }}';
+
+              window.location.assign(url);
+
+            });
 
             // Grafik Laporan Keuangan
             var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');

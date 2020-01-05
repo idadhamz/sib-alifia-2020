@@ -832,4 +832,45 @@ class AkuntanController extends Controller
         return view('pemilik.laporanKeuangan.neraca', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit_all', 'total_kredit_all'));
  
     }
+
+    public function data_perubahan_modal()
+    {
+
+        $DataAkunKas = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.no_akun', '111')
+            ->get();
+
+        $DataAkunPendapatan = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.kode_golongan', 'GA4')
+            ->get();
+
+        $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.kode_golongan', 'GA5')
+            ->get();
+
+        $total_modal_awal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.no_akun', '111')
+            ->sum('debit');
+
+        $total_debit_prive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.kode_golongan', 'GA5')
+            ->sum('debit');
+
+        $total_kredit_laba = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.kode_golongan', 'GA4')
+            ->sum('kredit');
+
+        $modal_akhir = $total_modal_awal + ($total_kredit_laba - $total_debit_prive);
+
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));
+ 
+    }
 }
