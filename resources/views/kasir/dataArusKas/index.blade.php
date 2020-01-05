@@ -56,25 +56,26 @@
                       class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
                     </div>
                   </div>
+                  <hr/>
                   <div class="row">
                     <div class="col-12">
                       <div class="card">
                         <div class="card-header">
-                          <h4 class="col-sm-10 col-sm-4"></h4>
-                          <div>
-                            <a href="" class="pr-4"><i class="fas fa-sync-alt pr-2"></i>  Refresh</a>
-                            <a href=""><i class="fa fa-print pr-2"></i>  Print</a>   
+                          <div style="width:100%;">
+                            <div style="width:100%;">
+                              <td></td>
+                              <td>
+                                <a href="/dataArusKas/cetak_pdf" class="btn btn-info" style="float: right;"><i class="fa fa-print" style="margin-right: 5px;"></i>Cetak Arus Kas</a>
+                              </td>
+                            </div>
                           </div>
                         </div>
                         <div class="card-body">
-                          <table class="table table-sm">
+                          <!-- <table class="table table-sm">
                             <thead>
                               <tr style="font-size: 24px;" class="text-center text-bold">
                                 <th scope="col" colspan="6">Laporan Arus Kas Al-Banna Laundry</th>
-                              </tr>                   
-                              <!-- <tr >
-                                <th scope="row" colspan="6"></th>
-                              </tr> -->
+                              </tr>      
                             </thead>
                             <tbody>
                               <tr style="background-color: #F5F5F5;">
@@ -82,7 +83,7 @@
                               </tr>
                               @foreach($transaksiArusPemasukan as $index => $dok)
                               <tr>
-                                <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                 <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                 <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                               </tr>
@@ -102,7 +103,7 @@
                               <tr>
                                 @foreach($transaksiArusPengeluaran as $index => $dok)
                                 <tr>
-                                  <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                   <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
                                   <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                 </tr>
@@ -116,20 +117,78 @@
                                 <td></td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
+                          <div class="row">
+                            <div class="col-12" style="margin-bottom: 20px;">
+                              <!-- <img src="" /> -->
+                              <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
+                              <hr/>
+                              <p style="text-align: center;line-height: 25px;font-size: 16px;font-weight: bold;">Laporan Arus Kas
+                              </p>
+                            </div>
+                            <div class="col-12">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-md">
+                                  <thead>
+                                    <tr>
+                                      <th style="text-align: center;">No. </th>
+                                      <th style="text-align: center;">Tanggal</th>
+                                      <th>Deskripsi</th>
+                                      <th>Nominal</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr style="background-color: #F5F5F5;text-align: center;">
+                                      <th scope="row" colspan="6" style="font-size:17px;">Arus Kas Masuk</th>
+                                    </tr>
+                                    @foreach($transaksiArusPemasukan as $index => $dok)
+                                    <tr>
+                                      <td style="text-align: center;">{{$index +1}}</td>
+                                      <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
+                                      <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                    </tr>
+                                    @endforeach
+                                    <tr style="font-weight: bold;">
+                                      <td></td>
+                                      <td></td>
+                                      <td>Total</td>
+                                      <td>Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</td>
+                                    </tr>
+                                    <tr style="background-color: #F5F5F5;text-align: center;">
+                                      <th scope="row" colspan="6" style="font-size:17px;">Arus Kas Keluar</th>
+                                    </tr>
+                                    @foreach($transaksiArusPengeluaran as $index => $dok)
+                                    <tr>
+                                      <td style="text-align: center;">{{$index +1}}</td>
+                                      <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
+                                      <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
+                                      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
+                                    </tr>
+                                    @endforeach
+                                    <tr style="font-weight: bold;">
+                                      <td></td>
+                                      <td></td>
+                                      <td>Total</td>
+                                      <td>Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                <!-- </form> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
-</div>
 </div>
 <!-- /.modal -->
 <!-- End Row -->

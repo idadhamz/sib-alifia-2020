@@ -19,6 +19,8 @@ use App\Models\total_per_akun;
 use App\Models\total_keseluruhan;
 use App\User;
 
+use PDF;
+
 class AkuntanController extends Controller
 {
     // Data Akun
@@ -784,6 +786,68 @@ class AkuntanController extends Controller
  
     }
 
+    public function cetak_laba_rugi($dari, $sampai)
+    {
+
+        $DataLabaRugiPendapatan = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA4')
+            ->groupBy('buku_besar.no_akun')
+            ->get();
+
+        $DataLabaRugiBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA5')
+            ->groupBy('buku_besar.no_akun')
+            ->get();
+
+        $total_pendapatan_kredit = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA4')
+            ->sum('kredit');
+
+        $total_pendapatan_debit = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA4')
+            ->sum('debit');
+
+        $total_pendapatan = $total_pendapatan_kredit - $total_pendapatan_debit;
+
+        $total_beban_debit = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA5')
+            ->sum('debit');
+        
+        $total_beban_kredit = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA5')
+            ->sum('kredit');
+
+        $total_beban = $total_beban_debit - $total_beban_kredit;
+
+        // $total_beban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        //     ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+        //     ->where('akun.kode_golongan', 'GA5')
+        //     ->sum('debit');
+
+        $total_akhir = $total_pendapatan - $total_beban;
+
+
+        $dari = $dari;
+        $sampai = $sampai;
+
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.laba_rugi_pdf', compact('DataLabaRugiPendapatan', 'DataLabaRugiBeban', 'total_pendapatan', 'dari', 'sampai', 'total_pendapatan', 'total_beban', 'total_akhir'));
+        return $pdf->download('laba-rugi-laundry-albanna');
+ 
+    }
+
     public function data_neraca($dari, $sampai)
     {
 
@@ -833,6 +897,56 @@ class AkuntanController extends Controller
  
     }
 
+    public function cetak_neraca($dari, $sampai)
+    {
+
+        $DataNeracaHarta = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA1')
+            ->groupBy('buku_besar.no_akun')
+            ->get();
+
+        $DataNeracaHutang = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA2')
+            ->groupBy('buku_besar.no_akun')
+            ->get();
+
+        $DataNeracaModal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->whereBetween('tgl_posting', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA3')
+            ->groupBy('buku_besar.no_akun')
+            ->get();
+
+        $kode_golongan = ['GA1', 'GA2', 'GA3'];
+
+        $total_debit_all = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->whereIn('akun.kode_golongan', $kode_golongan)
+            ->sum('debit');
+
+        $total_kredit_all = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->whereBetween('buku_besar.tgl_posting', [$dari, $sampai])
+            ->whereIn('akun.kode_golongan', $kode_golongan)
+            ->sum('kredit');
+
+
+        $dari = $dari;
+        $sampai = $sampai;
+
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.neraca_pdf', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit_all', 'total_kredit_all'));
+        return $pdf->download('neraca-laundry-albanna');
+ 
+    }
+
     public function data_perubahan_modal()
     {
 
@@ -871,6 +985,48 @@ class AkuntanController extends Controller
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
         return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));
+ 
+    }
+
+    public function cetak_perubahan_modal()
+    {
+
+        $DataAkunKas = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.no_akun', '111')
+            ->get();
+
+        $DataAkunPendapatan = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.kode_golongan', 'GA4')
+            ->get();
+
+        $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->where('akun.kode_golongan', 'GA5')
+            ->get();
+
+        $total_modal_awal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.no_akun', '111')
+            ->sum('debit');
+
+        $total_debit_prive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.kode_golongan', 'GA5')
+            ->sum('debit');
+
+        $total_kredit_laba = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->where('akun.kode_golongan', 'GA4')
+            ->sum('kredit');
+
+        $modal_akhir = $total_modal_awal + ($total_kredit_laba - $total_debit_prive);
+
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.perubahan_modal_pdf', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));
+        return $pdf->download('perubahan-modal-laundry-albanna');
+
+        // return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));
  
     }
 }

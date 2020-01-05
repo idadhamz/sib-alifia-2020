@@ -20,7 +20,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header bg-whitesmoke">
-                                <h4>Tambah Transaksi</h4>
+                                <h4>Ubah Transaksi</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -28,17 +28,6 @@
                                       @foreach($DataTransaksiEdit as $dob)
                                         <form action="/dataTransaksiKasir/update/{{$dob->id_transaksi}}" method="post" role="form" autocomplete="off">
                                             {{csrf_field()}}
-                                            <div class="row">
-                                              <div class="col-sm-12 col-md-5">
-                                                <div class="form-group">
-                                                  <label>Tanggal Transaksi</label>
-                                                  <div class="input-group">
-                                                    <input type="text" class="form-control" name="id_transaksi" value="{{$dob->id_transaksi}}" autocomplete="off" style="display: none;">
-                                                    <input type="text" class="form-control tanggal-transaksi" autocomplete="off" readonly="readonly">
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
                                             <div class="row">
                                               <div class="col-sm-12 col-md-5">
                                                 <div class="form-group">

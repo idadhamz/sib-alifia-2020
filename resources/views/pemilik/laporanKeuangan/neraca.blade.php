@@ -23,6 +23,9 @@
                             <td>
                               <a href="/laporanKeuangan" class="btn btn-warning"><i class="fa fa-arrow-left" style="margin-right: 5px;"></i>Kembali</a>
                             </td>
+                            <td>
+                              <a href="/dataNeraca/{{$dari}}/{{$sampai}}/cetak_pdf" class="btn btn-info" style="float: right;"><i class="fa fa-print" style="margin-right: 5px;"></i>Cetak Neraca</a>
+                            </td>
                           </div>
                         </div>
                       </div>

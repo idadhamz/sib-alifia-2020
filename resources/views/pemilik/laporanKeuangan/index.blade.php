@@ -107,20 +107,49 @@
                           </div>
                           <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
                             <div class="row">
-                              
+                              <div class="col-sm-12 col-md-6">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 style="text-decoration: underline;font-size: 17px;">Data Laba Rugi</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="labaRugi" height="182"></canvas>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-6">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 style="text-decoration: underline;font-size: 17px;">Data Neraca</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="neraca" height="182"></canvas>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-6">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 style="text-decoration: underline;font-size: 17px;">Data Perubahan Modal</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="perubahanModal" height="182"></canvas>
+                                  </div>
+                                </div>
+                              </div>
                             </div>  
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="card" id="card-grafik" style="display: none;">
+                    <!-- <div class="card" id="card-grafik" style="display: none;">
                       <div class="card-header">
                         <h4>Grafik</h4>
                       </div>
                       <div class="card-body">
                         <canvas id="grafikLaporanKeuangan"></canvas>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -128,6 +157,10 @@
         </div>
     </div>
 </div>
+
+<script>
+  
+</script>
 <!-- /.modal -->
 <!-- End Row -->
 @endsection

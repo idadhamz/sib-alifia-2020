@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\transaksi;
 
+use PDF;
+
 class KasirController extends Controller
 {
     // Data Transaksi
@@ -124,6 +126,25 @@ class KasirController extends Controller
         $transaksiArusPemasukan = transaksi::where('nm_transaksi', 1)
                             ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
                             ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.tgl_transaksi", "desc")
+                            ->get();
+        $transaksiArusPengeluaran = transaksi::where('nm_transaksi', 2)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
+                            ->orderBy("transaksi.tgl_transaksi", "desc")
+                            ->get();
+        $totalPemasukan = transaksi::where('nm_transaksi', 1)->sum('nominal_transaksi');
+        $totalPengeluaran = transaksi::where('nm_transaksi', 2)->sum('nominal_transaksi');
+
+        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
+
+    }
+
+    public function cetak_arus_kas()
+    {
+        $transaksiArusPemasukan = transaksi::where('nm_transaksi', 1)
+                            ->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                            ->select('transaksi.*','users.nama')
                             ->orderBy("transaksi.created_at", "asc")
                             ->get();
         $transaksiArusPengeluaran = transaksi::where('nm_transaksi', 2)
@@ -134,7 +155,8 @@ class KasirController extends Controller
         $totalPemasukan = transaksi::where('nm_transaksi', 1)->sum('nominal_transaksi');
         $totalPengeluaran = transaksi::where('nm_transaksi', 2)->sum('nominal_transaksi');
 
-        return view('kasir.dataArusKas.index', compact('transaksiArusPemasukan','transaksiArusPengeluaran'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
+        $pdf = PDF::loadview('kasir.dataArusKas.cetak_arus_kas', compact('transaksiArusPemasukan','transaksiArusPengeluaran'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
+        return $pdf->download('arus-kas-laundry-albanna');
 
     }
 
@@ -151,5 +173,21 @@ class KasirController extends Controller
         $totalPengeluaran = transaksi::where('nm_transaksi', 2)->whereBetween('tgl_transaksi', [$dari, $sampai])->sum('nominal_transaksi');
 
         return view('kasir.dataArusKas.filter', compact('DataArusKasPemasukanFilters','DataArusKasPengeluaranFilters', 'dari', 'sampai'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
+    }
+
+    public function cetak_tanggal_arus_kas($dari, $sampai){
+        
+        $DataArusKasPemasukanFilters = transaksi::where('nm_transaksi', 1)->whereBetween('tgl_transaksi', [$dari, $sampai])
+        ->orderBy("tgl_transaksi", "asc")->get();
+        $DataArusKasPengeluaranFilters = transaksi::where('nm_transaksi', 2)->whereBetween('tgl_transaksi', [$dari, $sampai])
+        ->orderBy("tgl_transaksi", "asc")->get();
+        $dari = $dari;
+        $sampai = $sampai;
+
+        $totalPemasukan = transaksi::where('nm_transaksi', 1)->whereBetween('tgl_transaksi', [$dari, $sampai])->sum('nominal_transaksi');
+        $totalPengeluaran = transaksi::where('nm_transaksi', 2)->whereBetween('tgl_transaksi', [$dari, $sampai])->sum('nominal_transaksi');
+
+        $pdf = PDF::loadview('kasir.dataArusKas.cetak_tanggal_arus_kas', compact('DataArusKasPemasukanFilters','DataArusKasPengeluaranFilters', 'dari', 'sampai'), ['totalPemasukan' => $totalPemasukan, 'totalPengeluaran' => $totalPengeluaran]);
+        return $pdf->download('arus-kas-periode-laundry-albanna');
     }
 }

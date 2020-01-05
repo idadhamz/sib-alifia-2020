@@ -1,53 +1,55 @@
 
 <!DOCTYPE html>
 <html>
-    
+
 <!-- Mirrored from moltran.coderthemes.com/menu_2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:18:42 GMT -->
 <head>
-        <meta charset="utf-8" />
-        <title>AIS Laundry Al-Banna</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <title>AIS Laundry Al-Banna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+  <meta content="Coderthemes" name="author" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="{{ asset('/assets/img/Logo-albanna.png') }}">
+  <link rel="shortcut icon" href="{{ asset('/assets/img/Logo-albanna.png') }}">
 
-        <!-- General CSS Files -->
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+  <!-- General CSS Files -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
-        <!-- CSS Libraries -->
-        <link rel="stylesheet" href="{{asset('assets/library/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/library/select2/dist/css/select2.min.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/library/sweetalert/sweetalert.css')}}">
-        <!-- <link rel="stylesheet" href="{{asset('assets/css/all.css')}}"> -->
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{asset('assets/library/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/library/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/library/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/library/sweetalert/sweetalert.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('assets/css/all.css')}}"> -->
 
-        <!-- Template CSS -->
-        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
 
-    </head>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+</head>
 
 
-    <body>
-        <div id="app">
-            <div class="main-wrapper">
+<body>
+  <div id="app">
+    <div class="main-wrapper">
 
-                @include('layouts.includes._navbar')
+      @include('layouts.includes._navbar')
 
-                @include('layouts.includes._sidebar')
+      @include('layouts.includes._sidebar')
 
-                @yield('content')
+      @yield('content')
 
-                @include('layouts.includes._footer')
+      @include('layouts.includes._footer')
 
-                <!-- Footer -->
+      <!-- Footer -->
                 <!-- <footer class="footer text-right">
                     <div class="container">
                         <div class="row">
@@ -69,20 +71,20 @@
                             </div>
                         </div>
                     </div>
-                </footer> -->
-                <!-- End Footer -->
+                  </footer> -->
+                  <!-- End Footer -->
 
-            </div>
-            <!-- end container -->
-
-
-        </div>
+                </div>
+                <!-- end container -->
 
 
+              </div>
 
-        <!-- jQuery  -->
-        <!-- <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script> -->
-        <!-- <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script> -->
+
+
+              <!-- jQuery  -->
+              <!-- <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script> -->
+              <!-- <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script> -->
         <!-- <script src="{{asset('admin/assets/js/detect.js')}}"></script>
         <script src="{{asset('admin/assets/js/fastclick.js')}}"></script>
         <script src="{{asset('admin/assets/js/jquery.blockUI.js')}}"></script>
@@ -112,67 +114,68 @@
         <script src="{{asset('assets/library/datatables/media/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/library/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/library/datatables.net-select-bs4/js/select.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script>
         <script src="{{asset('assets/library/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
         <script src="{{asset('assets/library/select2/dist/js/select2.full.min.js')}}"></script>
         <script src="{{asset('assets/library/sweetalert/sweetalert.min.js')}}"></script>
+        <!-- <script src="{{asset('assets/library/chartjs/Chart.min.js')}}"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 
         <!-- Page Specific JS File -->
-        <script src="{{asset('assets/js/page/index-0.js')}}"></script>
+        <!-- <script src="{{asset('assets/js/page/index-0.js')}}"></script> -->
         <script src="{{asset('assets/js/page/modules-datatables.js')}}"></script>
         <script src="{{asset('assets/js/page/bootstrap-modal.js')}}"></script>
 
         <script>
-            $('#data-user').dataTable();
-            $('#data-pemasukan').dataTable();
-            $('#data-pengeluaran').dataTable();
+          $('#data-user').dataTable();
+          $('#data-pemasukan').dataTable();
+          $('#data-pengeluaran').dataTable();
             // $('#id_transaksi').select2();
 
             $(document).ready(function () {
-                $('#dari_tanggal').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#dari_tanggal').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#sampai_tanggal').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#sampai_tanggal').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#tanggal_pembuatan').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#tanggal_pembuatan').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#dari_tanggal_neraca_saldo').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#dari_tanggal_neraca_saldo').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#sampai_tanggal_neraca_saldo').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#sampai_tanggal_neraca_saldo').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#dari_tanggal_lap').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#dari_tanggal_lap').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('#sampai_tanggal_lap').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('#sampai_tanggal_lap').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
 
-                $('.tanggal-transaksi').daterangepicker({
-                  locale: {format: 'YYYY-MM-DD'},
-                  singleDatePicker: true,
-                });
+              $('.tanggal-transaksi').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
             });
 
             // Get current date in Transaksi
             const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-              "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
             ];
 
             var today = new Date();
@@ -203,12 +206,12 @@
             $('.btn-cari').on('click',function(e)
             {
 
-            e.preventDefault();
-            var dari = $("#dari_tanggal").val();
-            var sampai = $("#sampai_tanggal").val();
+              e.preventDefault();
+              var dari = $("#dari_tanggal").val();
+              var sampai = $("#sampai_tanggal").val();
 
-            console.log(dari);
-            console.log(sampai);
+              console.log(dari);
+              console.log(sampai);
 
               // $.ajax({  
               //   url:'/dataJurnalUmum/cari/' + dari + '/' + sampai,  
@@ -318,9 +321,9 @@
                   $("#tambah-akun").prop("disabled", false);
                   $("#tambah-akun-penyesuaian").prop("disabled", false);
 
-              });
+                });
 
-            });
+              });
 
             var total_debit = 0;
             var total_kredit = 0;
@@ -329,25 +332,25 @@
             var tabel_jurnal = $('#data-jurnal-umum').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
                 "columns": [
-                    { "data": "id_transaksi" },
-                    { "data": "no_akun" },
-                    { "data": "akun" },
-                    { "data": "nominal_debit" },
-                    { "data": "nominal_kredit" },
-                    {
-                        data: null,
-                        defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</button>'
-                    }
+                { "data": "id_transaksi" },
+                { "data": "no_akun" },
+                { "data": "akun" },
+                { "data": "nominal_debit" },
+                { "data": "nominal_kredit" },
+                {
+                  data: null,
+                  defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal">Hapus</button>'
+                }
                 ],
                 "columnDefs": [
-                    {
-                        "targets": [ 0 ],
-                        "visible": false,
-                        "searchable": false
-                    },
+                {
+                  "targets": [ 0 ],
+                  "visible": false,
+                  "searchable": false
+                },
                 ],
                 hasFirstRow: true
-            });
+              });
 
             $('table#data-jurnal-umum tbody').on('click','.delete-data-jurnal', function(){
 
@@ -399,7 +402,7 @@
                 tabel_jurnal.row( $(this).parents('tr') ).remove().draw( false );
                 console.log(tabel_jurnal.rows().data().toArray());
 
-            });
+              });
 
             $('#tambah-akun').on('click',function(e) {
               e.preventDefault();
@@ -408,11 +411,11 @@
 
               total_debit += parseInt(
                 masuk_data[4].value == "" ? 0 : masuk_data[4].value
-              );
+                );
 
               total_kredit += parseInt(
                 masuk_data[5].value == "" ? 0 : masuk_data[5].value
-              );
+                );
 
               if(total_debit > total_kredit){
                 selisih = total_debit - total_kredit;
@@ -464,47 +467,47 @@
               // : $("#simpan-jurnal").prop("disabled", false);
 
               console.log(tabel_jurnal.rows().data().toArray());
-            
+
             });
 
             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
             });
 
             $('#simpan-jurnal').on('click',function(e) {
               e.preventDefault();
-                    swal({
-                      title: "Anda yakin dengan isi dari jurnal umum ini?",
-                      type: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "Ya",
-                      cancelButtonText: "Tidak",
-                      closeOnConfirm: false ,
-                      closeOnCancel: false
-                    },
-                    function(isConfirm){
-                      if (isConfirm) {
+              swal({
+                title: "Anda yakin dengan isi dari jurnal umum ini?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                closeOnConfirm: false ,
+                closeOnCancel: false
+              },
+              function(isConfirm){
+                if (isConfirm) {
                         //swal("Terhapus", "Data berhasil dihapus.", "success");
                         swal({
-                            title: "Berhasil",
-                            text: "Pesanan berhasil diinput.",
-                            type: "success"
+                          title: "Berhasil",
+                          text: "Pesanan berhasil diinput.",
+                          type: "success"
                         },
                         function(ok) {
-                            if(ok){
-                                console.log($('#no_jurnal_umum').val());
-                                $.post('/simpanJurnal/save', {sendData: JSON.stringify(tabel_jurnal.rows().data().toArray()), no_jurnal_umum: $('#no_jurnal_umum').val(), nm_jurnal_umum: $('#nm_jurnal_umum').val(), nilai: $('#total_debit').val()}, function(res) {
-                                    console.log(res);
-                                }, "json");
-                                tabel_jurnal.clear().draw();
-                                total_debit = 0;
-                                total_kredit = 0;
+                          if(ok){
+                            console.log($('#no_jurnal_umum').val());
+                            $.post('/simpanJurnal/save', {sendData: JSON.stringify(tabel_jurnal.rows().data().toArray()), no_jurnal_umum: $('#no_jurnal_umum').val(), nm_jurnal_umum: $('#nm_jurnal_umum').val(), nilai: $('#total_debit').val()}, function(res) {
+                              console.log(res);
+                            }, "json");
+                            tabel_jurnal.clear().draw();
+                            total_debit = 0;
+                            total_kredit = 0;
 
-                                window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
-                            }
+                            window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+                          }
                         });
                       } else {
                         swal("Batal", "Pesanan dibatalkan", "error");
@@ -515,27 +518,27 @@
             });
 
             $(document).on('click', '.btn-hapus', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                swal({
-                        title: "Anda yakin ingin menghapus Jurnal Umum ini?",
-                        type: "warning",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Yakin",
-                        showCancelButton: true,
-                    },
-                    function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{url('/hapusJurnal')}}",
-                            data: {id:id},
-                            success: function (data) {
-                              console.log(data);
-                            }         
-                        });
-
-                        window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin menghapus Jurnal Umum ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yakin",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/hapusJurnal')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
                 });
+
+                window.location.href='http://127.0.0.1:8000/dataJurnalUmum';
+              });
             });
 
             // Jurnal Penyesuaian
@@ -549,25 +552,25 @@
             var tabel_jurnal_penyesuaian = $('#data-jurnal-penyesuaian').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
                 "columns": [
-                    { "data": "id_transaksi" },
-                    { "data": "no_akun" },
-                    { "data": "akun" },
-                    { "data": "nominal_debit" },
-                    { "data": "nominal_kredit" },
-                    {
-                        data: null,
-                        defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal-penyesuaian">Hapus</button>'
-                    }
+                { "data": "id_transaksi" },
+                { "data": "no_akun" },
+                { "data": "akun" },
+                { "data": "nominal_debit" },
+                { "data": "nominal_kredit" },
+                {
+                  data: null,
+                  defaultContent: '<button href="javascript::void(0)" class="btn btn-danger delete-data-jurnal-penyesuaian">Hapus</button>'
+                }
                 ],
                 "columnDefs": [
-                    {
-                        "targets": [ 0 ],
-                        "visible": false,
-                        "searchable": false
-                    },
+                {
+                  "targets": [ 0 ],
+                  "visible": false,
+                  "searchable": false
+                },
                 ],
                 hasFirstRow: true
-            });
+              });
 
             $('table#data-jurnal-penyesuaian tbody').on('click','.delete-data-jurnal-penyesuaian', function(){
 
@@ -619,7 +622,7 @@
                 tabel_jurnal_penyesuaian.row( $(this).parents('tr') ).remove().draw( false );
                 console.log(tabel_jurnal_penyesuaian.rows().data().toArray());
 
-            });
+              });
 
             $('#tambah-akun-penyesuaian').on('click',function(e) {
               e.preventDefault();
@@ -628,11 +631,11 @@
 
               total_debit += parseInt(
                 masuk_data[4].value == "" ? 0 : masuk_data[4].value
-              );
+                );
 
               total_kredit += parseInt(
                 masuk_data[5].value == "" ? 0 : masuk_data[5].value
-              );
+                );
 
               if(total_debit > total_kredit){
                 selisih = total_debit - total_kredit;
@@ -691,47 +694,47 @@
                 $("#simpan-jurnal-penyesuaian").prop("disabled", false);
 
               }
-            
+
             });
 
             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
             });
 
             $('#simpan-jurnal-penyesuaian').on('click',function(e) {
               e.preventDefault();
-                    swal({
-                      title: "Anda yakin dengan isi dari jurnal penyesuaian ini?",
-                      type: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "Ya",
-                      cancelButtonText: "Tidak",
-                      closeOnConfirm: false ,
-                      closeOnCancel: false
-                    },
-                    function(isConfirm){
-                      if (isConfirm) {
+              swal({
+                title: "Anda yakin dengan isi dari jurnal penyesuaian ini?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                closeOnConfirm: false ,
+                closeOnCancel: false
+              },
+              function(isConfirm){
+                if (isConfirm) {
                         //swal("Terhapus", "Data berhasil dihapus.", "success");
                         swal({
-                            title: "Berhasil",
-                            text: "Pesanan berhasil diinput.",
-                            type: "success"
+                          title: "Berhasil",
+                          text: "Pesanan berhasil diinput.",
+                          type: "success"
                         },
                         function(ok) {
-                            if(ok){
-                                console.log($('#no_jurnal_umum').val());
-                                $.post('/simpanJurnalPenyesuaian/save', {sendData: JSON.stringify(tabel_jurnal_penyesuaian.rows().data().toArray()), no_jurnal_penyesuaian: $('#no_jurnal_penyesuaian').val(), nm_jurnal_penyesuaian: $('#nm_jurnal_penyesuaian').val()}, function(res) {
-                                    console.log(res);
-                                }, "json");
-                                tabel_jurnal_penyesuaian.clear().draw();
-                                total_debit = 0;
-                                total_kredit = 0;
+                          if(ok){
+                            console.log($('#no_jurnal_umum').val());
+                            $.post('/simpanJurnalPenyesuaian/save', {sendData: JSON.stringify(tabel_jurnal_penyesuaian.rows().data().toArray()), no_jurnal_penyesuaian: $('#no_jurnal_penyesuaian').val(), nm_jurnal_penyesuaian: $('#nm_jurnal_penyesuaian').val()}, function(res) {
+                              console.log(res);
+                            }, "json");
+                            tabel_jurnal_penyesuaian.clear().draw();
+                            total_debit = 0;
+                            total_kredit = 0;
 
-                                window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
-                            }
+                            window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
+                          }
                         });
                       } else {
                         swal("Batal", "Pesanan dibatalkan", "error");
@@ -742,27 +745,27 @@
             });
 
             $(document).on('click', '.btn-hapus-penyesuaian', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                swal({
-                        title: "Anda yakin ingin menghapus Jurnal Penyesuaian ini?",
-                        type: "warning",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Yakin",
-                        showCancelButton: true,
-                    },
-                    function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{url('/hapusJurnalPenyesuaian')}}",
-                            data: {id:id},
-                            success: function (data) {
-                              console.log(data);
-                            }         
-                        });
-
-                        window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin menghapus Jurnal Penyesuaian ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yakin",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/hapusJurnalPenyesuaian')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
                 });
+
+                window.location.href='http://127.0.0.1:8000/dataJurnalPenyesuaian';
+              });
             });
 
             $('.btn-cari-neraca-saldo').on('click',function(e)
@@ -782,7 +785,7 @@
 
                 window.location.assign(url);
 
-            });
+              });
 
             $('.btn-all-neraca-saldo').on('click',function(e)
             {
@@ -794,60 +797,60 @@
 
                 window.location.assign(url);
 
-            });
+              });
 
             $(".btn-lihat").prop("disabled", true);
 
             $('#pilihan_laporan').on('change',function(e)
-              {  
+            {  
 
-                var pilihan_laporan = e.target.value;
+              var pilihan_laporan = e.target.value;
 
-                $(".btn-lihat").prop("disabled", false);
+              $(".btn-lihat").prop("disabled", false);
 
-                if(pilihan_laporan == 1){
+              if(pilihan_laporan == 1){
 
-                  $('.btn-lihat').on('click',function(e){
+                $('.btn-lihat').on('click',function(e){
 
-                    e.preventDefault();
-                    var dari = $("#dari_tanggal_lap").val();
-                    var sampai = $("#sampai_tanggal_lap").val();
+                  e.preventDefault();
+                  var dari = $("#dari_tanggal_lap").val();
+                  var sampai = $("#sampai_tanggal_lap").val();
 
-                    console.log(dari);
-                    console.log(sampai);
+                  console.log(dari);
+                  console.log(sampai);
 
-                    var url = '{{ route("laba_rugi", [":dari", ":sampai"] ) }}';
-                    url = url.replace(':dari', dari);
-                    url = url.replace(':sampai', sampai);
+                  var url = '{{ route("laba_rugi", [":dari", ":sampai"] ) }}';
+                  url = url.replace(':dari', dari);
+                  url = url.replace(':sampai', sampai);
 
-                    window.location.assign(url);
+                  window.location.assign(url);
 
-                  });
+                });
 
-                }else if(pilihan_laporan == 3){
+              }else if(pilihan_laporan == 3){
 
-                  $('.btn-lihat').on('click',function(e){
+                $('.btn-lihat').on('click',function(e){
 
-                    e.preventDefault();
-                    var dari = $("#dari_tanggal_lap").val();
-                    var sampai = $("#sampai_tanggal_lap").val();
+                  e.preventDefault();
+                  var dari = $("#dari_tanggal_lap").val();
+                  var sampai = $("#sampai_tanggal_lap").val();
 
-                    console.log(dari);
-                    console.log(sampai);
+                  console.log(dari);
+                  console.log(sampai);
 
-                    var url = '{{ route("neraca", [":dari", ":sampai"] ) }}';
-                    url = url.replace(':dari', dari);
-                    url = url.replace(':sampai', sampai);
+                  var url = '{{ route("neraca", [":dari", ":sampai"] ) }}';
+                  url = url.replace(':dari', dari);
+                  url = url.replace(':sampai', sampai);
 
-                    window.location.assign(url);
+                  window.location.assign(url);
 
-                  });
+                });
 
-                }else {
-                  $(".btn-lihat").prop("disabled", true);
-                }
+              }else {
+                $(".btn-lihat").prop("disabled", true);
+              }
 
-              });
+            });
 
             $('.btn-lihat-perubahan-modal').on('click',function(e){
 
@@ -859,53 +862,185 @@
 
             });
 
-            // Grafik Laporan Keuangan
-            var ctx = document.getElementById("grafikLaporanKeuangan").getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
-                datasets: [{
-                  label: 'Statistics',
-                  data: [350, 458, 330, 502],
-                  borderWidth: 2,
-                  backgroundColor: '#6777ef',
-                  borderColor: '#6777ef',
-                  borderWidth: 2.5,
-                  pointBackgroundColor: '#ffffff',
-                  pointRadius: 4
-                }]
-              },
-              options: {
-                legend: {
-                  display: false
-                },
-                scales: {
-                  yAxes: [{
-                    gridLines: {
-                      drawBorder: false,
-                      color: '#f2f2f2',
-                    },
-                    ticks: {
-                      beginAtZero: true,
-                      stepSize: 150
-                    }
-                  }],
-                  xAxes: [{
-                    ticks: {
-                      display: false
-                    },
-                    gridLines: {
-                      display: false
-                    }
+            $(function () {
+              var labaRugi = document.getElementById("labaRugi").getContext('2d');
+              var myChart = new Chart(labaRugi, {
+                type: 'bar',
+                data: {
+                  labels: namaBulan,
+                  datasets: [{
+                    label: 'Statistics',
+                    data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    borderWidth: 2,
+                    backgroundColor: '#6777ef',
+                    borderColor: '#6777ef',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#ffffff',
+                    pointRadius: 4
                   }]
                 },
-              }
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
+                      gridLines: {
+                        drawBorder: false,
+                        color: '#f2f2f2',
+                      },
+                      ticks: {
+                        beginAtZero: true,
+                        stepSize: 150
+                      }
+                    }],
+                    xAxes: [{
+                      ticks: {
+                        display: false
+                      },
+                      gridLines: {
+                        display: false
+                      }
+                    }]
+                  },
+                }
+              });
+
+              var neraca = document.getElementById("neraca").getContext('2d');
+              var myChart = new Chart(neraca, {
+                type: 'bar',
+                data: {
+                  labels: namaBulan,
+                  datasets: [{
+                    label: 'Statistics',
+                    data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    borderWidth: 2,
+                    backgroundColor: '#6777ef',
+                    borderColor: '#6777ef',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#ffffff',
+                    pointRadius: 4
+                  }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
+                      gridLines: {
+                        drawBorder: false,
+                        color: '#f2f2f2',
+                      },
+                      ticks: {
+                        beginAtZero: true,
+                        stepSize: 150
+                      }
+                    }],
+                    xAxes: [{
+                      ticks: {
+                        display: false
+                      },
+                      gridLines: {
+                        display: false
+                      }
+                    }]
+                  },
+                }
+              });
+
+              var perubahanModal = document.getElementById("perubahanModal").getContext('2d');
+              var myChart = new Chart(perubahanModal, {
+                type: 'bar',
+                data: {
+                  labels: namaBulan,
+                  datasets: [{
+                    label: 'Statistics',
+                    data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    borderWidth: 2,
+                    backgroundColor: '#6777ef',
+                    borderColor: '#6777ef',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#ffffff',
+                    pointRadius: 4
+                  }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
+                      gridLines: {
+                        drawBorder: false,
+                        color: '#f2f2f2',
+                      },
+                      ticks: {
+                        beginAtZero: true,
+                        stepSize: 150
+                      }
+                    }],
+                    xAxes: [{
+                      ticks: {
+                        display: false
+                      },
+                      gridLines: {
+                        display: false
+                      }
+                    }]
+                  },
+                }
+              });
             });
 
-        </script>
+            $(function () {
+              var grafikLaporanKeuangan = document.getElementById("grafikLaporanKeuangan").getContext('2d');
+              var myChart = new Chart(grafikLaporanKeuangan, {
+                type: 'bar',
+                data: {
+                  labels: namaBulan,
+                  datasets: [{
+                    label: 'Statistics',
+                    data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    borderWidth: 2,
+                    backgroundColor: '#6777ef',
+                    borderColor: '#6777ef',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#ffffff',
+                    pointRadius: 4
+                  }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
+                      gridLines: {
+                        drawBorder: false,
+                        color: '#f2f2f2',
+                      },
+                      ticks: {
+                        beginAtZero: true,
+                        stepSize: 150
+                      }
+                    }],
+                    xAxes: [{
+                      ticks: {
+                        display: false
+                      },
+                      gridLines: {
+                        display: false
+                      }
+                    }]
+                  },
+                }
+              });
+            });
 
-    </body>
+          </script>
 
-<!-- Mirrored from moltran.coderthemes.com/menu_2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:19:20 GMT -->
-</html>
+        </body>
+
+        <!-- Mirrored from moltran.coderthemes.com/menu_2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:19:20 GMT -->
+        </html>

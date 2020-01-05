@@ -27,6 +27,14 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4']], function(){
 	Route::get('/dashboard','DashboardController@index');
 	Route::get('/laporanKeuangan','PemilikController@index_laporan_keuangan');
 
+	Route::get('/dataLabaRugi/{dari}/{sampai}','AkuntanController@data_laba_rugi')->name('laba_rugi');
+	Route::get('/dataPerubahanModal','AkuntanController@data_perubahan_modal')->name('perubahan_modal');
+	Route::get('/dataNeraca/{dari}/{sampai}','AkuntanController@data_neraca')->name('neraca');
+
+	Route::get('/dataLabaRugi/{dari}/{sampai}/cetak_pdf','AkuntanController@cetak_laba_rugi')->name('cetak_laba_rugi');
+	Route::get('/dataPerubahanModal/cetak_pdf','AkuntanController@cetak_perubahan_modal')->name('cetak_perubahan_modal');
+	Route::get('/dataNeraca/{dari}/{sampai}/cetak_pdf','AkuntanController@cetak_neraca')->name('cetak_neraca');
+
 	// Route::get('/dataUser','AdminController@index_user');
 	// Route::get('/tambahData','AdminController@create');
 	// Route::post('/dataUser/create','AdminController@create_user');
@@ -95,10 +103,6 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataNeracaSaldo/hasil/{dari}/{sampai}','AkuntanController@hasil_neraca_saldo')->name('hasil');
 	Route::get('/dataNeracaSaldo/hasil','AkuntanController@hasil_all_neraca_saldo')->name('hasil_all');
 
-	Route::get('/dataLabaRugi/{dari}/{sampai}','AkuntanController@data_laba_rugi')->name('laba_rugi');
-	Route::get('/dataPerubahanModal','AkuntanController@data_perubahan_modal')->name('perubahan_modal');
-	Route::get('/dataNeraca/{dari}/{sampai}','AkuntanController@data_neraca')->name('neraca');
-
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
@@ -112,6 +116,9 @@ Route::group(['middleware' => ['auth', 'checkRole:4']], function(){
 
 	Route::get('/dataArusKas','KasirController@index_arus_kas');
 	Route::get('/dataArusKas/filter/{dari}/{sampai}','KasirController@filter_Arus_kas')->name('filter');
+
+	Route::get('/dataArusKas/cetak_pdf','KasirController@cetak_arus_kas');
+	Route::get('/dataArusKas/{dari}/{sampai}/cetak_pdf','KasirController@cetak_tanggal_arus_kas');
 
 });
 
