@@ -242,6 +242,17 @@ class AkuntanController extends Controller
     }
 
     // Data Jurnal Umum
+
+    public function getTransaksi(Request $request, $bulan)
+    {
+        // return transaksi::whereMonth('tgl_transaksi', $bulan)->get();
+        if ($request->ajax()) {
+            return response()->json([
+                'transaksi' => transaksi::whereMonth('tgl_transaksi', $bulan)->get()
+            ]);
+        }
+    }
+
     public function index_jurnal_umum()
     {
 

@@ -146,16 +146,26 @@
                           <hr />
                           <form id="form-tambah-akun" style="width: 80%;margin: 0 auto;">
                             <div class="row">
-                              <div class="col-sm-12 col-md-8">
+                              <div class="col-sm-12 col-md-2">
+                                <div class="form-group">
+                                  <label>Pilih Bulan</label>
+                                  <select class="form-control" name="nama_bulan" id="nama_bulan" class="nama_bulan">
+                                    <option value="0"></option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                   <label>Transaksi</label>
-                                  <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
-                                  <select class="form-control" name="id_transaksi" id="id_transaksi">
-                                    <option value="0">--Pilih Transaksi--</option>
-                                    @foreach($DataTransaksi as $dpo)
-                                    <option value="{{$dpo->id_transaksi}}">({{ Carbon\Carbon::parse($dpo->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}) {{$dpo->deskripsi}}</option>
-                                    @endforeach
-                                  </select>
+                                  <select class="form-control" name="id_transaksi" id="id_transaksi" class="id_transaksi" style="font-size: 10px;"></select>
                                 </div>
                               </div>
                               <div class="col-sm-12 col-md-4">
@@ -259,6 +269,7 @@
                                 <table id="data-jurnal-umum" class="table table-striped table-md" style="text-align: center;">
                                   <thead>
                                     <tr>
+                                      <th style="display: none;">Nama Bulan</th>
                                       <th style="display: none;">Id Transaksi</th>
                                       <th>No. Akun</th>
                                       <th>Akun</th>
@@ -274,6 +285,7 @@
                                   </tbody>
                                   <tfoot>
                                     <tr>
+                                      <td style="display: none;"></td>
                                       <td style="display: none;"></td>
                                       <td></td>
                                       <td></td>
@@ -291,6 +303,7 @@
                                       <td></td>
                                     </tr>
                                     <tr style="background-color: #F5F5F5">
+                                      <td style="display: none;"></td>
                                       <td style="display: none;"></td>
                                       <td></td>
                                       <td></td>

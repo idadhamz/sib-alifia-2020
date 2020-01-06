@@ -34,6 +34,12 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+  <style>
+    .ubahFont{
+      font-size:13px;
+    }
+  </style>
+
 </head>
 
 
@@ -129,7 +135,6 @@
           $('#data-user').dataTable();
           $('#data-pemasukan').dataTable();
           $('#data-pengeluaran').dataTable();
-            // $('#id_transaksi').select2();
 
             $(document).ready(function () {
               $('#dari_tanggal').daterangepicker({
@@ -214,6 +219,40 @@
             //     });
             // });
 
+            // var namaBulanJurnal = $('.nama_bulan');
+
+            $('#nama_bulan').on('change', e => {
+                $('#id_transaksi').empty()
+                $.ajax({
+                    url: `/dataTransaksi/${e.target.value}`,
+                    success: data => {
+                        console.log(data);
+                        data.transaksi.forEach(datas =>
+                            $('#id_transaksi').select2({ dropdownCssClass: "ubahFont" }).append(`<option value="${datas.id_transaksi}">${datas.deskripsi}</option>`)
+                        )
+                    }
+                })
+            })
+
+            // var $namaBulan = $('.nama_bulan');
+            // var $dataTransaksi = $(".id_transaksi");
+
+            // $namaBulan.select2().on('change', function() {
+            //     console.log($namaBulan.val())
+            //     $.ajax({
+            //         url:"/dataTransaksi/" + $namaBulan.val(), // if you say $(this) here it will refer to the ajax call not $('.company2')
+            //         type:'GET',
+            //         success:function(data) {
+            //           console.log(data);
+            //             $dataTransaksi.empty();
+            //             $.each(data, function(value, key) {
+            //                 $dataTransaksi.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+            //             });
+            //             $dataTransaksi.select2(); //reload the list and select the first option
+            //         }
+            //     });
+            // }).trigger('change');
+
             // Jurnal Umum
             $('.btn-cari').on('click',function(e)
             {
@@ -258,13 +297,13 @@
 
             });
 
-            if($("#no_jurnal_umum").val(null) && $("#nm_jurnal_umum").val(null)){
-              $("#simpan-jurnal").prop("disabled", true);
-            } else {
-              $("#simpan-jurnal").prop("disabled", false);
-            }
+            $('#no_jurnal_umum').focus();
 
-            // $("#simpan-jurnal").prop("disabled", true);
+            $('#no_jurnal_penyesuaian').focus();
+
+            $("#simpan-jurnal").prop("disabled", true);
+
+            $("#simpan-jurnal-penyesuaian").prop("disabled", true);
 
             $("#tambah-akun").prop("disabled", true);
             $("#tambah-akun-penyesuaian").prop("disabled", true);
@@ -344,6 +383,7 @@
             var tabel_jurnal = $('#data-jurnal-umum').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
                 "columns": [
+                { "data": "nama_bulan" },
                 { "data": "id_transaksi" },
                 { "data": "no_akun" },
                 { "data": "akun" },
@@ -356,7 +396,7 @@
                 ],
                 "columnDefs": [
                 {
-                  "targets": [ 0 ],
+                  "targets": [ 0,1 ],
                   "visible": false,
                   "searchable": false
                 },
@@ -422,11 +462,11 @@
               console.log(masuk_data);
 
               total_debit += parseInt(
-                masuk_data[4].value == "" ? 0 : masuk_data[4].value
+                masuk_data[5].value == "" ? 0 : masuk_data[5].value
                 );
 
               total_kredit += parseInt(
-                masuk_data[5].value == "" ? 0 : masuk_data[5].value
+                masuk_data[6].value == "" ? 0 : masuk_data[6].value
                 );
 
               if(total_debit > total_kredit){
@@ -439,16 +479,17 @@
               console.log(total_kredit);
 
               tabel_jurnal.row.add({
-                "id_transaksi": masuk_data[0].value,
-                "no_akun": masuk_data[1].value,
-                "akun": masuk_data[2].value,
-                "nominal_debit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
-                "nominal_kredit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
+                "nama_bulan": masuk_data[0].value,
+                "id_transaksi": masuk_data[1].value,
+                "no_akun": masuk_data[2].value,
+                "akun": masuk_data[3].value,
+                "nominal_debit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
+                "nominal_kredit": masuk_data[6].value == "" ? 0 : masuk_data[6].value,
               }, function(e) {
                 console.log(e);
               }).draw();
               
-              $('#id_transaksi, #no_akun, #pilihan_akun').val(0);
+              $('#id_transaksi, #no_akun, #pilihan_akun, #nama_bulan').val(0);
               $('#nominal, #nominal_debit, #nominal_kredit').val(0);
               $('#total_debit').val(total_debit);
               $('#total_kredit').val(total_kredit);
@@ -564,6 +605,7 @@
             var tabel_jurnal_penyesuaian = $('#data-jurnal-penyesuaian').DataTable({
                 // tabData: {no_akun:"", akun:"", nominal_debit:"", nominal_kredit:""},
                 "columns": [
+                { "data": "nama_bulan" },
                 { "data": "id_transaksi" },
                 { "data": "no_akun" },
                 { "data": "akun" },
@@ -576,7 +618,7 @@
                 ],
                 "columnDefs": [
                 {
-                  "targets": [ 0 ],
+                  "targets": [ 0,1 ],
                   "visible": false,
                   "searchable": false
                 },
@@ -642,11 +684,11 @@
               console.log(masuk_data);
 
               total_debit += parseInt(
-                masuk_data[4].value == "" ? 0 : masuk_data[4].value
+                masuk_data[5].value == "" ? 0 : masuk_data[5].value
                 );
 
               total_kredit += parseInt(
-                masuk_data[5].value == "" ? 0 : masuk_data[5].value
+                masuk_data[6].value == "" ? 0 : masuk_data[6].value
                 );
 
               if(total_debit > total_kredit){
@@ -659,16 +701,17 @@
               console.log(total_kredit);
 
               tabel_jurnal_penyesuaian.row.add({
-                "id_transaksi": masuk_data[0].value,
-                "no_akun": masuk_data[1].value,
-                "akun": masuk_data[2].value,
-                "nominal_debit": masuk_data[4].value == "" ? 0 : masuk_data[4].value,
-                "nominal_kredit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
+                "nama_bulan": masuk_data[0].value,
+                "id_transaksi": masuk_data[1].value,
+                "no_akun": masuk_data[2].value,
+                "akun": masuk_data[3].value,
+                "nominal_debit": masuk_data[5].value == "" ? 0 : masuk_data[5].value,
+                "nominal_kredit": masuk_data[6].value == "" ? 0 : masuk_data[6].value,
               }, function(e) {
                 console.log(e);
               }).draw();
 
-              $('#id_transaksi, #no_akun, #pilihan_akun').val(0);
+              $('#id_transaksi, #no_akun, #pilihan_akun, #nama_bulan').val(0);
               $('#nominal, #nominal_debit, #nominal_kredit').val(0);
               $('#total_debit').val(total_debit);
               $('#total_kredit').val(total_kredit);
