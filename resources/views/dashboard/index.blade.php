@@ -86,12 +86,12 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="data-pemasukan">
+                        <table class="table table-striped table-bordered">
                           <thead>
                             <tr>
                               <th>No.</th>
                               <th>Tanggal</th>
-                              <th style="width: 230px;">Transaksi</th>
+                              <th style="width: 275px;">Transaksi</th>
                               <!-- <th>Nominal</th> -->
                               <th>Jenis</th>
                             </tr>
@@ -100,7 +100,7 @@
                             @foreach($DataTransaksi as $index => $dok)
                             <tr>
                               <td>{{$index +1}}</td>
-                              <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                              <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                               <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
                                   <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                               </td>

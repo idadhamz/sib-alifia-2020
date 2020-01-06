@@ -67,7 +67,7 @@
                                         @foreach($DataBukuBesarDetail as $index => $dps)
                                         <tr>
                                             <td>{{$index +1}}</td>
-                                            <td>{{ Carbon\Carbon::parse($dps->tgl_posting)->formatLocalized('%d/%m/%Y') }}</td>
+                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 
                                               <br><span>Kas</span>

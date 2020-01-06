@@ -646,7 +646,7 @@ class AkuntanController extends Controller
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             ->leftJoin('total_per_akun', 'buku_besar.no_akun', '=', 'total_per_akun.no_akun')
             ->select('buku_besar.*','transaksi.deskripsi', 'transaksi.tgl_transaksi', 'total_per_akun.total_debit', 'total_per_akun.total_kredit')
-            ->orderBy('buku_besar.tgl_posting', 'DESC')
+            ->orderBy('transaksi.tgl_transaksi', 'DESC')
             ->get(); 
 
         $DataAkunDetail = akun::where('no_akun', $no_akun)->get();
@@ -899,7 +899,7 @@ class AkuntanController extends Controller
         $DataNeracaHarta = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.kredit) != null THEN SUM(buku_besar.debit) ELSE SUM(buku_besar.debit) - SUM(buku_besar.kredit) END) AS total_debit_hitung'))
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA1')
             ->groupBy('buku_besar.no_akun')
@@ -908,7 +908,7 @@ class AkuntanController extends Controller
         $DataNeracaHutang = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.debit) != null THEN SUM(buku_besar.kredit) ELSE SUM(buku_besar.kredit) - SUM(buku_besar.debit) END) AS total_kredit_hitung'),)
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA2')
             ->groupBy('buku_besar.no_akun')
@@ -917,11 +917,19 @@ class AkuntanController extends Controller
         $DataNeracaModal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.debit) != null THEN SUM(buku_besar.kredit) ELSE SUM(buku_besar.kredit) - SUM(buku_besar.debit) END) AS total_kredit_hitung'))
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA3')
             ->groupBy('buku_besar.no_akun')
             ->get();
+
+        $DataNeracaHartaSisa = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->where('akun.kode_golongan', 'GA1')
+            ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
+            ->sum('kredit');
+
+        // dd($DataNeracaHartaSisa);
 
         $kode_golongan = ['GA1', 'GA2', 'GA3'];
 
@@ -937,10 +945,16 @@ class AkuntanController extends Controller
             ->whereIn('akun.kode_golongan', $kode_golongan)
             ->sum('kredit');
 
+
+        $total_debit = $total_debit_all - $DataNeracaHartaSisa;
+        $total_kredit = $total_kredit_all - $DataNeracaHartaSisa;
+
+        // dd($total_debit);
+
         if($total_debit_all > $total_kredit_all){
-            $total_akhir = $total_debit_all - $total_kredit_all;
+            $total_akhir = $total_debit - $total_kredit;
         }else {
-            $total_akhir = $total_kredit_all - $total_debit_all;
+            $total_akhir = $total_kredit - $total_debit;
         }
 
 
@@ -949,7 +963,7 @@ class AkuntanController extends Controller
 
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('pemilik.laporanKeuangan.neraca', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit_all', 'total_kredit_all', 'total_akhir'));
+        return view('pemilik.laporanKeuangan.neraca', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit', 'total_kredit', 'total_akhir'));
  
     }
 
@@ -959,7 +973,7 @@ class AkuntanController extends Controller
         $DataNeracaHarta = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.kredit) != null THEN SUM(buku_besar.debit) ELSE SUM(buku_besar.debit) - SUM(buku_besar.kredit) END) AS total_debit_hitung'))
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA1')
             ->groupBy('buku_besar.no_akun')
@@ -968,7 +982,7 @@ class AkuntanController extends Controller
         $DataNeracaHutang = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.debit) != null THEN SUM(buku_besar.kredit) ELSE SUM(buku_besar.kredit) - SUM(buku_besar.debit) END) AS total_kredit_hitung'),)
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA2')
             ->groupBy('buku_besar.no_akun')
@@ -977,11 +991,19 @@ class AkuntanController extends Controller
         $DataNeracaModal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.debit) != null THEN SUM(buku_besar.kredit) ELSE SUM(buku_besar.kredit) - SUM(buku_besar.debit) END) AS total_kredit_hitung'))
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
             ->where('akun.kode_golongan', 'GA3')
             ->groupBy('buku_besar.no_akun')
             ->get();
+
+        $DataNeracaHartaSisa = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->where('akun.kode_golongan', 'GA1')
+            ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
+            ->sum('kredit');
+
+        // dd($DataNeracaHartaSisa);
 
         $kode_golongan = ['GA1', 'GA2', 'GA3'];
 
@@ -997,10 +1019,16 @@ class AkuntanController extends Controller
             ->whereIn('akun.kode_golongan', $kode_golongan)
             ->sum('kredit');
 
+
+        $total_debit = $total_debit_all - $DataNeracaHartaSisa;
+        $total_kredit = $total_kredit_all - $DataNeracaHartaSisa;
+
+        // dd($total_debit);
+
         if($total_debit_all > $total_kredit_all){
-            $total_akhir = $total_debit_all - $total_kredit_all;
+            $total_akhir = $total_debit - $total_kredit;
         }else {
-            $total_akhir = $total_kredit_all - $total_debit_all;
+            $total_akhir = $total_kredit - $total_debit;
         }
 
 
@@ -1009,7 +1037,7 @@ class AkuntanController extends Controller
 
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        $pdf = PDF::loadview('pemilik.laporanKeuangan.neraca_pdf', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit_all', 'total_kredit_all', 'total_akhir'));
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.neraca_pdf', compact('DataNeracaHarta', 'DataNeracaHutang', 'DataNeracaModal', 'dari', 'sampai', 'total_debit', 'total_kredit', 'total_akhir'));
         return $pdf->download('neraca-laundry-albanna');
  
     }
@@ -1061,50 +1089,68 @@ class AkuntanController extends Controller
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->sum('kredit');
 
+        $laba_prive = $total_kredit_laba - $total_debit_prive;
+
         $modal_akhir = $total_modal_awal + ($total_kredit_laba - $total_debit_prive);
 
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban', 'tahun'));
+        return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban', 'tahun', 'laba_prive'));
  
     }
 
     public function cetak_perubahan_modal()
     {
 
+        $tahun = $tahun;
+
         $DataAkunKas = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
             ->where('akun.no_akun', '111')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
         $DataAkunPendapatan = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
             ->where('akun.kode_golongan', 'GA4')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
         $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
             ->where('akun.kode_golongan', 'GA5')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
         $total_modal_awal = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             ->where('akun.no_akun', '111')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->sum('debit');
 
         $total_debit_prive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             ->where('akun.kode_golongan', 'GA5')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->sum('debit');
 
         $total_kredit_laba = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             ->where('akun.kode_golongan', 'GA4')
+            ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->sum('kredit');
+
+        $laba_prive = $total_kredit_laba - $total_debit_prive;
 
         $modal_akhir = $total_modal_awal + ($total_kredit_laba - $total_debit_prive);
 
-        $pdf = PDF::loadview('pemilik.laporanKeuangan.perubahan_modal_pdf', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.perubahan_modal_pdf', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban', 'tahun', 'laba_prive'));
         return $pdf->download('perubahan-modal-laundry-albanna');
 
         // return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));

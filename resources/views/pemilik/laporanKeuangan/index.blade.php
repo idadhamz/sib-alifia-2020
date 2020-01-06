@@ -76,8 +76,8 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-1" style="padding-right: 0;">
-                                <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                              <div class="col-sm-12 col-md-2" style="padding-right: 0;">
+                                <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
                               </div>
                             </div>
                             <div class="row">
@@ -90,8 +90,8 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-2" style="padding-left: 0;">
-                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Perubahan Modal</button>
+                              <div class="col-sm-12 col-md-4" style="padding-left: 0;">
+                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Perubahan Modal</button>
                               </div>
                             </div>
                             <!-- <div class="row">

@@ -228,7 +228,7 @@
                     success: data => {
                         console.log(data);
                         data.transaksi.forEach(datas =>
-                            $('#id_transaksi').select2({ dropdownCssClass: "ubahFont" }).append(`<option value="${datas.id_transaksi}">${datas.deskripsi}</option>`)
+                            $('#id_transaksi').select2({ dropdownCssClass: "ubahFont" }).append(`<option value="${datas.id_transaksi}">(${datas.tgl_transaksi}) ${datas.deskripsi}</option>`)
                         )
                     }
                 })

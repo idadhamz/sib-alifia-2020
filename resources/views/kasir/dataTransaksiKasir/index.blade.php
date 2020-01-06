@@ -77,7 +77,7 @@
                                           <th>No.</th>
                                           <th>Diinput Oleh</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th style="width: 350px;">Transaksi</th>
+                                          <th style="width: 300px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
                                           <th>Aksi</th>
                                       </tr>
@@ -110,7 +110,7 @@
                                           <th>No.</th>
                                           <th>Diinput Oleh</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th style="width: 350px;">Transaksi</th>
+                                          <th style="width: 300px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
                                           <th>Aksi</th>
                                       </tr>

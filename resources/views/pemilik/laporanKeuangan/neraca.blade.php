@@ -59,8 +59,18 @@
                                             <td style="color: #000000;">
                                               <span>{{$dok->nm_akun}}</span>
                                             </td>
+                                            @if($dok->total_kredit != null)
+                                              @if($dok->total_debit_hitung < 0)
+                                              <td>(Rp. {{ number_format($dok->total_debit_hitung, 0, ',', '.') }})</td>
+                                              <td>Rp. 0</td>
+                                              @else
+                                              <td>Rp. {{ number_format($dok->total_debit_hitung, 0, ',', '.') }}</td>
+                                              <td>Rp. 0</td>
+                                              @endif
+                                            @else
                                             <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
                                             <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                         @foreach($DataNeracaHutang as $index => $dok)
@@ -71,6 +81,13 @@
                                             <td style="color: #000000;">
                                               <span>{{$dok->nm_akun}}</span>
                                             </td>
+                                            <!-- @if($dok->total_debit != null)
+                                            <td>Rp. 0</td>
+                                            <td>Rp. {{ number_format($dok->total_kredit_hitung, 0, ',', '.') }}</td>
+                                            @else
+                                            <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                            @endif -->
                                             <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
                                             <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
                                         </tr>
@@ -83,6 +100,13 @@
                                             <td style="color: #000000;">
                                               <span>{{$dok->nm_akun}}</span>
                                             </td>
+                                            <!-- @if($dok->total_debit != null)
+                                            <td>Rp. 0</td>
+                                            <td>Rp. {{ number_format($dok->total_kredit_hitung, 0, ',', '.') }}</td>
+                                            @else
+                                            <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                            @endif -->
                                             <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
                                             <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
                                         </tr>
@@ -94,18 +118,18 @@
                                             <td style="color: #000000;font-weight: bold;">
                                               <span>Total</span>
                                             </td>
-                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit_all, 0, ',', '.') }}</td>
-                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit_all, 0, ',', '.') }}</td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit, 0, ',', '.') }}</td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit, 0, ',', '.') }}</td>
                                         </tr>
                                         <tr>
-                                            @if($total_debit_all > $total_kredit_all)
+                                            @if($total_debit > $total_kredit)
                                             <td></td>
                                             <td style="color: #000000;font-weight: bold;">
                                               <span></span>
                                             </td>
                                             <td></td>
                                             <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
-                                            @elseif($total_kredit_all > $total_debit_all)
+                                            @elseif($total_kredit > $total_debit)
                                             <td></td>
                                             <td style="color: #000000;font-weight: bold;">
                                               <span></span>

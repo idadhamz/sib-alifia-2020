@@ -75,13 +75,20 @@
           </td>
           <td style="color: green;font-weight: bold;">Laba Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
           <td></td>
-          @else
+          @elseif($total_beban > $total_pendapatan)
           <td></td>
           <td style="color: #000000;font-weight: bold;">
             <span></span>
           </td>
           <td></td>
           <td style="color: red;font-weight: bold;">Rugi Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+          @else
+          <td></td>
+          <td style="color: #000000;font-weight: bold;">
+            <span></span>
+          </td>
+          <td></td>
+          <td></td>
           @endif
         </tr>
       </tfoot>

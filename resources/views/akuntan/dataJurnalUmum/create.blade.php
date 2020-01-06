@@ -144,30 +144,33 @@
                             </div>
                           </div>
                           <hr />
-                          <form id="form-tambah-akun" style="width: 80%;margin: 0 auto;">
+                          <form id="form-tambah-akun" style="width: 85%;margin: 0 auto;">
                             <div class="row">
-                              <div class="col-sm-12 col-md-2">
+                              <div class="col-sm-12 col-md-3">
                                 <div class="form-group">
                                   <label>Pilih Bulan</label>
                                   <select class="form-control" name="nama_bulan" id="nama_bulan" class="nama_bulan">
                                     <option value="0"></option>
-                                    <option value="1">Januari</option>
+                                    <!-- <option value="1">Januari</option>
                                     <option value="2">Februari</option>
                                     <option value="3">Maret</option>
                                     <option value="4">April</option>
                                     <option value="5">Mei</option>
-                                    <option value="6">Juni</option>
+                                    <option value="6">Juni</option> -->
                                     <option value="7">Juli</option>
                                     <option value="8">Agustus</option>
+                                    <option value="9">September</option>
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-12 col-md-9">
                                 <div class="form-group">
                                   <label>Transaksi</label>
                                   <select class="form-control" name="id_transaksi" id="id_transaksi" class="id_transaksi" style="font-size: 10px;"></select>
                                 </div>
                               </div>
+                            </div>
+                            <div class="row">
                               <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Nominal</label>
@@ -184,8 +187,6 @@
                                   </small>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
                               <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Akun</label>
@@ -204,6 +205,8 @@
                                   <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
                                 </div>
                               </div>
+                            </div>
+                            <div class="row">
                               <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Jenis</label>
@@ -214,9 +217,7 @@
                                   </select>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Nominal Debit</label>
                                   <div class="input-group">
@@ -229,7 +230,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Nominal Kredit</label>
                                   <div class="input-group">

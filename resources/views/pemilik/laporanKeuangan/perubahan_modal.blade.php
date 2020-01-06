@@ -83,6 +83,21 @@
                                             <td>Rp. {{ number_format($total_debit_prive, 0, ',', '.') }}</td>
                                             <td></td>
                                         </tr>
+                                        <tr>
+                                            <td style="color: #000000;text-align: center;">
+                                              <span></span>
+                                            </td>
+                                            <td style="color: #000000;">
+                                              <span>Laba dikurang Prive</span>
+                                            </td>
+                                            @if($laba_prive < 0)
+                                            <td>(Rp. {{ number_format($laba_prive, 0, ',', '.') }})</td>
+                                            <td></td>
+                                            @else
+                                            <td>Rp. {{ number_format($laba_prive, 0, ',', '.') }}</td>
+                                            <td></td>
+                                            @endif
+                                        </tr>
                                     </tbody>
                                     <tfoot style="background-color: #F5F5F5;">
                                         <tr>
