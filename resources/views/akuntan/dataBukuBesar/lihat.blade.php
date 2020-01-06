@@ -53,14 +53,14 @@
                           </div>
                           <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-md" style="text-align: center;" id="data-user">
+                                <table class="table table-striped table-bordered table-md" style="text-align: center;" id="data-user">
                                     <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Tanggal</th>
-                                            <th>Keterangan</th>
-                                            <th>Debet</th>
-                                            <th>Kredit</th>
+                                        <tr style="background-color: rgb(149,185,199);">
+                                            <th style="color: #fff;">No.</th>
+                                            <th style="width: 150px;color: #fff;">Tanggal</th>
+                                            <th style="width: 350px;text-align: left;color: #fff;">Keterangan</th>
+                                            <th style="color: #fff;">Debet</th>
+                                            <th style="color: #fff;">Kredit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,18 +73,18 @@
                                               <br><span>Kas</span>
                                               <br><span>Pendapatan</span>
                                             </td> -->
-                                            <td>{{$dps->deskripsi}}</td>
+                                            <td style="width: 350px;text-align: left;">{{$dps->deskripsi}}</td>
                                             <!-- <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
                                             <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td> -->
                                             @if($dps->debit == null)
-                                              <td>-</td>
+                                              <td style="text-align: right;">Rp.0</td>
                                             @else
-                                              <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
+                                              <td style="text-align: right;"><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
                                             @endif
                                             @if($dps->kredit == null)
-                                              <td>-</td>
+                                              <td style="text-align: right;">Rp.0</td>
                                             @else
-                                              <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
+                                              <td style="text-align: right;"><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
                                             @endif
                                         </tr>
                                         @endforeach
@@ -95,9 +95,9 @@
                                       <tr>
                                         <td></td>
                                         <td style="color: #000000;font-weight: bold;"></td>
-                                        <td style="color: #000000;font-weight: bold;">Total Saldo</td>
-                                        <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
-                                        <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
+                                        <td style="color: #000000;font-weight: bold;text-align: left;">Total Saldo</td>
+                                        <td style="color: #000000;font-weight: bold;text-align: right;">Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
+                                        <td style="color: #000000;font-weight: bold;text-align: right;">Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
                                       </tr>
                                       @endif
                                       @endforeach

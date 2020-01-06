@@ -71,13 +71,13 @@
                         <div class="tab-content" id="myTab3Content">
                           <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
                             <div class="table-responsive">
-                              <table class="table table-striped" id="data-pemasukan">
+                              <table class="table table-striped table-bordered table-md" id="data-pemasukan">
                                   <thead>
                                       <tr>
                                           <th>No.</th>
                                           <th>Diinput Oleh</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Transaksi</th>
+                                          <th style="width: 350px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
                                           <th>Aksi</th>
                                       </tr>
@@ -89,7 +89,7 @@
                                           <td><span style="color: #000000;">{{$dok->nama}} </span></td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                              <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                                           </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                                           <td>
@@ -104,13 +104,13 @@
                           </div>
                           <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
                             <div class="table-responsive">
-                              <table class="table table-striped" id="data-pengeluaran">
+                              <table class="table table-striped table-bordered table-md" id="data-pengeluaran">
                                   <thead>
                                       <tr>
                                           <th>No.</th>
                                           <th>Diinput Oleh</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Transaksi</th>
+                                          <th style="width: 350px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
                                           <th>Aksi</th>
                                       </tr>
@@ -122,7 +122,7 @@
                                           <td><span style="color: #000000;">{{$dok->nama}} </span></td>
                                           <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                              <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                                           </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                                           <td>

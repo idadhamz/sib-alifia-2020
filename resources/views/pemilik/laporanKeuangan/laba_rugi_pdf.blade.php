@@ -19,14 +19,17 @@
     </p>
     <table class='table table-bordered'>
       <thead>
-        <tr>
-          <th>Kode Akun</th>
-          <th>Akun</th>
-          <th>Debit</th>
-          <th>Kredit</th>
+        <tr style="background-color: rgb(149,185,199);">
+          <th style="color: #fff;text-align: center;">Kode Akun</th>
+          <th style="color: #fff;">Akun</th>
+          <th style="color: #fff;">Debit</th>
+          <th style="color: #fff;">Kredit</th>
         </tr>
       </thead>
       <tbody>
+        <tr style="background-color: #F5F5F5;text-align: center;">
+          <th scope="row" colspan="6">Bagian Pendapatan</th>
+        </tr>
         @foreach($DataLabaRugiPendapatan as $index => $dok)
         <tr>
           <td style="color: #000000;text-align: center;">
@@ -39,11 +42,8 @@
           <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
         </tr>
         @endforeach
-        <tr style="font-weight: bold;background-color: #F5F5F5;">
-          <td></td>
-          <td>Total Pendapatan</td>
-          <td>Rp. {{ number_format($total_pendapatan, 0, ',', '.') }}</td>
-          <td></td>
+        <tr style="background-color: #F5F5F5;text-align: center;">
+          <th scope="row" colspan="6">Bagian Beban</th>
         </tr>
         @foreach($DataLabaRugiBeban as $index => $dok)
         <tr>
@@ -57,21 +57,32 @@
           <td>Rp. {{ number_format($dok->total_kredit, 0, ',', '.') }}</td>
         </tr>
         @endforeach
-        <tr style="font-weight: bold;background-color: #F5F5F5;">
-          <td></td>
-          <td>Total Beban</td>
-          <td>Rp. {{ number_format($total_beban, 0, ',', '.') }}</td>
-          <td></td>
-        </tr>
       </tbody>
       <tfoot style="background-color: #F5F5F5;">
         <tr>
           <td></td>
           <td style="color: #000000;font-weight: bold;">
-            <span>Total Pendapatan Usaha</span>
+            <span>Total</span>
           </td>
-          <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+          <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_beban, 0, ',', '.') }}</td>
+          <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_pendapatan, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+          @if($total_pendapatan > $total_beban)
           <td></td>
+          <td style="color: #000000;font-weight: bold;">
+            <span></span>
+          </td>
+          <td style="color: green;font-weight: bold;">Laba Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+          <td></td>
+          @else
+          <td></td>
+          <td style="color: #000000;font-weight: bold;">
+            <span></span>
+          </td>
+          <td></td>
+          <td style="color: red;font-weight: bold;">Rugi Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+          @endif
         </tr>
       </tfoot>
     </table>

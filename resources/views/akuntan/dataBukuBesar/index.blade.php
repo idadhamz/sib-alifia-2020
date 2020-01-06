@@ -53,12 +53,13 @@
                       </div>
                       <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-md" id="data-user">
+                            <table class="table table-striped table-bordered table-md" id="data-user">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
                                         <th>Kode Akun</th>
-                                        <th>Akun</th>
+                                        <th style="width: 350px;">Akun</th>
+                                        <th>Golongan Akun</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -67,7 +68,8 @@
                                     <tr>
                                         <td>{{$index +1}}</td>
                                         <td style="color: #000000;">{{$dok->no_akun}}</td>
-                                        <td><span style="color: #000000;">{{$dok->nm_akun}}</span></td>
+                                        <td style="width: 350px;"><span style="color: #000000;">{{$dok->nm_akun}}</span></td>
+                                        <td><span style="color: #000000;">{{$dok->nm_golongan}}</span></td>
                                         <td>
                                             <a href="/dataBukuBesar/akun/{{$dok->no_akun}}" class="btn btn-success">Lihat</a>
                                             <!-- <button href="/dataJurnalUmum/delete/{{$dok->kode_jurnal}}" class="btn btn-danger" id="hapus-jurnal">Hapus</button> -->

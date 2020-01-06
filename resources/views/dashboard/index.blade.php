@@ -86,12 +86,12 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped" id="data-pemasukan">
+                        <table class="table table-striped table-bordered" id="data-pemasukan">
                           <thead>
                             <tr>
                               <th>No.</th>
                               <th>Tanggal</th>
-                              <th>Transaksi</th>
+                              <th style="width: 230px;">Transaksi</th>
                               <!-- <th>Nominal</th> -->
                               <th>Jenis</th>
                             </tr>
@@ -102,7 +102,7 @@
                               <td>{{$index +1}}</td>
                               <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
                               <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                  <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                  <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                               </td>
                               <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                             </tr>

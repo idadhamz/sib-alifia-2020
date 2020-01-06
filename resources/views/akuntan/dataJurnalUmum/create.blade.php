@@ -153,7 +153,7 @@
                                   <select class="form-control" name="id_transaksi" id="id_transaksi">
                                     <option value="0">--Pilih Transaksi--</option>
                                     @foreach($DataTransaksi as $dpo)
-                                    <option value="{{$dpo->id_transaksi}}">{{$dpo->deskripsi}} - Rp. {{ number_format($dpo->nominal_transaksi, 0, ',', '.') }}</option>
+                                    <option value="{{$dpo->id_transaksi}}">({{ Carbon\Carbon::parse($dpo->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}) {{$dpo->deskripsi}}</option>
                                     @endforeach
                                   </select>
                                 </div>
@@ -347,8 +347,9 @@
                                         <tr>
                                           <th>No.</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Transaksi</th>
+                                          <th style="width: 550px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
+                                          <!-- <th>Nominal</th> -->
                                           
                                         </tr>
                                       </thead>
@@ -356,9 +357,9 @@
                                         @foreach($transaksiPemasukan as $index => $dok)
                                         <tr>
                                           <td>{{$index +1}}</td>
-                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                              <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                                           </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                                           <!-- <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td> -->
@@ -375,21 +376,21 @@
                                         <tr>
                                           <th>No.</th>
                                           <th>Tanggal Transaksi</th>
-                                          <th>Transaksi</th>
+                                          <th style="width: 550px;">Transaksi</th>
                                           <th>Jenis Pembayaran</th>
+                                          <!-- <th>Nominal</th> -->
                                         </tr>
                                       </thead>
                                       <tbody>
                                         @foreach($transaksiPengeluaran as $index => $dok)
                                         <tr>
                                           <td>{{$index +1}}</td>
-                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d %B %Y') }}</td>
+                                          <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                           <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                              <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span>
+                                              <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
                                           </td>
                                           <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
                                           <!-- <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td> -->
-                                        </tr>
                                         @endforeach
                                       </tbody>
                                     </table>

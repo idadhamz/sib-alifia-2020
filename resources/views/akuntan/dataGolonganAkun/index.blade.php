@@ -58,7 +58,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                          <table class="table table-striped table-md" id="data-user">
+                          <table class="table table-striped table-bordered table-md" id="data-user">
                             <thead>
                                   <tr>
                                     <th>Kode Golongan</th>

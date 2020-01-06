@@ -77,10 +77,21 @@
                                 </div>
                               </div>
                               <div class="col-sm-12 col-md-1" style="padding-right: 0;">
-                                <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                                <button type="submit" class="btn btn-success btn-lihat" style="margin-top:38px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat</button>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                  <label>Tahun</label>
+                                  <select class="form-control" name="tahun" id="tahun">
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                  </select>
+                                </div>
                               </div>
                               <div class="col-sm-12 col-md-2" style="padding-left: 0;">
-                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Perubahan Modal</button>
+                                <button type="submit" class="btn btn-success btn-lihat-perubahan-modal" style="margin-top:38px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Perubahan Modal</button>
                               </div>
                             </div>
                             <!-- <div class="row">

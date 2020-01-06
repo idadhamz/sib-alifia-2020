@@ -27,12 +27,12 @@
                     <div class="form-group">
                       <label>Dari Tanggal</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="dari_tanggal"
-                        id="dari_tanggal" autocomplete="off">
+                        <input type="text" class="form-control" name="dari_tanggal_arus_kas"
+                        id="dari_tanggal_arus_kas" autocomplete="off">
                       </div>
-                      @if($errors->has('dari_tanggal'))
+                      @if($errors->has('dari_tanggal_arus_kas'))
                       <div class="text-danger" style="padding: 5px;">
-                        {{ $errors->first('dari_tanggal')}}
+                        {{ $errors->first('dari_tanggal_arus_kas')}}
                       </div>
                       @endif
                     </div>
@@ -41,18 +41,18 @@
                     <div class="form-group">
                       <label>Sampai Tanggal</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="sampai_tanggal"
-                        id="sampai_tanggal" autocomplete="off">
+                        <input type="text" class="form-control" name="sampai_tanggal_arus_kas"
+                        id="sampai_tanggal_arus_kas" autocomplete="off">
                       </div>
-                      @if($errors->has('sampai_tanggal'))
+                      @if($errors->has('sampai_tanggal_arus_kas'))
                       <div class="text-danger" style="padding: 5px;">
-                        {{ $errors->first('sampai_tanggal')}}
+                        {{ $errors->first('sampai_tanggal_arus_kas')}}
                       </div>
                       @endif
                     </div>
                   </div>
                   <div class="col-sm-4 col-md-4">
-                    <button type="submit" class="btn btn-success btn-cari" style="margin-top:29px"><i
+                    <button type="submit" class="btn btn-success btn-cari-arus-kas" style="margin-top:29px"><i
                       class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
                     </div>
                   </div>
@@ -128,13 +128,12 @@
                             </div>
                             <div class="col-12">
                               <div class="table-responsive">
-                                <table class="table table-striped table-md">
+                                <table class="table table-striped table-bordered table-md">
                                   <thead>
-                                    <tr>
-                                      <th style="text-align: center;">No. </th>
-                                      <th style="text-align: center;">Tanggal</th>
-                                      <th>Deskripsi</th>
-                                      <th>Nominal</th>
+                                    <tr style="background-color: rgb(149,185,199);">
+                                      <th style="text-align: center;color: #fff;">No. </th>
+                                      <th style="text-align: center;color: #fff;width: 200px;">Tanggal</th>
+                                      <th style="color: #fff;">Deskripsi</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -146,15 +145,8 @@
                                       <td style="text-align: center;">{{$index +1}}</td>
                                       <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                       <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-                                      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                     </tr>
                                     @endforeach
-                                    <tr style="font-weight: bold;">
-                                      <td></td>
-                                      <td></td>
-                                      <td>Total</td>
-                                      <td>Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</td>
-                                    </tr>
                                     <tr style="background-color: #F5F5F5;text-align: center;">
                                       <th scope="row" colspan="6" style="font-size:17px;">Arus Kas Keluar</th>
                                     </tr>
@@ -163,15 +155,8 @@
                                       <td style="text-align: center;">{{$index +1}}</td>
                                       <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
                                       <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-                                      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
                                     </tr>
                                     @endforeach
-                                    <tr style="font-weight: bold;">
-                                      <td></td>
-                                      <td></td>
-                                      <td>Total</td>
-                                      <td>Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
-                                    </tr>
                                   </tbody>
                                 </table>
                               </div>

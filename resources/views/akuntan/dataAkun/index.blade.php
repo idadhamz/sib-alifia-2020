@@ -62,7 +62,7 @@
                             <a href="{{url('/tambahDataAkun')}}"class="btn btn-primary" style="border-color: #95B9C7;color: #ffffff;">Tambah Data Akun</a>
                         </div> -->
                         <div class="table-responsive">
-                          <table class="table table-striped table-md" id="data-user">
+                          <table class="table table-striped table-bordered table-md" id="data-user">
                             <thead>
                                   <tr>
                                     <th>Kode Akun</th>

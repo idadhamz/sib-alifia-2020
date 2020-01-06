@@ -68,13 +68,13 @@
                           </div>
                           <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-md">
+                                <table class="table table-striped table-bordered table-md">
                                     <thead>
-                                        <tr>
-                                            <th style="text-align: center;">Kode Akun</th>
-                                            <th>Akun</th>
-                                            <th>Debet</th>
-                                            <th>Kredit</th>
+                                        <tr style="background-color: rgb(149,185,199);">
+                                            <th style="text-align: center;color: #fff;">Kode Akun</th>
+                                            <th style="color: #fff;">Akun</th>
+                                            <th style="color: #fff;">Debet</th>
+                                            <th style="color: #fff;">Kredit</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -95,7 +95,7 @@
                       </div>
                       <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="data-user">
+                            <table class="table table-striped table-bordered" id="data-user">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -110,7 +110,7 @@
                                     @foreach($DataJurnalUmum as $index => $dok)
                                     <tr>
                                         <td>{{$index +1}}</td>
-                                        <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tanggal_pembuatan)->formatLocalized('%d %B %Y') }}</td>
+                                        <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tanggal_pembuatan)->formatLocalized('%d/%m/%Y') }}</td>
                                         <td><span style="color: #000000;">{{$dok->no_jurnal_umum}}</span></td>
                                         <td><span style="color: #000000;">{{$dok->nm_jurnal_umum}}</span></td>
                                         <td><span style="color: #000000;">Rp. {{ number_format($dok->nilai, 0, ',', '.') }}</span></td>

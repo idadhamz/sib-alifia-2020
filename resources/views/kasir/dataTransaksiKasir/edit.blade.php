@@ -29,7 +29,7 @@
                                         <form action="/dataTransaksiKasir/update/{{$dob->id_transaksi}}" method="post" role="form" autocomplete="off">
                                             {{csrf_field()}}
                                             <div class="row">
-                                              <div class="col-sm-12 col-md-5">
+                                              <div class="col-sm-12 col-md-6">
                                                 <div class="form-group">
                                                   <label>Jenis Transaksi</label>
                                                   <select class="form-control" name="nm_transaksi">
@@ -38,7 +38,7 @@
                                                   </select>
                                                 </div>
                                               </div>
-                                              <div class="col-sm-12 col-md-7">
+                                              <!-- <div class="col-sm-12 col-md-7">
                                                 <div class="form-group">
                                                   <label>Nominal</label>
                                                   <div class="input-group">
@@ -55,7 +55,7 @@
                                                     @endif
                                                   </div>
                                                 </div>
-                                              </div>
+                                              </div> -->
                                             </div>
                                             <!-- <div class="form-group">
                                               <label>Nominal</label>
@@ -86,7 +86,7 @@
                                               </div>
                                             </div>
                                             <div class="row">
-                                              <div class="col-sm-12 col-md-5">
+                                              <div class="col-sm-12 col-md-6">
                                                 <div class="form-group">
                                                   <label>Jenis Pembayaran</label>
                                                   <select class="form-control" name="jenis">

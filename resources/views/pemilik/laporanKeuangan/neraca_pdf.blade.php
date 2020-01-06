@@ -19,11 +19,11 @@
 </p>
 <table class='table table-bordered'>
   <thead>
-    <tr>
-      <th style="text-align: center;">Kode Akun</th>
-      <th>Akun</th>
-      <th>Debit</th>
-      <th>Kredit</th>
+    <tr style="background-color: rgb(149,185,199);">
+      <th style="color: #fff;text-align: center;">Kode Akun</th>
+      <th style="color: #fff;">Akun</th>
+      <th style="color: #fff;">Debit</th>
+      <th style="color: #fff;">Kredit</th>
     </tr>
   </thead>
   <tbody>
@@ -72,6 +72,23 @@
       </td>
       <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit_all, 0, ',', '.') }}</td>
       <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit_all, 0, ',', '.') }}</td>
+    </tr>
+    <tr>
+      @if($total_debit_all > $total_kredit_all)
+      <td></td>
+      <td style="color: #000000;font-weight: bold;">
+        <span></span>
+      </td>
+      <td></td>
+      <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+      @else
+      <td></td>
+      <td style="color: #000000;font-weight: bold;">
+        <span></span>
+      </td>
+      <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+      <td></td>
+      @endif
     </tr>
   </tfoot>
 </table>

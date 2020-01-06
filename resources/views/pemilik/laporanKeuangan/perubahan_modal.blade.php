@@ -35,18 +35,19 @@
                             <!-- <img src="" /> -->
                             <p style="text-align: center;line-height: 35px;font-size: 22px;">Al-Banna Laundry <br><span style="font-size: 17px;font-weight: normal;"> Jalan Semanggi 2, Ciputat Timur - Kota Tangerang Selatan</span></p>
                             <hr/>
-                            <p style="text-align: center;line-height: 25px;font-size: 16px;font-weight: bold;">Perubahan Modal<br> 
+                            <p style="text-align: center;line-height: 25px;font-size: 16px;font-weight: bold;">Laporan Perubahan Modal<br>
+                            Periode Tahun {{$tahun}} 
                             </p>
                           </div>
                           <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-md">
+                                <table class="table table-striped table-bordered table-md">
                                     <thead>
-                                        <tr>
-                                            <th style="text-align: center;"></th>
-                                            <th>Keterangan</th>
-                                            <th>Saldo</th>
-                                            <th>Saldo Modal</th>
+                                        <tr style="background-color: rgb(149,185,199);">
+                                            <th style="color: #fff;text-align: center;"></th>
+                                            <th style="color: #fff;">Keterangan</th>
+                                            <th style="color: #fff;">Saldo</th>
+                                            <th style="color: #fff;">Saldo Modal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,7 +57,7 @@
                                               <span></span>
                                             </td>
                                             <td style="color: #000000;">
-                                              <span>Modal Awal, 1 Januari 2020</span>
+                                              <span>Modal Awal, 1 Januari {{$tahun}}</span>
                                             </td>
                                             <td></td>
                                             <td>Rp. {{ number_format($dok->total_debit, 0, ',', '.') }}</td>
@@ -87,7 +88,7 @@
                                         <tr>
                                             <td></td>
                                             <td style="color: #000000;font-weight: bold;">
-                                              <span>Modal Akhir, 31 Desember 2020</span>
+                                              <span>Modal Akhir, 31 Desember {{$tahun}}</span>
                                             </td>
                                             <td style="color: #000000;font-weight: bold;"></td>
                                             <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($modal_akhir, 0, ',', '.') }}</td>

@@ -60,8 +60,8 @@
                   <div class="col-sm-12 col-md-2">
                     <button type="submit" class="btn btn-success btn-cari-neraca-saldo" style="margin-top:29px;width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Cari Data</button>
                   </div>
-                  <div class="col-sm-12 col-md-4" style="padding: 10px 15px;">
-                    <button type="submit" class="btn btn-success btn-all-neraca-saldo" style="width: 100%;">Lihat Seluruh Data</button>
+                  <div class="col-sm-12 col-md-10" style="padding: 10px 15px;">
+                    <button type="submit" class="btn btn-success btn-all-neraca-saldo" style="width: 100%;"><i class="fa fa-search" style="margin-right: 5px;"></i>Lihat Seluruh Data</button>
                   </div>
                 </div>
               </div>

@@ -18,10 +18,10 @@
 </p>
 <table class='table table-bordered'>
   <thead>
-    <tr>
-      <th style="text-align: center;">Tanggal</th>
-      <th>Deskripsi</th>
-      <th>Nominal</th>
+    <tr style="background-color: rgb(149,185,199);">
+      <th style="text-align: center;color: #fff;">No. </th>
+      <th style="text-align: center;color: #fff;width: 200px;">Tanggal</th>
+      <th style="color: #fff;">Deskripsi</th>
     </tr>
   </thead>
   <tbody>
@@ -30,31 +30,21 @@
     </tr>
     @foreach($transaksiArusPemasukan as $index => $dok)
     <tr>
+      <td style="text-align: center;">{{$index +1}}</td>
       <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
       <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
     </tr>
     @endforeach
-    <tr style="font-weight: bold;">
-      <td></td>
-      <td>Total</td>
-      <td>Rp. {{ number_format($totalPemasukan, 0, ',', '.') }}</td>
-    </tr>
     <tr style="background-color: #F5F5F5;text-align: center;">
       <th scope="row" colspan="6" style="font-size:17px;">Arus Kas Keluar</th>
     </tr>
     @foreach($transaksiArusPengeluaran as $index => $dok)
     <tr>
+      <td style="text-align: center;">{{$index +1}}</td>
       <td style="text-align: center;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
       <td><span style="color: #000000;">{{$dok->deskripsi}} </span></td>
-      <td><span style="color: #000000;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span></td>
     </tr>
     @endforeach
-    <tr style="font-weight: bold;">
-      <td></td>
-      <td>Total</td>
-      <td>Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
-    </tr>
   </tbody>
 </table>
 

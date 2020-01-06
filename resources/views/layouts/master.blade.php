@@ -171,7 +171,19 @@
                 locale: {format: 'YYYY-MM-DD'},
                 singleDatePicker: true,
               });
+
+              $('#dari_tanggal_arus_kas').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
+
+              $('#sampai_tanggal_arus_kas').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+              });
             });
+
+            const namaBulanChart = ["Januari"];
 
             // Get current date in Transaksi
             const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
@@ -238,7 +250,7 @@
               // });
 
               // window.location.assign('/dataJurnalUmum/filter');
-              var url = '{{ route("filter", [":dari", ":sampai"] ) }}';
+              var url = '{{ route("filter_jurnal_umum", [":dari", ":sampai"] ) }}';
               url = url.replace(':dari', dari);
               url = url.replace(':sampai', sampai);
 
@@ -856,7 +868,53 @@
 
               e.preventDefault();
 
-              var url = '{{ route("perubahan_modal") }}';
+              var tahun = $("#tahun").val();
+
+              var url = '{{ route("perubahan_modal", [":tahun"] ) }}';
+              url = url.replace(':tahun', tahun);
+
+              window.location.assign(url);
+
+            });
+
+            $('.btn-cari-arus-kas').on('click',function(e)
+            {
+
+              e.preventDefault();
+              var dari = $("#dari_tanggal_arus_kas").val();
+              var sampai = $("#sampai_tanggal_arus_kas").val();
+
+              console.log(dari);
+              console.log(sampai);
+
+              // $.ajax({  
+              //   url:'/dataJurnalUmum/cari/' + dari + '/' + sampai,  
+              //   type:"POST",
+              //   datatype: 'json',
+              //   success:function(data){
+              //     console.log(data);
+              //     sendData: data;
+              //   },
+              //   error: function(error) {  
+              //     alert('fail');
+              //     console.log(error);
+              //   }
+              // });
+
+              // $.ajax({
+              //  url:'/dataJurnalUmum/filter',
+              //  method:"POST",
+              //  data:{dari:dari, sampai:sampai},
+              //  dataType:"json",
+              //  success: function(data){
+              //   console.log(data);
+              //  }
+              // });
+
+              // window.location.assign('/dataJurnalUmum/filter');
+              var url = '{{ route("filter_arus_kas", [":dari", ":sampai"] ) }}';
+              url = url.replace(':dari', dari);
+              url = url.replace(':sampai', sampai);
 
               window.location.assign(url);
 
@@ -867,7 +925,7 @@
               var myChart = new Chart(labaRugi, {
                 type: 'bar',
                 data: {
-                  labels: namaBulan,
+                  labels: namaBulanChart,
                   datasets: [{
                     label: 'Statistics',
                     data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -910,7 +968,7 @@
               var myChart = new Chart(neraca, {
                 type: 'bar',
                 data: {
-                  labels: namaBulan,
+                  labels: namaBulanChart,
                   datasets: [{
                     label: 'Statistics',
                     data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -953,7 +1011,7 @@
               var myChart = new Chart(perubahanModal, {
                 type: 'bar',
                 data: {
-                  labels: namaBulan,
+                  labels: namaBulanChart,
                   datasets: [{
                     label: 'Statistics',
                     data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -998,7 +1056,7 @@
               var myChart = new Chart(grafikLaporanKeuangan, {
                 type: 'bar',
                 data: {
-                  labels: namaBulan,
+                  labels: namaBulanChart,
                   datasets: [{
                     label: 'Statistics',
                     data: [350, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

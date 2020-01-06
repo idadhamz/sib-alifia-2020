@@ -54,12 +54,12 @@ class KasirController extends Controller
     {
 
         $rules = [
-            'nominal_transaksi' => 'required',
+            // 'nominal_transaksi' => 'required',
             'deskripsi' => 'required',
         ];
 
         $customMessages = [
-            'nominal_transaksi.required' => 'No Akun wajib diisi!',
+            // 'nominal_transaksi.required' => 'No Akun wajib diisi!',
             'deskripsi.required' => 'Nama Akun wajib diisi!',
         ];
 
@@ -68,7 +68,7 @@ class KasirController extends Controller
         $DataTransaksi = new transaksi;
         $DataTransaksi->tgl_transaksi = request('tgl_transaksi');
         $DataTransaksi->nm_transaksi = request('nm_transaksi');
-        $DataTransaksi->nominal_transaksi = request('nominal_transaksi');
+        $DataTransaksi->nominal_transaksi = null;
         $DataTransaksi->deskripsi = request('deskripsi');
         $DataTransaksi->jenis = request('jenis');
         $DataTransaksi->id_user = Auth::user()->id;

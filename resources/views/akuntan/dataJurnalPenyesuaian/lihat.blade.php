@@ -39,38 +39,41 @@
                           </div>
                           <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-md" style="text-align: center;">
+                                <table class="table table-striped table-bordered table-md" style="text-align: center;">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: rgb(149,185,199);">
                                             <!-- <th>No.</th> -->
-                                            <th>Tanggal</th>
-                                            <th>No. Akun</th>
-                                            <th>Keterangan</th>
-                                            <th>Debet</th>
-                                            <th>Kredit</th>
+                                            <th style="width: 250px;color: #fff;">Tgl</th>
+                                            <th style="text-align: left;color: #fff;">Keterangan</th>
+                                            <th style="color: #fff;">Debit</th>
+                                            <th style="color: #fff;">Kredit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($DataAkunJurnalPenyesuaian as $index => $dps)
                                         <tr>
-                                            <!-- <td>{{$index +1}}</td> -->
-                                            <td>{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
+                                            <td style="width: 250px;">{{ Carbon\Carbon::parse($dps->tgl_transaksi)->formatLocalized('%d/%m') }}</td>
                                             <!-- <td>
                                               <span style="font-weight: bold;">Aktiva</span> 
                                               <br><span>Kas</span>
                                               <br><span>Pendapatan</span>
                                             </td> -->
-                                            <td>{{$dps->no_akun}}</td>
-                                            <td>{{$dps->deskripsi}}</td>
+                                            @if($dps->kredit == null)
+                                              <td style="text-align: left;">{{$dps->nm_akun}}</td>
+                                            @else
+                                              <td style="text-align: left;padding-left: 50px;">{{$dps->nm_akun}}</td>
+                                            @endif
+                                            <!-- <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
+                                            <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td> -->
                                             @if($dps->debit == null)
                                               <td>-</td>
                                             @else
-                                              <td><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
+                                              <td style="text-align: right;"><span>Rp. {{ number_format($dps->debit, 0, ',', '.') }}</td>
                                             @endif
                                             @if($dps->kredit == null)
                                               <td>-</td>
                                             @else
-                                              <td><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
+                                              <td style="text-align: right;"><span>Rp. {{ number_format($dps->kredit, 0, ',', '.') }}</td>
                                             @endif
                                         </tr>
                                         @endforeach
