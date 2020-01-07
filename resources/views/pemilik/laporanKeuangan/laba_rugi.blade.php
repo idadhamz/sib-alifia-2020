@@ -111,7 +111,7 @@
                                               <span></span>
                                             </td>
                                             <td></td>
-                                            <td style="color: red;font-weight: bold;">Rugi Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
+                                            <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
                                             @else
                                             <td></td>
                                             <td style="color: #000000;font-weight: bold;">

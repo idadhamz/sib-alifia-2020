@@ -79,6 +79,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($dataNeracaSaldoHasilHarta as $index => $dok)
+                                        @if($dok->kredit != null)
+                                        <tr>
+                                            <td style="color: #000000;text-align: center;">
+                                              <span>{{$dok->no_akun}}</span>
+                                            </td>
+                                            <td style="color: #000000;">
+                                              <span>{{$dok->nm_akun}}</span>
+                                            </td>
+                                            <td>Rp. {{ number_format($dok->total_debit_hitung, 0, ',', '.') }}</td>
+                                            <td>Rp. 0</td>
+                                        </tr>
+                                        @else
+                                        <tr>
+                                            <td style="color: #000000;text-align: center;">
+                                              <span>{{$dok->no_akun}}</span>
+                                            </td>
+                                            <td style="color: #000000;">
+                                              <span>{{$dok->nm_akun}}</span>
+                                            </td>
+                                            <td>Rp. {{ number_format($dok->debit, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($dok->kredit, 0, ',', '.') }}</td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
                                         @foreach($dataNeracaSaldoHasil as $index => $dok)
                                         <tr>
                                             <td style="color: #000000;text-align: center;">

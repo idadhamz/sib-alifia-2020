@@ -127,14 +127,12 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-4">
+                              <div class="col-sm-12 col-md-4" style="display: none;">
                                 <div class="form-group">
                                   <label>Nama Akun</label>
                                   <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
                               <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                   <label>Jenis</label>
@@ -145,7 +143,9 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-4">
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                   <label>Nominal Debit</label>
                                   <div class="input-group">
@@ -158,7 +158,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-4">
+                              <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                   <label>Nominal Kredit</label>
                                   <div class="input-group">

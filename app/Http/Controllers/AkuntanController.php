@@ -677,10 +677,19 @@ class AkuntanController extends Controller
         // $total_debit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_debit_all');
         // $total_kredit = total_keseluruhan::whereBetween('waktu', [$tanggal_dari, $tanggal_sampai])->sum('total_kredit_all');
 
-        $total_debit = buku_besar::leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+        $DataNeracaHartaSisa = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->where('akun.kode_golongan', 'GA1')
+            ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
+            ->sum('kredit');
+
+        $total_debit_belum = buku_besar::leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
         ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])->sum('debit');
-        $total_kredit = buku_besar::leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+        $total_kredit_belum = buku_besar::leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
         ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])->sum('kredit');
+
+        $total_debit = $total_debit_belum - $DataNeracaHartaSisa;
+        $total_kredit = $total_kredit_belum - $DataNeracaHartaSisa;
 
         // dd(Carbon::parse($dari)->format('Y-m'));
 
@@ -700,13 +709,27 @@ class AkuntanController extends Controller
 
         // dd($dataNeracaSaldoSum);
 
+        $kode_golongan = ['GA2', 'GA3', 'GA4','GA5'];
+
         $dataNeracaSaldoHasil = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
-            ->select(DB::raw('SUM(buku_besar.debit) as debit'), DB::raw('SUM(buku_besar.kredit) as kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+            ->select(DB::raw('SUM(buku_besar.debit) as debit'), DB::raw('SUM(buku_besar.kredit) as kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.kredit) != null THEN SUM(buku_besar.debit) ELSE SUM(buku_besar.debit) - SUM(buku_besar.kredit) END) AS total_debit_hitung'))
             ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
+            ->whereIn('akun.kode_golongan', $kode_golongan)
             ->groupBy('akun.no_akun')
             ->get();
+
+        $dataNeracaSaldoHasilHarta = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+            ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+            // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+            ->select(DB::raw('SUM(buku_besar.debit) as debit'), DB::raw('SUM(buku_besar.kredit) as kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi', DB::raw('(CASE WHEN SUM(buku_besar.kredit) != null THEN SUM(buku_besar.debit) ELSE SUM(buku_besar.debit) - SUM(buku_besar.kredit) END) AS total_debit_hitung'))
+            ->whereBetween('transaksi.tgl_transaksi', [$dari, $sampai])
+            ->where('akun.kode_golongan', 'GA1')
+            ->groupBy('akun.no_akun')
+            ->get();
+
+        // dd($dataNeracaSaldoHasil->total_debit_hitung);
 
         $dari = $dari;
         $sampai = $sampai;
@@ -716,7 +739,7 @@ class AkuntanController extends Controller
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('akuntan.dataNeracaSaldo.hasil', compact('dataNeracaSaldoHasil', 'total_debit', 'total_kredit', 'dari', 'sampai'));
+        return view('akuntan.dataNeracaSaldo.hasil', compact('dataNeracaSaldoHasil', 'dataNeracaSaldoHasilHarta', 'total_debit', 'total_kredit', 'dari', 'sampai'));
  
     }
 
