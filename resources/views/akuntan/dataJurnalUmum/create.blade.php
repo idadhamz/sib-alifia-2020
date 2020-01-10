@@ -150,7 +150,7 @@
                                 <div class="form-group">
                                   <label>Pilih Bulan</label>
                                   <select class="form-control" name="nama_bulan" id="nama_bulan" class="nama_bulan">
-                                    <option value="0"></option>
+                                    <option value="0">--Pilih Bulan--</option>
                                     <!-- <option value="1">Januari</option>
                                     <option value="2">Februari</option>
                                     <option value="3">Maret</option>
@@ -187,16 +187,11 @@
                                   </small>
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-4">
+                              <div class="col-sm-12 col-md-5">
                                 <div class="form-group">
                                   <label>Akun</label>
                                   <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
-                                  <select class="form-control" name="no_akun" id="no_akun">
-                                    <option value="0">--Pilih Akun--</option>
-                                    @foreach($DataAkun as $dpo)
-                                    <option value="{{$dpo->no_akun}}">No. {{$dpo->no_akun}} ({{$dpo->nm_akun}})</option>
-                                    @endforeach
-                                  </select>
+                                  <select class="form-control" name="no_akun" id="no_akun"></select>
                                 </div>
                               </div>
                               <div class="col-sm-12 col-md-4" style="display: none;">
@@ -205,7 +200,7 @@
                                   <input type="text" class="form-control" name="nm_akun" id="nm_akun" autocomplete="off" readonly="readonly">
                                 </div>
                               </div>
-                              <div class="col-sm-12 col-md-4">
+                              <div class="col-sm-12 col-md-3">
                                 <div class="form-group">
                                   <label>Jenis</label>
                                   <select class="form-control" name="pilihan_akun" id="pilihan_akun">

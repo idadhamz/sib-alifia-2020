@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                   <label>Pilih Bulan</label>
                                   <select class="form-control" name="nama_bulan" id="nama_bulan" class="nama_bulan">
-                                    <option value="0"></option>
+                                    <option value="0">--Pilih Bulan--</option>
                                     <!-- <option value="1">Januari</option>
                                     <option value="2">Februari</option>
                                     <option value="3">Maret</option>
@@ -120,10 +120,10 @@
                                   <label>Akun</label>
                                   <!-- <input type="text" class="form-control" name="nm_akun" autocomplete="off"> -->
                                   <select class="form-control" name="no_akun" id="no_akun">
-                                    <option value="0">--Pilih Akun--</option>
+                                    <!-- <option value="0">--Pilih Akun--</option>
                                     @foreach($DataAkun as $dpo)
                                     <option value="{{$dpo->no_akun}}">No. {{$dpo->no_akun}} ({{$dpo->nm_akun}})</option>
-                                    @endforeach
+                                    @endforeach -->
                                   </select>
                                 </div>
                               </div>

@@ -253,6 +253,16 @@ class AkuntanController extends Controller
         }
     }
 
+    public function getAkun(Request $request)
+    {
+        // return transaksi::whereMonth('tgl_transaksi', $bulan)->get();
+        if ($request->ajax()) {
+            return response()->json([
+                'akun' => akun::orderBy("no_akun", "asc")->get()
+            ]);
+        }
+    }
+
     public function index_jurnal_umum()
     {
 

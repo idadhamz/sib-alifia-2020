@@ -136,6 +136,16 @@
           $('#data-pemasukan').dataTable();
           $('#data-pengeluaran').dataTable();
 
+          $.ajax({
+            url: `/dataAkun`,
+            success: data => {
+              console.log(data);
+              data.akun.forEach(datas =>
+                $('#no_akun').select2({ dropdownCssClass: "ubahFont" }).append(`<option value="${datas.no_akun}">(${datas.no_akun}) ${datas.nm_akun}</option>`)
+                )
+            }
+          })
+
             $(document).ready(function () {
               $('#dari_tanggal').daterangepicker({
                 locale: {format: 'YYYY-MM-DD'},
