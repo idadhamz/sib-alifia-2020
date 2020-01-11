@@ -137,7 +137,7 @@
           $('#data-pengeluaran').dataTable();
 
           $.ajax({
-            url: `/dataAkun`,
+            url: `/dataAkunPilihan`,
             success: data => {
               console.log(data);
               data.akun.forEach(datas =>

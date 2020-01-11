@@ -1096,11 +1096,19 @@ class AkuntanController extends Controller
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
-        $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        // $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        //     ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+        //     // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+        //     ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+        //     ->where('akun.kode_golongan', 'GA5')
+        //     ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
+        //     ->get();
+
+        $DataAkunPrive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
             ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
-            ->where('akun.kode_golongan', 'GA5')
+            ->where('akun.no_akun', '312')
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
@@ -1112,7 +1120,7 @@ class AkuntanController extends Controller
 
         $total_debit_prive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
-            ->where('akun.kode_golongan', 'GA5')
+            ->where('akun.no_akun', '312')
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->sum('debit');
 
@@ -1128,11 +1136,11 @@ class AkuntanController extends Controller
 
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban', 'tahun', 'laba_prive'));
+        return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunPrive', 'tahun', 'laba_prive'));
  
     }
 
-    public function cetak_perubahan_modal()
+    public function cetak_perubahan_modal($tahun)
     {
 
         $tahun = $tahun;
@@ -1153,11 +1161,19 @@ class AkuntanController extends Controller
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
-        $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        // $DataAkunBeban = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
+        //     ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
+        //     // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
+        //     ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
+        //     ->where('akun.kode_golongan', 'GA5')
+        //     ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
+        //     ->get();
+
+        $DataAkunPrive = buku_besar::leftJoin('akun', 'buku_besar.no_akun', '=', 'akun.no_akun')
             ->leftJoin('transaksi', 'buku_besar.id_transaksi', '=', 'transaksi.id_transaksi')
             // ->select(SUM('buku_besar.debit'), 'buku_besar.kredit', 'buku_besar.tgl_posting', 'akun.*')
             ->select(DB::raw('SUM(buku_besar.debit) as total_debit'), DB::raw('SUM(buku_besar.kredit) as total_kredit'), 'buku_besar.tgl_posting', 'akun.*', 'transaksi.tgl_transaksi')
-            ->where('akun.kode_golongan', 'GA5')
+            ->where('akun.no_akun', '312')
             ->whereYear('transaksi.tgl_transaksi', '=', $tahun)
             ->get();
 
@@ -1183,7 +1199,7 @@ class AkuntanController extends Controller
 
         $modal_akhir = $total_modal_awal + ($total_kredit_laba - $total_debit_prive);
 
-        $pdf = PDF::loadview('pemilik.laporanKeuangan.perubahan_modal_pdf', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban', 'tahun', 'laba_prive'));
+        $pdf = PDF::loadview('pemilik.laporanKeuangan.perubahan_modal_pdf', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunPrive', 'tahun', 'laba_prive'));
         return $pdf->download('perubahan-modal-laundry-albanna');
 
         // return view('pemilik.laporanKeuangan.perubahan_modal', compact('DataAkunKas', 'total_debit_prive', 'total_kredit_laba', 'modal_akhir', 'DataAkunPendapatan', 'DataAkunBeban'));

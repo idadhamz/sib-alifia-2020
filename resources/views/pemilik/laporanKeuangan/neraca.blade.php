@@ -124,18 +124,42 @@
                                         <tr>
                                             @if($total_debit > $total_kredit)
                                             <td></td>
-                                            <td style="color: #000000;font-weight: bold;">
-                                              <span></span>
+                                            <td style="color: red;font-weight: bold;">
+                                              <i class="fa fa-info-circle mr-2"></i><span>Informasi Selisih Total</span>
                                             </td>
                                             <td></td>
                                             <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
                                             @elseif($total_kredit > $total_debit)
                                             <td></td>
-                                            <td style="color: #000000;font-weight: bold;">
-                                              <span></span>
+                                            <td style="color: red;font-weight: bold;">
+                                              <i class="fa fa-info-circle mr-2"></i><span>Informasi Selisih Total</span>
                                             </td>
                                             <td style="color: red;font-weight: bold;">Rp. {{ number_format($total_akhir, 0, ',', '.') }}</td>
                                             <td></td>
+                                            @else
+                                            <td></td>
+                                            <td style="color: #000000;font-weight: bold;">
+                                              <span></span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            @if($total_debit > $total_kredit)
+                                            <td></td>
+                                            <td style="color: #000000;font-weight: bold;">
+                                              <span></span>
+                                            </td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit, 0, ',', '.') }}</td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_debit, 0, ',', '.') }}</td>
+                                            @elseif($total_kredit > $total_debit)
+                                            <td></td>
+                                            <td style="color: #000000;font-weight: bold;">
+                                              <span></span>
+                                            </td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit, 0, ',', '.') }}</td>
+                                            <td style="color: #000000;font-weight: bold;">Rp. {{ number_format($total_kredit, 0, ',', '.') }}</td>
                                             @else
                                             <td></td>
                                             <td style="color: #000000;font-weight: bold;">

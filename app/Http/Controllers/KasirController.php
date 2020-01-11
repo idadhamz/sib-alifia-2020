@@ -89,12 +89,10 @@ class KasirController extends Controller
     {
 
         $rules = [
-            'nominal_transaksi' => 'required',
             'deskripsi' => 'required',
         ];
 
         $customMessages = [
-            'nominal_transaksi.required' => 'No Akun wajib diisi!',
             'deskripsi.required' => 'Nama Akun wajib diisi!',
         ];
 

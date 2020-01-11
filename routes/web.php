@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4']], function(){
 	Route::get('/dataNeraca/{dari}/{sampai}','AkuntanController@data_neraca')->name('neraca');
 
 	Route::get('/dataLabaRugi/{dari}/{sampai}/cetak_pdf','AkuntanController@cetak_laba_rugi')->name('cetak_laba_rugi');
-	Route::get('/dataPerubahanModal/cetak_pdf','AkuntanController@cetak_perubahan_modal')->name('cetak_perubahan_modal');
+	Route::get('/dataPerubahanModal/{tahun}/cetak_pdf','AkuntanController@cetak_perubahan_modal')->name('cetak_perubahan_modal');
 	Route::get('/dataNeraca/{dari}/{sampai}/cetak_pdf','AkuntanController@cetak_neraca')->name('cetak_neraca');
 
 	// Route::get('/dataUser','AdminController@index_user');
@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
 	Route::get('/dataTransaksi','AkuntanController@index_transaksi');
 
 	Route::get('/dataTransaksi/{bulan}','AkuntanController@getTransaksi');
-	Route::get('/dataAkun','AkuntanController@getAkun');
+	Route::get('/dataAkunPilihan','AkuntanController@getAkun');
 
 	Route::get('/dataJurnalUmum','AkuntanController@index_jurnal_umum');
 	Route::get('/dataJurnalUmum/filter/{dari}/{sampai}','AkuntanController@filter_jurnal_umum')->name('filter_jurnal_umum');

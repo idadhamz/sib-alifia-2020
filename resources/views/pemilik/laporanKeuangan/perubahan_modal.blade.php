@@ -24,7 +24,7 @@
                               <a href="/laporanKeuangan" class="btn btn-warning"><i class="fa fa-arrow-left" style="margin-right: 5px;"></i>Kembali</a>
                             </td>
                             <td>
-                              <a href="/dataPerubahanModal/cetak_pdf" class="btn btn-info" style="float: right;"><i class="fa fa-print" style="margin-right: 5px;"></i>Cetak Perubahan Modal</a>
+                              <a href="/dataPerubahanModal/{{$tahun}}/cetak_pdf" class="btn btn-info" style="float: right;"><i class="fa fa-print" style="margin-right: 5px;"></i>Cetak Perubahan Modal</a>
                             </td>
                           </div>
                         </div>
@@ -80,7 +80,7 @@
                                             <td style="color: #000000;">
                                               <span>Prive</span>
                                             </td>
-                                            <td>Rp. {{ number_format($total_debit_prive, 0, ',', '.') }}</td>
+                                            <td>(Rp. {{ number_format($total_debit_prive, 0, ',', '.') }})</td>
                                             <td></td>
                                         </tr>
                                         <tr>
