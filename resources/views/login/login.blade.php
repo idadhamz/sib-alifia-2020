@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="fullscreen-bg">
 
 <!-- Mirrored from moltran.coderthemes.com/menu_2/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:29:06 GMT -->
 
@@ -11,17 +11,16 @@
 
     <!-- <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}"> -->
 
-    <title>Login Laundry Al - Banna</title>
+    <title>Login | Aplikasi Perpanjangan Surat Izin Belajar</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/own.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,72 +33,63 @@
 </head>
 
 <body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5 mb-5">
-                <div class="row">
-                    <h4 class="judul-login">SISTEM INFORMASI AKUNTANSI <br><span style="text-decoration: underline;">LAUNDRY AL - BANNA </span></h4>
-                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="card card-primary mt-5">
-                            <div align="center" class="card-header" style="border-bottom:none;">
-                                <img src="{{ asset('assets/img/Logo-albanna.png') }}" width="125" height="150" alt="Logo" style="display:block; margin: 0 auto; padding-top: 20px;">
+    <div id="wrapper">
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle">
+                <div class="auth-box ">
+                    <div class="left">
+                        <div class="content">
+                            <div class="header">
+                                <div class="logo text-center"><img src="{{asset('assets/img/bpk-logo.jpg')}}" alt="BPK RI Logo"></div>
                             </div>
-
-
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input id="username" type="text" value="{{ old('username') }}" class="form-control" name="username" tabindex="1" required autofocus autocomplete="off">
-                                        <div class="invalid-feedback">
-                                            Username tidak boleh kosong
-                                        </div>
-                                        @error('username')
-                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
+                            <form class="form-auth-small" action="{{ route('login') }}" method="POST">
+                                {{csrf_field()}}
+                                <div class="form-group">
+                                    <label for="signin-email" class="control-label sr-only">Email</label>
+                                    <input name="email" type="email" class="form-control" id="signin-email" placeholder="Email" value="{{ old('email') }}" autocomplete="off" required>
+                                    <div class="invalid-feedback">
+                                        Username tidak boleh kosong
                                     </div>
-
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                        </div>
-                                        <input id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            Password tidak boleh kosong
-                                        </div>
-                                        @error('password')
-                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
+                                    @error('username')
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $message }}
                                     </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-login" tabindex="4">
-                                            Masuk
-                                        </button>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="signin-password" class="control-label sr-only">Password</label>
+                                    <input name="password" type="password" class="form-control" id="signin-password" placeholder="Password" value="{{ old('password') }}" required>
+                                    <div class="invalid-feedback">
+                                        Password tidak boleh kosong
                                     </div>
-                                    <!-- <hr /> -->
-                                    <div class="mt-1 text-muted text-center">
-                                        Hubungi admin untuk pendaftaran akun <span style="font-weight: bold;"><br>Al - Banna Laundry</span>
+                                    @error('password')
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $message }}
                                     </div>
-                                </form>
-                            </div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                            </form>
                         </div>
                     </div>
+                    <div class="right">
+                        <div class="overlay"></div>
+                        <div class="content text">
+                            <h1 class="heading">Aplikasi Perpanjangan Surat Izin Belajar</h1>
+                            <p>Oleh Alifia A.Z</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 
-    <footer class="footer-login">
+    <!-- <footer class="footer-login">
         <div class="text-center">
             Sistem Informasi Akuntansi Laundry Al-Banna - Sistem Informasi 5B
         </div>
-    </footer>
+    </footer> -->
 
     <!-- General JS Scripts -->
     <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>

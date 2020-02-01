@@ -53,47 +53,41 @@
                     </div>
                     <div class="card-body">
                         <div style="margin:0px 0px 10px 0px;"> 
-                            <a href="{{url('/tambahDataUser')}}"class="btn btn-primary" style="border-color: #95B9C7;color: #ffffff;">Tambah Data User</a>
+                            <a href="{{url('/dataUser/create')}}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;">Tambah Data</a>
                         </div>
+                        <hr/>
                         <div class="table-responsive">
                           <table class="table table-striped table-bordered table-md" id="data-user">
-                            <thead>
+                            <thead style="background-color: #95b9c7;">
                                   <tr>
-                                    <th>No</th>
-                                    <!-- <th>Role</th> -->
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Aksi</th>
+                                    <th style="color: white;">No</th>
+                                    <!-- <th style="color: white;">Role</th> -->
+                                    <th style="color: white;">Email</th>
+                                    <th style="color: white;">Nama</th>
+                                    <th style="color: white;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($DataUser as $index => $dok)
+                                @foreach($data_user as $index => $dok)
                                 <tr>
                                     <td style="color: #000000;">{{$index +1}}</td>
-                                    <!-- @if($dok->id_role == 1)
-                                    <td><div class="badge badge-success">Admin</div></td>
-                                    @elseif($dok->id_role == 2)
-                                    <td><div class="badge badge-warning">Pemilik</div></td>
-                                    @elseif($dok->id_role == 3)
-                                    <td><div class="badge badge-primary">Akuntan</div></td>
-                                    @else
-                                    <td><div class="badge badge-info">Kasir</div></td>
-                                    @endif -->
-                                    <td style="color: #000000;">{{$dok->username}}</td>
-                                    <td><span style="color: #000000;">Sdr. {{$dok->nama}} </span> <br> 
+                                    <td style="color: #000000;">{{$dok->email}}</td>
+                                    <td><span style="color: #000000;">Sdr. {{$dok->name}} </span> <br> 
                                         @if($dok->id_role == 1)
                                         <span style="color: #78828a;">Admin</span>
                                         @elseif($dok->id_role == 2)
-                                        <span style="color: #78828a;">Pemilik</span>
+                                        <span style="color: #78828a;">Pemohon</span>
                                         @elseif($dok->id_role == 3)
-                                        <span style="color: #78828a;">Akuntan</span>
+                                        <span style="color: #78828a;">Staff Pengembang Kompetensi</span>
+                                        @elseif($dok->id_role == 4)
+                                        <span style="color: #78828a;">Kepala Sub Bagian Pengembang Kompetensi</span>
                                         @else
-                                        <span style="color: #78828a;">Kasir</span>
+                                        <span style="color: #78828a;">Binbangkum</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="/dataUser/edit/{{ $dok->id }}" class="btn btn-warning">Ubah</a>
-                                        <a href="/dataUser/delete/{{ $dok->id }}" class="btn btn-danger">Hapus</a>
+                                        <a href="/dataUser/edit/{{ $dok->id }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dataUser/delete/{{ $dok->id }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

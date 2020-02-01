@@ -151,6 +151,9 @@ p, ul:not(.list-unstyled), ol {
   color: #98a6ad !important; }
 
 /* 3.2 Form */
+.form-control {
+  border: 2px solid #000;
+}
 .form-control,
 .input-group-text,
 .custom-select,

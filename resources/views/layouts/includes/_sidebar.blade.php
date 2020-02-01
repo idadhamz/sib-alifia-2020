@@ -2,13 +2,14 @@
   <aside id="sidebar-wrapper" style="margin-bottom: 30px;">
         <div class="sidebar-brand mb-5 mt-3">
             <a href="{{url('/dashboard')}}">
-                <img src="{{ asset('assets/img/Logo-albanna.png') }}" alt="">
+                <img src="{{ asset('assets/img/bpk-logo.jpg') }}" alt="" style="width: 100px;height: 100px;">
+                <p style="padding: 10px;text-transform: capitalize;color: #000;letter-spacing: 0.5px;">Aplikasi Perpanjangan <br>Surat Izin Belajar</p>
             </a>
         </div>
     <div class="sidebar-brand sidebar-brand-sm">
       <a href="{{url('/dashboard')}}">AB</a>
     </div>
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu" style="padding-top: 20px;">
       <!-- <li class="nav-item dropdown active">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-home"></i><span>Dashboard</span></a>
         <ul class="dropdown-menu">
@@ -20,12 +21,26 @@
       <li class="{{ (request()->is('dashboard')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
       
       @if(auth()->user()->id_role == '1')
-      <li class="menu-header">Admin</li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
-      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Master Data</span></a>
+      <li class="nav-item dropdown {{ (request()->is('dataDiriPemohon/index')) || (request()->is('uploadBerkas/index')) ? 'active' : '' }}">
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Data Pemohon</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/dataUser')}}">Kelola Data User</a></li>
+          <li><a class="nav-link" href="{{url('/dataDiriPemohon/index')}}">Data Diri</a></li>
+          <li><a class="nav-link" href="{{url('/uploadBerkas/index')}}">Upload Berkas</a></li>
+        </ul>
+      </li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Data</span></a></li>
+      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Surat Izin Belajar</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url('/dataUser')}}">Buat Surat Izin</a></li>
+          <li><a class="nav-link" href="{{url('/dataUser')}}">Validasi Surat Izin</a></li>
+        </ul>
+      </li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-alt"></i> <span>Cetak IDP</span></a></li>
+      <li class="nav-item dropdown {{ (request()->is('dataUser/index')) || (request()->is('/dataUser/create')) ? 'active' : '' }}">
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Manajemen User</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url('/dataUser/index')}}">Kelola Data User</a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
         </ul>
       </li>

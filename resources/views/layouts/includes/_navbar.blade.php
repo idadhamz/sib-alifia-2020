@@ -3,18 +3,32 @@
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
+          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+              <div class="dropdown-header">Notifications
+              </div>
+              <div class="dropdown-list-content dropdown-list-icons">
+                <a href="#" class="dropdown-item dropdown-item-unread"> 
+                  <div class="dropdown-item-desc">
+                    Data Pemohonan Telah disetujui!
+                    <div class="time text-primary">2 Menit yang lalu</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <!-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1"> -->
             <div class="d-sm-none d-lg-inline-block" style="margin-right: 5px;">
-              Hi, {{ Auth::user()->nama }}
+              Hi, {{ Auth::user()->name }}
               (<b>{{ @(Auth::user()->id_role == 1 ? 'Admin' : 
-                      (Auth::user()->id_role == 2 ? 'Pemilik' : 
-                      (Auth::user()->id_role == 3 ? 'Akuntan' : 
-                      (Auth::user()->id_role == 4 ? 'Kasir' : 'Tidak ada' )))) 
+                      (Auth::user()->id_role == 2 ? 'Pemohon' : 
+                      (Auth::user()->id_role == 3 ? 'Staff Pengembang Kompetensi' : 
+                      (Auth::user()->id_role == 4 ? 'Kepala Sub Bagian Pengembang Kompetensi' : 
+                      (Auth::user()->id_role == 5 ? 'Binbangkum' : 'Tidak ada' ))))) 
               }}</b>)
             </div></a>
             <div class="dropdown-menu dropdown-menu-right">

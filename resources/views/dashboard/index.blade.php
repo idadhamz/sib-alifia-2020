@@ -19,7 +19,7 @@
                         <h4>Total User</h4>
                       </div>
                       <div class="card-body">
-                        {{$jmlUser}}
+                        5
                       </div>
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                         <h4>Transaksi</h4>
                       </div>
                       <div class="card-body">
-                        {{$jmlTransaksi}}
+                        5
                       </div>
                     </div>
                   </div>
@@ -49,7 +49,7 @@
                         <h4>Akun</h4>
                       </div>
                       <div class="card-body">
-                        {{$jmlAkun}}
+                        5
                       </div>
                     </div>
                   </div>
@@ -64,55 +64,11 @@
                         <h4>Golongan Akun</h4>
                       </div>
                       <div class="card-body">
-                        {{$jml_GolAkun}}
+                        5
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-6 col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <h4 style="font-size: 17px;">Pemasukan Setiap Bulan</h4>
-                    </div>
-                    <div class="card-body">
-                      <canvas id="grafikLaporanKeuangan" height="182"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-7 col-md-6 col-sm-6 col-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <h4>Transaksi Terakhir</h4>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>No.</th>
-                              <th>Tanggal</th>
-                              <th style="width: 275px;">Transaksi</th>
-                              <!-- <th>Nominal</th> -->
-                              <th>Jenis</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($DataTransaksi as $index => $dok)
-                            <tr>
-                              <td>{{$index +1}}</td>
-                              <td style="color: #000000;">{{ Carbon\Carbon::parse($dok->tgl_transaksi)->formatLocalized('%d/%m/%Y') }}</td>
-                              <td><span style="color: #000000;">{{$dok->deskripsi}} </span><br>
-                                  <!-- <span style="color: #333;">Rp. {{ number_format($dok->nominal_transaksi, 0, ',', '.') }} </span> -->
-                              </td>
-                              <td><span style="color: #000000;">{{$dok->jenis}} </span></td>
-                            </tr>
-                            @endforeach
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-              </div>
             </section>
         </div>
     </div>

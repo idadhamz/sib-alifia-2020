@@ -1,5 +1,5 @@
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2019 <div class="bullet"></div> Sistem Informasi Akuntansi Laundry Al-Banna
+        Copyright &copy; 2020 <div class="bullet"></div> Aplikasi Perpanjangan Surat Izin Belajar
     </div>
 </footer>
