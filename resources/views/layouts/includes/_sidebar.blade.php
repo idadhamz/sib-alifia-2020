@@ -22,23 +22,23 @@
       
       @if(auth()->user()->id_role == '1')
       <li class="nav-item dropdown {{ (request()->is('dataDiriPemohon/index')) || (request()->is('uploadBerkas/index')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Data Pemohon</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Data Pemohon</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="{{url('/dataDiriPemohon/index')}}">Data Diri</a></li>
           <li><a class="nav-link" href="{{url('/uploadBerkas/index')}}">Upload Berkas</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Data</span></a></li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Data</span></a></li>
       <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Surat Izin Belajar</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i> <span>Surat Izin Belajar</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="{{url('/dataUser')}}">Buat Surat Izin</a></li>
           <li><a class="nav-link" href="{{url('/dataUser')}}">Validasi Surat Izin</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-alt"></i> <span>Cetak IDP</span></a></li>
+      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
       <li class="nav-item dropdown {{ (request()->is('dataUser/index')) || (request()->is('/dataUser/create')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>Manajemen User</span></a>
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>Manajemen User</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="{{url('/dataUser/index')}}">Kelola Data User</a></li>
           <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
@@ -47,33 +47,32 @@
       @endif
       
       @if(auth()->user()->id_role == '2')
-      <li class="menu-header">Keuangan</li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
+      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Input Data Diri</span></a></li>
+      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Upload Berkas</span></a></li>
+      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '3')
-      <li class="menu-header">Transaksi</li>
-      <li class="nav-item dropdown {{ (request()->is('dataAkun')) ? 'active' : '' }} || {{ (request()->is('dataGolAkun')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-pause"></i> <span>Akun</span></a>
-        <ul class="dropdown-menu">
-          <li class="{ (request()->is('dataGolAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataGolAkun')}}"><span>Kelola Golongan Akun</span></a></li>
-          <li class="{ (request()->is('dataAkun')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataAkun')}}"><span>Kelola Akun</span></a></li>
-          <!-- <li><a class="nav-link" href="bootstrap-badge.html">Input Data User</a></li> -->
-        </ul>
-      </li>
-      <li class="{{ (request()->is('dataTransaksi')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataTransaksi')}}"><i class="fas fa-calculator"></i> <span>Data Transaksi</span></a></li>
-      <li class="{{ (request()->is('dataJurnalUmum')) || (request()->is('tambahJurnalUmum')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataJurnalUmum')}}"><i class="fas fa-book"></i> <span>Jurnal Umum</span></a></li>
-      <li class="{{ (request()->is('dataJurnalPenyesuaian')) || (request()->is('tambahJurnalPenyesuaian')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataJurnalPenyesuaian')}}"><i class="fas fa-book"></i> <span>Jurnal Penyesuaian</span></a></li>
-      <li class="{{ (request()->is('dataBukuBesar')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataBukuBesar')}}"><i class="fas fa-book-open"></i> <span>Buku Besar</span></a></li>
-      <li class="{{ (request()->is('dataNeracaSaldo')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataNeracaSaldo')}}"><i class="fas fa-balance-scale"></i> <span>Neraca Saldo</span></a></li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
+      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Pemohon</span></a></li>
+      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
+      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '4')
-      <li class="menu-header">Keuangan</li>
-      <li class="{{ (request()->is('dataTransaksiKasir')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataTransaksiKasir')}}"><i class="fas fa-calculator"></i> <span>Data Transaksi</span></a></li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-chart-pie"></i> <span>Laporan Keuangan</span></a></li>
-      <li class="{{ (request()->is('dataArusKas')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataArusKas')}}"><i class="fas fa-exchange-alt"></i> <span>Laporan Arus Kas</span></a></li>
+      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Pemohon</span></a></li>
+      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
+      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
+      @endif
+
+      @if(auth()->user()->id_role == '5')
+      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>IDP</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url('/dataUser')}}">Buat IDP</a></li>
+          <li><a class="nav-link" href="{{url('/dataUser')}}">Cetak IDP</a></li>
+        </ul>
+      </li>
+      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
   </aside>

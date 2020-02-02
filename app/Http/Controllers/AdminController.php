@@ -345,38 +345,67 @@ class AdminController extends Controller
 
         $nip = request('nip');
 
+        $pathTujuan = public_path('assets/file/'. $nip);
+        if (!file_exists($pathTujuan)) {
+            File::makeDirectory($pathTujuan, $mode = 0777, true, true);
+        }
+
         // Surat Alasan Perpanjangan
         if($request->file('surat_alasan_perpanjangan') != null){
             $surat_alasan_perpanjangan = $request->file('surat_alasan_perpanjangan');
             $nm_surat_alasan_perpanjangan = "surat_alasan_perpanjangan.".$surat_alasan_perpanjangan->getClientOriginalExtension();
-        }
-
-        // surat_keterangan_sehat
-        if($request->file('surat_keterangan_sehat') != null){
-            $surat_keterangan_sehat = $request->file('surat_keterangan_sehat');
-            $nm_surat_keterangan_sehat = "surat_keterangan_sehat.".$surat_keterangan_sehat->getClientOriginalExtension();
-        }
-
-        $pathTujuan = public_path('assets/file/'. $nip);
-            
-        if (!file_exists($pathTujuan)) {
-            File::makeDirectory($pathTujuan, $mode = 0777, true, true);
-        }
-        // else {
-        //     File::deleteDirectory($pathTujuan);
-        //     File::makeDirectory($pathTujuan, $mode = 0777, true, true);
-        // }
-
-        // Surat Alasan Perpanjangan
-        if($request->file('surat_alasan_perpanjangan') != null){
             $surat_alasan_perpanjangan->move($pathTujuan, $nm_surat_alasan_perpanjangan);
             $data_surat_alasan_perpanjangan = 'assets/file/'.$nip.'/'.$nm_surat_alasan_perpanjangan;
         }
 
         // surat_keterangan_sehat
         if($request->file('surat_keterangan_sehat') != null){
+            $surat_keterangan_sehat = $request->file('surat_keterangan_sehat');
+            $nm_surat_keterangan_sehat = "surat_keterangan_sehat.".$surat_keterangan_sehat->getClientOriginalExtension();
             $surat_keterangan_sehat->move($pathTujuan, $nm_surat_keterangan_sehat);
             $data_surat_keterangan_sehat = 'assets/file/'.$nip.'/'.$nm_surat_keterangan_sehat;
+        }
+
+        if($request->file('sk_cpns_pns') != null){
+            $sk_cpns_pns = $request->file('sk_cpns_pns');
+            $nm_sk_cpns_pns = "sk_cpns_pns.".$sk_cpns_pns->getClientOriginalExtension();
+            $sk_cpns_pns->move($pathTujuan, $nm_sk_cpns_pns);
+            $data_sk_cpns_pns = 'assets/file/'.$nip.'/'.$nm_sk_cpns_pns;
+        }
+
+        if($request->file('sk_jabatan_terakhir') != null){
+            $sk_jabatan_terakhir = $request->file('sk_jabatan_terakhir');
+            $nm_sk_jabatan_terakhir = "sk_jabatan_terakhir.".$sk_jabatan_terakhir->getClientOriginalExtension();
+            $sk_jabatan_terakhir->move($pathTujuan, $nm_sk_jabatan_terakhir);
+            $data_sk_jabatan_terakhir = 'assets/file/'.$nip.'/'.$nm_sk_jabatan_terakhir;
+        }
+
+        if($request->file('sk_lulus') != null){
+            $sk_lulus = $request->file('sk_lulus');
+            $nm_sk_lulus = "sk_lulus.".$sk_lulus->getClientOriginalExtension();
+            $sk_lulus->move($pathTujuan, $nm_sk_lulus);
+            $data_sk_lulus = 'assets/file/'.$nip.'/'.$nm_sk_lulus;
+        }
+
+        if($request->file('jam_pem_belajar') != null){
+            $jam_pem_belajar = $request->file('jam_pem_belajar');
+            $nm_jam_pem_belajar = "jam_pem_belajar.".$jam_pem_belajar->getClientOriginalExtension();
+            $jam_pem_belajar->move($pathTujuan, $nm_jam_pem_belajar);
+            $data_jam_pem_belajar = 'assets/file/'.$nip.'/'.$nm_jam_pem_belajar;
+        }
+
+        if($request->file('rek_per_studi') != null){
+            $rek_per_studi = $request->file('rek_per_studi');
+            $nm_rek_per_studi = "rek_per_studi.".$rek_per_studi->getClientOriginalExtension();
+            $rek_per_studi->move($pathTujuan, $nm_rek_per_studi);
+            $data_rek_per_studi = 'assets/file/'.$nip.'/'.$nm_rek_per_studi;
+        }
+
+        if($request->file('surat_set_per_pen_studi') != null){
+            $surat_set_per_pen_studi = $request->file('surat_set_per_pen_studi');
+            $nm_surat_set_per_pen_studi = "surat_set_per_pen_studi.".$surat_set_per_pen_studi->getClientOriginalExtension();
+            $surat_set_per_pen_studi->move($pathTujuan, $nm_surat_set_per_pen_studi);
+            $data_surat_set_per_pen_studi = 'assets/file/'.$nip.'/'.$nm_surat_set_per_pen_studi;
         }
 
         // $berkas_pemohon = new berkas_pemohon();
@@ -389,6 +418,12 @@ class AdminController extends Controller
             berkas_pemohon::where('id_user', $request->id_user)->update([
                 'surat_alasan_perpanjangan' => $request->file('surat_alasan_perpanjangan') == null ? $cekData['surat_alasan_perpanjangan'] : $data_surat_alasan_perpanjangan,
                 'surat_keterangan_sehat' => $request->file('surat_keterangan_sehat') == null ? $cekData['surat_keterangan_sehat'] : $data_surat_keterangan_sehat,
+                'sk_cpns_pns' => $request->file('sk_cpns_pns') == null ? $cekData['sk_cpns_pns'] : $data_sk_cpns_pns,
+                'sk_jabatan_terakhir' => $request->file('sk_jabatan_terakhir') == null ? $cekData['sk_jabatan_terakhir'] : $data_sk_jabatan_terakhir,
+                'sk_lulus' => $request->file('sk_lulus') == null ? $cekData['sk_lulus'] : $data_sk_lulus,
+                'jam_pem_belajar' => $request->file('jam_pem_belajar') == null ? $cekData['jam_pem_belajar'] : $data_jam_pem_belajar,
+                'rek_per_studi' => $request->file('rek_per_studi') == null ? $cekData['rek_per_studi'] : $data_rek_per_studi,
+                'surat_set_per_pen_studi' => $request->file('surat_set_per_pen_studi') == null ? $cekData['surat_set_per_pen_studi'] : $data_surat_set_per_pen_studi,
                 'updated_at' => now()
             ]);
         }else{
@@ -396,6 +431,12 @@ class AdminController extends Controller
                 'id_user' => request('id_user'),
                 'surat_alasan_perpanjangan' => $request->file('surat_alasan_perpanjangan') == null ? null : $data_surat_alasan_perpanjangan,
                 'surat_keterangan_sehat' => $request->file('surat_keterangan_sehat') == null ? null : $data_surat_keterangan_sehat,
+                'sk_cpns_pns' => $request->file('sk_cpns_pns') == null ? null : $data_sk_cpns_pns,
+                'sk_jabatan_terakhir' => $request->file('sk_jabatan_terakhir') == null ? null : $data_sk_jabatan_terakhir,
+                'sk_lulus' => $request->file('sk_lulus') == null ? null : $data_sk_lulus,
+                'jam_pem_belajar' => $request->file('jam_pem_belajar') == null ? null : $data_jam_pem_belajar,
+                'rek_per_studi' => $request->file('rek_per_studi') == null ? null : $data_rek_per_studi,
+                'surat_set_per_pen_studi' => $request->file('surat_set_per_pen_studi') == null ? null : $data_surat_set_per_pen_studi,
                 'created_at' => now(),
             ]);
         }

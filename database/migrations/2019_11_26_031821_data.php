@@ -13,30 +13,58 @@ class Data extends Migration
      */
     public function up()
     {
-        Schema::create('gol_akun', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('kode_golongan', 5);
-            $table->string('nm_golongan', 100);
+        Schema::create('pemohon', function (Blueprint $table) {
+            $table->bigIncrements('id_pemohon');
+            $table->string('nip', 25);
+            $table->text('ava')->nullable();
+            $table->string('nama', 255);
+            $table->string('jk', 5);
+            $table->string('tempat_lahir', 100);
+            $table->date('tgl_lahir');
+            $table->text('alamat');
+            $table->string('agama', 10);
+            $table->string('status', 10);
+            $table->string('unit_kerja', 255);
+            $table->string('jabatan', 100);
+            $table->string('pangkat', 50);
+            $table->string('jenjang_pend', 5);
+            $table->string('jurusan', 100);
+            $table->string('univ', 100);
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai');
+            $table->string('beasiswa', 100)->nullable();
+            $table->string('alasan_perp', 100);
+            $table->integer('jml_wkt_perp')->nullable();
+            $table->date('tgl_perp')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('akun', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('no_akun');
-            $table->string('nm_akun', 100);
-            $table->string('kode_golongan', 5);
-            $table->integer('saldo_normal')->nullable();
+        Schema::create('berkas_pemohon', function (Blueprint $table) {
+            $table->bigIncrements('id_berkas');
+            $table->integer('id_pemohon');
+            $table->text('surat_alasan_perpanjangan')->nullable();
+            $table->text('surat_keterangan_sehat')->nullable();
+            $table->text('sk_cpns_pns')->nullable();
+            $table->text('sk_jabatan_terakhir')->nullable();
+            $table->text('sk_lulus')->nullable();
+            $table->text('jam_pem_belajar')->nullable();
+            $table->text('rek_per_studi')->nullable();
+            $table->text('surat_set_per_pen_studi')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('transaksi', function (Blueprint $table) {
-            $table->bigIncrements('id_transaksi');
-            $table->string('nm_transaksi', 100);
-            $table->date('tgl_transaksi');
-            $table->integer('nominal_transaksi');
-            $table->text('deskripsi')->nullable();
-            $table->string('jenis', 30);
+        Schema::create('verifikasi_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('id_berkas');
             $table->integer('id_user');
+            $table->text('id_status');
+            $table->text('keterangan')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('status', function (Blueprint $table) {
+            $table->bigIncrements('id_status');
+            $table->string('status', 255);
             $table->timestamps();
         });
     }
@@ -48,7 +76,9 @@ class Data extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akun');
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('pemohon');
+        Schema::dropIfExists('berkas_pemohon');
+        Schema::dropIfExists('verifikasi_data');
+        Schema::dropIfExists('status');
     }
 }

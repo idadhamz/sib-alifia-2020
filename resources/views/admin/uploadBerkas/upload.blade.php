@@ -38,42 +38,42 @@
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Surat Alasan Perpanjangan dari Pemohon (tertanda dari Atasan Pemohon)</label>
                         <input type="file" class="form-control" name="surat_alasan_perpanjangan" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Surat Keterangan Sehat Jasmani dari Dokter</label>
                         <input type="file" class="form-control" name="surat_keterangan_sehat" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Fotokopi SK CPNS/PNS *)</label>
                         <input type="file" class="form-control" name="sk_cpns_pns" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Fotokopi SK Jabatan Terakhir (Saat Studi) *)</label>
                         <input type="file" class="form-control" name="sk_jabatan_terakhir" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Fotokopi Surat Keterangan / Rekomendasi / Pengumuman Resmi Lulus Diterima dari Tempat Studi *)</label>
                         <input type="file" class="form-control" name="sk_lulus" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Fotokopi Jaminan Pembiayaan Tugas Belajar *)</label>
                         <input type="file" class="form-control" name="jam_pem_belajar" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Surat Rekomendasi Perpanjangan Studi dari Tempat Studi</label>
                         <input type="file" class="form-control" name="rek_per_studi" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                       <div class="form-group">
                         <label style="font-weight: bold;font-size: 14px;letter-spacing: 0.5px;">Fotokopi Surat Persetujuan Perpanjangan Penugasan Studi dari Sekretariat Negara (SETNEG) jika studi ke LUAR NEGERI *)</label>
                         <input type="file" class="form-control" name="surat_set_per_pen_studi" style="height: auto;">
-                        <p>*Berkas pendukung harus memiliki format pdf.</p>
+                        <p>*Berkas pendukung harus memiliki format pdf. <br>*Ukuran Maksimal Berkas 2MB</p>
                       </div>
                     </div>
                   </div>
