@@ -47,7 +47,7 @@
                                                   </div>
                                                 </div>
                                                 <input type="text" class="form-control" name="id" value="{{$dob->id}}" autocomplete="off" style="display: none;">
-                                                <input type="text" class="form-control" name="email" value="{{$dob->email}}" autocomplete="off">
+                                                <input type="email" class="form-control" name="email" value="{{$dob->email}}" autocomplete="off">
                                               </div>
                                               @if($errors->has('email'))
                                                 <div class="text-danger" style="padding: 5px;">

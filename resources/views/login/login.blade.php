@@ -102,6 +102,10 @@
     <!-- Template JS File -->
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>
+
+    <script>
+        $('#signin-email').focus();
+    </script>
 </body>
 
 <!-- Mirrored from moltran.coderthemes.com/menu_2/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:29:07 GMT -->

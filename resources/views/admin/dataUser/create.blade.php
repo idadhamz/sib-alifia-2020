@@ -45,7 +45,7 @@
                                                     <i class="fas fa-user-alt"></i>
                                                   </div>
                                                 </div>
-                                                <input type="text" class="form-control" name="email" autocomplete="off">
+                                                <input type="email" class="form-control" name="email" autocomplete="off">
                                               </div>
                                               @if($errors->has('email'))
                                                 <div class="text-danger" style="padding: 5px;">

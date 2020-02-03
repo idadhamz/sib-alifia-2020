@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class data_diri_pemohon extends Model
 {
-    protected $table = 'data_pemohon';
-    protected $primaryKey = 'id';
+    use SoftDeletes;
+    
+    protected $table = 'pemohon';
+    protected $primaryKey = 'id_pemohon';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
 
     protected $fillable = [ 
     	'nama',

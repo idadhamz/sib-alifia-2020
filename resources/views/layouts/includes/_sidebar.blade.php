@@ -28,7 +28,7 @@
           <li><a class="nav-link" href="{{url('/uploadBerkas/index')}}">Upload Berkas</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Data</span></a></li>
+      <li class="{{ (request()->is('verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Data</span></a></li>
       <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i> <span>Surat Izin Belajar</span></a>
         <ul class="dropdown-menu">
@@ -47,21 +47,27 @@
       @endif
       
       @if(auth()->user()->id_role == '2')
-      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Input Data Diri</span></a></li>
-      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Upload Berkas</span></a></li>
-      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
+      <li class="nav-item dropdown {{ (request()->is('inputDataDiri/index')) || (request()->is('inputBerkas/index')) ? 'active' : '' }}">
+        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Data Pemohon</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url('/inputDataDiri/index')}}">Data Diri</a></li>
+          <li><a class="nav-link" href="{{url('/inputBerkas/index')}}">Upload Berkas</a></li>
+        </ul>
+      </li>
+      <li class="{{ (request()->is('tracking-verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/tracking-verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Tracking Verifikasi</span></a></li>
+      <li class="{{ (request()->is('cetak-idp/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('cetak-idp/index')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
+      <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '3')
       <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Pemohon</span></a></li>
       <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
-      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
+      <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '4')
-      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Pemohon</span></a></li>
-      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
-      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
+      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Validasi Surat Izin Belajar</span></a></li>
+      <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
 
       @if(auth()->user()->id_role == '5')
@@ -72,7 +78,7 @@
           <li><a class="nav-link" href="{{url('/dataUser')}}">Cetak IDP</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('settingAkun/form')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/settingAkun/form')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
+      <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
   </aside>

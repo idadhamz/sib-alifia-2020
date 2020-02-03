@@ -11,7 +11,7 @@
   <meta content="Coderthemes" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <link rel="shortcut icon" href="{{ asset('assets/img/bpk-logo.jpg') }}">
+  <link rel="shortcut icon" href="{{ asset('assets/img/bpk-logo.png') }}">
 
   <!-- General CSS Files -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -134,6 +134,86 @@
         <script>
           $('#data-pemohon').dataTable();
           $('#data-user').dataTable();
+
+          $('#nip').focus();
+
+          $('.btn-cari-pemohon').on('click',function(e)
+          {
+
+            e.preventDefault();
+            var nip = $("#nip").val();
+            console.log(nip);
+
+            //ajax
+            $.get('/cariPemohon/' + nip, function (data)
+            {
+              // $(".row-verifikasi").css("display", "block");
+              var hasil_pemohon = $.parseJSON(data);
+              console.log(hasil_pemohon);
+
+              $("#id_berkas").val(hasil_pemohon[0].id_berkas)
+
+              if(hasil_pemohon[0].surat_alasan_perpanjangan != null) {
+                $("#surat_alasan_perpanjangan").val(hasil_pemohon[0].surat_alasan_perpanjangan)
+              }else {
+                $("#surat_alasan_perpanjangan").val('-')
+              }
+
+              if(hasil_pemohon[0].surat_keterangan_sehat != null) {
+                $("#surat_keterangan_sehat").val(hasil_pemohon[0].surat_keterangan_sehat)
+              }else {
+                $("#surat_keterangan_sehat").val('-')
+              }
+
+              if(hasil_pemohon[0].sk_cpns_pns != null) {
+                $("#sk_cpns_pns").val(hasil_pemohon[0].sk_cpns_pns)
+              }else {
+                $("#sk_cpns_pns").val('-')
+              }
+
+              if(hasil_pemohon[0].sk_jabatan_terakhir != null) {
+                $("#sk_jabatan_terakhir").val(hasil_pemohon[0].sk_jabatan_terakhir)
+              }else {
+                $("#sk_jabatan_terakhir").val('-')
+              }
+
+              if(hasil_pemohon[0].sk_lulus != null) {
+                $("#sk_lulus").val(hasil_pemohon[0].sk_lulus)
+              }else {
+                $("#sk_lulus").val('-')
+              }
+
+              if(hasil_pemohon[0].jam_pem_belajar != null) {
+                $("#jam_pem_belajar").val(hasil_pemohon[0].jam_pem_belajar)
+              }else {
+                $("#jam_pem_belajar").val('-')
+              }
+
+              if(hasil_pemohon[0].rek_per_studi != null) {
+                $("#rek_per_studi").val(hasil_pemohon[0].rek_per_studi)
+              }else {
+                $("#rek_per_studi").val('-')
+              }
+
+              if(hasil_pemohon[0].surat_set_per_pen_studi != null) {
+                $("#surat_set_per_pen_studi").val(hasil_pemohon[0].surat_set_per_pen_studi)
+              }else {
+                $("#surat_set_per_pen_studi").val('-')
+              }
+
+              if(hasil_pemohon[0].id_status != null) {
+                $('.id_status option[value='+hasil_pemohon[0].id_status+']').attr('selected','selected');
+              }
+
+              if(hasil_pemohon[0].keterangan != null) {
+                $("#keterangan").val(hasil_pemohon[0].keterangan)
+              }else {
+                $("#keterangan").val(null)
+              }
+
+            });
+
+          });
         </script>
 
         </body>

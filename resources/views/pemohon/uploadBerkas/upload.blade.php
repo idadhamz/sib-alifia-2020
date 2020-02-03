@@ -26,7 +26,7 @@
               <div class="row">
                 <div class="col-12">
                   @foreach($data_diri_pemohon_upload as $dob)
-                  <form action="/uploadBerkas/save" method="post" role="form" enctype="multipart/form-data">
+                  <form action="/InputBerkas/save" method="post" role="form" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div style="padding: 0px 30px;">
                       <div class="form-group">
@@ -82,7 +82,7 @@
               <div class="card-footer bg-whitesmoke">
                 <hr/>
                 <div style="float: left;">
-                  <a href="{{url('/uploadBerkas/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
+                  <a href="{{url('/InputBerkas/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
                 </div>
                 <div style="float: right;">
                   <button type="submit" class="btn btn-success" style="border-radius: 0px;">Simpan Data</button>

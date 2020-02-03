@@ -26,7 +26,7 @@
               <div class="row">
                 <div class="col-12">
                 @foreach($DataPemohonEdit as $dob)
-                  <form action="/dataDiriPemohon/update/{{$dob->id}}" method="post" role="form">
+                  <form action="/dataDiriPemohon/update/{{$dob->id_pemohon}}" method="post" role="form">
                     {{csrf_field()}}
                     <span style="font-weight: bold;font-size: 16px;font-size: 16px;">Identitas Pemohon</span>
                     <hr/>

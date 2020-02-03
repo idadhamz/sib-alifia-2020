@@ -99,9 +99,9 @@
                                     <td style="color: #000000;">{{$row->beasiswa}}</td>
                                     <td style="color: #000000;">{{$row->jml_wkt_perp}}</td> -->
                                     <td>
-                                        <a href="/dataDiriPemohon/lihat/{{ $row->id }}" class="btn btn-outline-success" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
-                                        <a href="/dataDiriPemohon/edit/{{ $row->id }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dataDiriPemohon/delete/{{ $row->id }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="/dataDiriPemohon/lihat/{{ $row->id_pemohon }}" class="btn btn-outline-success" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
+                                        <a href="/dataDiriPemohon/edit/{{ $row->id_pemohon }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dataDiriPemohon/delete/{{ $row->id_pemohon }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

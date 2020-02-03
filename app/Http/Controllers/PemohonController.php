@@ -10,114 +10,15 @@ use Illuminate\Support\Facades\Input;
 
 use App\Models\data_diri_pemohon;
 use App\Models\berkas_pemohon;
-use App\Models\verifikasi_data;
-use App\Models\tracking_verifikasi;
 use App\User;
 
 use File;
 use Auth;
 
-class AdminController extends Controller
+class PemohonController extends Controller
 {
-    
-    // Data User
-    public function index_data_user()
-    {
-
-        // get data
-        $data_user = User::orderBy("id_role", "asc")->get();
- 
-        // mengirim data jabatan ke view index
-        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('admin.dataUser.index', compact('data_user'));
- 
-    }
-
-    public function create_data_user()
-    {
-
-        return view('admin.dataUser.create');
- 
-    }
-
-    public function store_data_user(Request $request)
-    {
-
-        $rules = [
-            'email' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-        ];
-
-        $customMessages = [
-            'email.required' => 'Email wajib diisi!',
-            'nama_depan.required' => 'Nama Depan wajib diisi!',
-            'nama_belakang.required' => 'Nama Belakang wajib diisi!',
-         ];
-
-        $this->validate($request, $rules, $customMessages);
-
-        $DataUser = new User;
-        if(request('id_role') == 2){
-            $DataUser->kd_user = Str::random(10);
-        }else {
-            $DataUser->kd_user = null;
-        }
-        $DataUser->id_role = request('id_role');
-        $DataUser->email = request('email');
-        $DataUser->password = bcrypt('123456');
-        $DataUser->name = request('nama_depan')." ".request('nama_belakang');
-        $DataUser->remember_token = Str::random(60);
-        $DataUser->created_at = now();
-        $DataUser->save();
-
-        return redirect('/dataUser/index')->with('message', 'Data Berhasil diinput!');
-    }   
-
-    public function edit_data_user($id)
-    {
-        $data_user_edit = User::where('id', $id)->get();
-        // passing data jabatan yang didapat ke view edit.blade.php
-        return view('admin.dataUser.edit', compact('data_user_edit'));
-    }
-
-    public function update_data_user(Request $request)
-    {
-
-        $rules = [
-            'email' => 'required',
-            'name' => 'required',
-        ];
-
-        $customMessages = [
-            'email.required' => 'Email wajib diisi!',
-            'name.required' => 'Nama wajib diisi!',
-         ];
-
-        $this->validate($request, $rules, $customMessages);
-
-        User::where('id', $request->id)->update([
-            'id_role' => $request->id_role,
-            'email' => $request->email,
-            'password' => bcrypt('123456'),
-            'name' => $request->name,
-            'updated_at' => now()
-        ]);
-
-        return redirect('/dataUser/index')->with('message_edit', 'Data Berhasil diubah!');
-    }
-
-    public function delete_data_user($id)
-    {
-        // menghapus data jabatan berdasarkan id yang dipilih
-        User::where('id',$id)->delete();
-            
-        // alihkan halaman ke halaman jabatan
-        return redirect('/dataUser/index')->with('message_delete', 'Data Berhasil dihapus!');
-    } 
-
     // Data Pemohon
-    public function view_data_diri($id)
+    public function view_input_data_diri($id)
     {
 
         // get data
@@ -125,30 +26,30 @@ class AdminController extends Controller
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('admin.dataDiriPemohon.view', compact('data_diri_pemohon_view'));
+        return view('pemohon.dataDiriPemohon.view', compact('data_diri_pemohon_view'));
  
     }
 
-    public function index_data_diri()
+    public function index_input_data_diri()
     {
 
         // get data
-        $data_diri_pemohon = data_diri_pemohon::get();
+        $data_diri_pemohon = data_diri_pemohon::where('kd_user', Auth::user()->kd_user)->get();
  
-    	// mengirim data jabatan ke view index
-    	// return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('admin.dataDiriPemohon.index', compact('data_diri_pemohon'));
+        // mengirim data jabatan ke view index
+        // return view('pemohon.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('pemohon.dataDiriPemohon.index', compact('data_diri_pemohon'));
  
     }
 
-    public function create_data_diri()
+    public function create_input_data_diri()
     {
 
-        return view('admin.dataDiriPemohon.create');
+        return view('pemohon.dataDiriPemohon.create');
  
     }
 
-    public function store_data_diri(Request $request)
+    public function store_input_data_diri(Request $request)
     {
 
         $rules = [
@@ -200,7 +101,6 @@ class AdminController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $DataDiriPemohon = new data_diri_pemohon;
-        $DataDiriPemohon->kd_user = Auth::user()->kd_user;
         $DataDiriPemohon->nip = request('nip');
         $DataDiriPemohon->nama = request('nama_depan') . ' ' . request('nama_belakang');
         $DataDiriPemohon->jk = request('jk');
@@ -224,17 +124,17 @@ class AdminController extends Controller
         $DataDiriPemohon->created_at = now();
         $DataDiriPemohon->save();
 
-        return redirect('/dataDiriPemohon/index')->with('message', 'Data Berhasil diinput!');
+        return redirect('/InputDataDiri/index')->with('message', 'Data Berhasil diinput!');
     }   
 
-    public function edit_data_diri($id)
+    public function edit_input_data_diri($id)
     {
         $DataPemohonEdit = data_diri_pemohon::where('id_pemohon', $id)->get();
 
-        return view('admin.dataDiriPemohon.edit', compact('DataPemohonEdit'));
+        return view('pemohon.dataDiriPemohon.edit', compact('DataPemohonEdit'));
     }
 
-    public function update_data_diri(Request $request)
+    public function update_input_data_diri(Request $request)
     {
 
         $rules = [
@@ -307,37 +207,37 @@ class AdminController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('/dataDiriPemohon/index')->with('message_edit', 'Data Berhasil diubah!');
+        return redirect('/InputDataDiri/index')->with('message_edit', 'Data Berhasil diubah!');
     }
 
-    public function delete_data_diri($id)
+    public function delete_input_data_diri($id)
     {
         // menghapus data jabatan berdasarkan id yang dipilih
         data_diri_pemohon::where('id_pemohon',$id)->delete();
             
         // alihkan halaman ke halaman jabatan
-        return redirect('/dataDiriPemohon/index')->with('message_delete', 'Data Berhasil dihapus!');
+        return redirect('/InputDataDiri/index')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
-    public function index_upload_berkas()
+    public function index_input_berkas()
     {
 
-        $data_diri_pemohon = data_diri_pemohon::get();
+        $data_diri_pemohon = data_diri_pemohon::where('kd_user', Auth::user()->kd_user)->get();
  
-        return view('admin.uploadBerkas.index', compact('data_diri_pemohon'));
+        return view('pemohon.uploadBerkas.index', compact('data_diri_pemohon'));
  
     }
 
-    public function upload_upload_berkas($id)
+    public function input_input_berkas($id)
     {
 
         $data_diri_pemohon_upload = data_diri_pemohon::leftJoin('berkas_pemohon', 'pemohon.id_pemohon', '=', 'berkas_pemohon.id_pemohon')->select('pemohon.id_pemohon', 'pemohon.nip', 'berkas_pemohon.surat_alasan_perpanjangan', 'berkas_pemohon.surat_keterangan_sehat')->where('pemohon.id_pemohon', $id)->get();
  
-        return view('admin.uploadBerkas.upload', compact('data_diri_pemohon_upload'));
+        return view('pemohon.uploadBerkas.upload', compact('data_diri_pemohon_upload'));
  
     }
 
-    public function save_upload_berkas(Request $request)
+    public function save_input_berkas(Request $request)
     {
         
         // $this->validate($request, [
@@ -453,86 +353,15 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('/uploadBerkas/index')->with('message', 'Berkas berhasil diupload!');
+        return redirect('/InputBerkas/index')->with('message', 'Berkas berhasil diupload!');
     }
 
-    public function view_upload_berkas($id)
+    public function view_input_berkas($id)
     {
 
         $berkas_pemohon_view = berkas_pemohon::where('id_pemohon', $id)->get();
  
-        return view('admin.uploadBerkas.view', compact('berkas_pemohon_view'));
+        return view('pemohon.uploadBerkas.view', compact('berkas_pemohon_view'));
  
     }
-
-    public function index_verifikasi()
-    {
- 
-        return view('admin.verifikasiData.verifikasi');
- 
-    }
-
-    public function cari_berkas($nip){
-
-        $data_berkas_pemohon = data_diri_pemohon::leftJoin('berkas_pemohon', 'pemohon.id_pemohon', '=', 'berkas_pemohon.id_pemohon')
-        ->leftJoin('verifikasi_data', 'berkas_pemohon.id_berkas', '=', 'verifikasi_data.id_berkas')
-        ->select('pemohon.id_pemohon', 'pemohon.nip', 'berkas_pemohon.*', 'verifikasi_data.id_status', 'verifikasi_data.keterangan')
-        ->where('pemohon.nip', $nip)
-        ->get();
-        // passing data jabatan yang didapat ke view edit.blade.php
-        echo json_encode($data_berkas_pemohon);
-
-    }
-
-    public function store_verifikasi(Request $request)
-    {
-
-        $rules = [
-            'keterangan' => 'required',
-        ];
-
-        $customMessages = [
-            'keterangan.required' => 'Keterangan wajib diisi!',
-         ];
-
-        $this->validate($request, $rules, $customMessages);
-
-        $cekData = verifikasi_data::where('id_berkas', request('id_berkas'))->first();
-
-        if($cekData['id_berkas'] != null){
-            verifikasi_data::where('id_berkas', $request->id_berkas)->update([
-                'id_berkas' => request('id_berkas'),
-                'id_user' => Auth::user()->id,
-                'id_status' => request('id_status'),
-                'keterangan' => request('keterangan'),
-                'updated_at' => now()
-            ]);
-
-            $TrackingVerifikasi = new tracking_verifikasi;
-            $TrackingVerifikasi->id_berkas = request('id_berkas');
-            $TrackingVerifikasi->id_status = request('id_status');
-            $TrackingVerifikasi->created_at = now();
-            $TrackingVerifikasi->save();
-
-            return redirect('/verifikasi/index')->with('message_edit', 'Verifikasi berhasil diubah!');
-
-        }else{
-            $DataVerifikasi = new verifikasi_data;
-            $DataVerifikasi->id_berkas = request('id_berkas');
-            $DataVerifikasi->id_user = Auth::user()->id;
-            $DataVerifikasi->id_status = request('id_status');
-            $DataVerifikasi->keterangan = request('keterangan');
-            $DataVerifikasi->created_at = now();
-            $DataVerifikasi->save();
-
-            $TrackingVerifikasi = new tracking_verifikasi;
-            $TrackingVerifikasi->id_berkas = request('id_berkas');
-            $TrackingVerifikasi->id_status = request('id_status');
-            $TrackingVerifikasi->created_at = now();
-            $TrackingVerifikasi->save();
-
-            return redirect('/verifikasi/index')->with('message', 'Verifikasi berhasil!');
-        }
-    }
-
 }

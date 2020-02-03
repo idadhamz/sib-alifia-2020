@@ -9,7 +9,7 @@
                     <!-- <h1>Data Akun</h1> -->
                     <div class="section-header-breadcrumb">
                       <div class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></div>
-                      <div class="breadcrumb-item"><a href="{{url('/uploadBerkas/index')}}">Upload Berkas</a></div>
+                      <div class="breadcrumb-item"><a href="{{url('/InputBerkas/index')}}">Upload Berkas</a></div>
                   </div>
               </div>
 
@@ -103,8 +103,8 @@
                                     <td style="color: #000000;">{{$row->beasiswa}}</td>
                                     <td style="color: #000000;">{{$row->jml_wkt_perp}}</td> -->
                                     <td>
-                                        <a href="/uploadBerkas/upload/{{ $row->id_pemohon }}" class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-upload"></i></a>
-                                        <a href="/uploadBerkas/view/{{ $row->id_pemohon }}" class="btn btn-outline-info" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
+                                        <a href="/InputBerkas/upload/{{ $row->id_pemohon }}" class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-upload"></i></a>
+                                        <a href="/InputBerkas/view/{{ $row->id_pemohon }}" class="btn btn-outline-info" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

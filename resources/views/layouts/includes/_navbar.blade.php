@@ -6,20 +6,6 @@
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-              <div class="dropdown-header">Notifications
-              </div>
-              <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread"> 
-                  <div class="dropdown-item-desc">
-                    Data Pemohonan Telah disetujui!
-                    <div class="time text-primary">2 Menit yang lalu</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <!-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1"> -->
             <div class="d-sm-none d-lg-inline-block" style="margin-right: 5px;">

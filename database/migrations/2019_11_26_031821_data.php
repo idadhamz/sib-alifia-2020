@@ -15,6 +15,7 @@ class Data extends Migration
     {
         Schema::create('pemohon', function (Blueprint $table) {
             $table->bigIncrements('id_pemohon');
+            $table->string('kd_user', 15);
             $table->string('nip', 25);
             $table->text('ava')->nullable();
             $table->string('nama', 255);
@@ -37,6 +38,7 @@ class Data extends Migration
             $table->integer('jml_wkt_perp')->nullable();
             $table->date('tgl_perp')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('berkas_pemohon', function (Blueprint $table) {
@@ -51,14 +53,23 @@ class Data extends Migration
             $table->text('rek_per_studi')->nullable();
             $table->text('surat_set_per_pen_studi')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('verifikasi_data', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_berkas');
             $table->integer('id_user');
-            $table->text('id_status');
+            $table->integer('id_status');
             $table->text('keterangan')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('tracking_verifikasi', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('id_berkas');
+            $table->text('id_status');
             $table->timestamps();
         });
 
