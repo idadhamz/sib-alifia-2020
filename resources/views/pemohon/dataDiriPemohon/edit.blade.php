@@ -26,7 +26,7 @@
               <div class="row">
                 <div class="col-12">
                 @foreach($DataPemohonEdit as $dob)
-                  <form action="/InputDataDiri/update/{{$dob->id_pemohon}}" method="post" role="form">
+                  <form action="/inputDataDiri/update/{{$dob->id_pemohon}}" method="post" role="form">
                     {{csrf_field()}}
                     <span style="font-weight: bold;font-size: 16px;font-size: 16px;">Identitas Pemohon</span>
                     <hr/>
@@ -242,7 +242,7 @@
                         <div class="col-6">
                           <div class="form-group">
                             <label>Tanggal Berakhir Masa Studi</label>
-                            <input type="date" class="form-control" name="tgl_berakhir_studi" value="{{$dob->tgl_akhir}}" autocomplete="off">
+                            <input type="date" class="form-control" name="tgl_berakhir_studi" value="{{$dob->tgl_selesai}}" autocomplete="off">
                             @if($errors->has('tgl_berakhir_studi'))
                             <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
                               {{ $errors->first('tgl_berakhir_studi')}}
@@ -293,7 +293,7 @@
               <div class="card-footer bg-whitesmoke">
                 <hr/>
                 <div style="float: left;">
-                  <a href="{{url('/InputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
+                  <a href="{{url('/inputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
                 </div>
                 <div style="float: right;">
                   <button type="submit" class="btn btn-success" style="border-radius: 0px;">Simpan Data</button>

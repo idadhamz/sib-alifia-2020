@@ -19,7 +19,7 @@ class SettingAkunController extends Controller
     {
 
         // get data
-        $data_akun = User::where('kd_user', Auth::user()->kd_user)->get();
+        $data_akun = User::where('id', Auth::user()->id)->get();
  
         // mengirim data jabatan ke view index
         // return view('pemohon.dataJabatan.index',['jabatan' => $DataJabatan]);

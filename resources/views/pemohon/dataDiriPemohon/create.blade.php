@@ -25,7 +25,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-12">
-                  <form action="/InputDataDiri/store" method="post" role="form" autocomplete="off">
+                  <form action="/inputDataDiri/store" method="post" role="form" autocomplete="off">
                     {{csrf_field()}}
                     <span style="font-weight: bold;font-size: 16px;font-size: 16px;">Identitas Pemohon</span>
                     <hr/>
@@ -303,7 +303,7 @@
               <div class="card-footer bg-whitesmoke">
                 <hr/>
                 <div style="float: left;">
-                  <a href="{{url('/InputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
+                  <a href="{{url('/inputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
                 </div>
                 <div style="float: right;">
                   <button type="submit" class="btn btn-success" style="border-radius: 0px;">Simpan Data</button>

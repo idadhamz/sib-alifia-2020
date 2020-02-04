@@ -54,14 +54,14 @@
           <li><a class="nav-link" href="{{url('/inputBerkas/index')}}">Upload Berkas</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('tracking-verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/tracking-verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Tracking Verifikasi</span></a></li>
+      <li class="{{ (request()->is('trackingVerifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/trackingVerifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Tracking Verifikasi</span></a></li>
       <li class="{{ (request()->is('cetak-idp/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('cetak-idp/index')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '3')
-      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Verifikasi Pemohon</span></a></li>
-      <li class="{{ (request()->is('uploadBerkas/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/uploadBerkas/index')}}"><i class="fas fa-user-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
+      <li class="{{ (request()->is('verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Pemohon</span></a></li>
+      <li class="{{ (request()->is('suratIzinBelajar/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/suratIzinBelajar/index')}}"><i class="fas fa-file-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       

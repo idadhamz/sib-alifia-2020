@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Input;
 
 use App\Models\data_diri_pemohon;
 use App\Models\berkas_pemohon;
+use App\Models\verifikasi_data;
+use App\Models\tracking_verifikasi;
 use App\User;
 
 use File;
@@ -101,6 +103,7 @@ class PemohonController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $DataDiriPemohon = new data_diri_pemohon;
+        $DataDiriPemohon->kd_user = Auth::user()->kd_user;
         $DataDiriPemohon->nip = request('nip');
         $DataDiriPemohon->nama = request('nama_depan') . ' ' . request('nama_belakang');
         $DataDiriPemohon->jk = request('jk');
@@ -124,7 +127,7 @@ class PemohonController extends Controller
         $DataDiriPemohon->created_at = now();
         $DataDiriPemohon->save();
 
-        return redirect('/InputDataDiri/index')->with('message', 'Data Berhasil diinput!');
+        return redirect('/inputDataDiri/index')->with('message', 'Data Berhasil diinput!');
     }   
 
     public function edit_input_data_diri($id)
@@ -207,7 +210,7 @@ class PemohonController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('/InputDataDiri/index')->with('message_edit', 'Data Berhasil diubah!');
+        return redirect('/inputDataDiri/index')->with('message_edit', 'Data Berhasil diubah!');
     }
 
     public function delete_input_data_diri($id)
@@ -216,7 +219,7 @@ class PemohonController extends Controller
         data_diri_pemohon::where('id_pemohon',$id)->delete();
             
         // alihkan halaman ke halaman jabatan
-        return redirect('/InputDataDiri/index')->with('message_delete', 'Data Berhasil dihapus!');
+        return redirect('/inputDataDiri/index')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
     public function index_input_berkas()
@@ -353,7 +356,7 @@ class PemohonController extends Controller
             ]);
         }
 
-        return redirect('/InputBerkas/index')->with('message', 'Berkas berhasil diupload!');
+        return redirect('/inputBerkas/index')->with('message', 'Berkas berhasil diupload!');
     }
 
     public function view_input_berkas($id)
@@ -362,6 +365,20 @@ class PemohonController extends Controller
         $berkas_pemohon_view = berkas_pemohon::where('id_pemohon', $id)->get();
  
         return view('pemohon.uploadBerkas.view', compact('berkas_pemohon_view'));
+ 
+    }
+
+    public function index_tracking_verifikasi()
+    {
+
+        $data_tracking = verifikasi_data::leftJoin('berkas_pemohon', 'verifikasi_data.id_berkas', '=', 'berkas_pemohon.id_berkas')
+        ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
+        ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
+        ->select('verifikasi_data.*', 'pemohon.*', 'users.name')
+        ->where('pemohon.kd_user', Auth::user()->kd_user)
+        ->get();
+ 
+        return view('pemohon.trackingVerifikasi.index', compact('data_tracking'));
  
     }
 }

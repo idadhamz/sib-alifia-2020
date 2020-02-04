@@ -153,14 +153,20 @@
 
               $("#id_berkas").val(hasil_pemohon[0].id_berkas)
 
+              url = "http://127.0.0.1:8000/";
+
               if(hasil_pemohon[0].surat_alasan_perpanjangan != null) {
                 $("#surat_alasan_perpanjangan").val(hasil_pemohon[0].surat_alasan_perpanjangan)
+                $('#frame_surat_alasan_perpanjangan').attr('src', url + hasil_pemohon[0].surat_alasan_perpanjangan)
+                $("#frame_surat_alasan_perpanjangan").css("display", "block");
               }else {
                 $("#surat_alasan_perpanjangan").val('-')
               }
 
               if(hasil_pemohon[0].surat_keterangan_sehat != null) {
                 $("#surat_keterangan_sehat").val(hasil_pemohon[0].surat_keterangan_sehat)
+                $('#frame_surat_keterangan_sehat').attr('src', url + hasil_pemohon[0].surat_keterangan_sehat)
+                $("#frame_surat_keterangan_sehat").css("display", "block");
               }else {
                 $("#surat_keterangan_sehat").val('-')
               }

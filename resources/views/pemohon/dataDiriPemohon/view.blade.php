@@ -292,7 +292,7 @@
               <div class="card-footer bg-whitesmoke">
                 <hr/>
                 <div style="float: left;">
-                  <a href="{{url('/InputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
+                  <a href="{{url('/inputDataDiri/index')}}" class="btn btn-warning" style="border-radius: 0px;">Kembali</a>
                 </div>
               </div>
             @endforeach

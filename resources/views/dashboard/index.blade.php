@@ -94,11 +94,11 @@
                       <div class="float-right text-primary">{{ Carbon\Carbon::parse($data->created_at)->diffForHumans()}} </div>
                       <div class="media-title">
                         @if( $data->id_status == 1 )
-                        <a href="{{url('/tracking-verifikasi/index')}}"><span style="font-size: 16px;font-weight: bold;color: blue;">Permohonan Disetujui</span></a>
+                        <a href="{{url('/trackingVerifikasi/index')}}"><span style="font-size: 16px;font-weight: bold;color: blue;">Permohonan Disetujui</span></a>
                         @elseif( $data->id_status == 2 )
-                        <a href="{{url('/tracking-verifikasi/index')}}"><span style="font-size: 16px;font-weight: bold; color: red;">Permohonan Ditolak</span></a>
+                        <a href="{{url('/trackingVerifikasi/index')}}"><span style="font-size: 16px;font-weight: bold; color: red;">Permohonan Ditolak</span></a>
                         @else
-                        <a href="{{url('/tracking-verifikasi/index')}}"><span style="font-size: 16px;font-weight: bold; color: purple;">Permohonan Belum Diproses</span></a>
+                        <a href="{{url('/trackingVerifikasi/index')}}"><span style="font-size: 16px;font-weight: bold; color: purple;">Permohonan Belum Diproses</span></a>
                         @endif
                       </div>
                       <span class="text-small text-muted" style="font-size: 13px;">

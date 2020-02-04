@@ -57,19 +57,21 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	    Route::get('view/{id}','AdminController@view_upload_berkas');
 	});
 
-	Route::prefix('verifikasi')->group(function () {
-	    Route::get('index','AdminController@index_verifikasi');
-	    Route::post('store','AdminController@store_verifikasi');
-	});
-
-	Route::get('/cariPemohon/{nip}','AdminController@cari_berkas');
-
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:2,3,4,5']], function(){
 	Route::prefix('setting-akun')->group(function () {
 	    Route::get('index','SettingAkunController@index_akun');
 	});
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:1,3']], function(){
+	Route::prefix('verifikasi')->group(function () {
+	    Route::get('index','AdminController@index_verifikasi');
+	    Route::post('store','AdminController@store_verifikasi');
+	});
+	
+	Route::get('/cariPemohon/{nip}','AdminController@cari_berkas');
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
@@ -89,6 +91,10 @@ Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
 	    Route::get('upload/{id}','PemohonController@input_input_berkas');
 	    Route::post('save','PemohonController@save_input_berkas');
 	    Route::get('view/{id}','PemohonController@view_input_berkas');
+	});
+
+	Route::prefix('trackingVerifikasi')->group(function () {
+	    Route::get('index','PemohonController@index_tracking_verifikasi');
 	});
 
 });

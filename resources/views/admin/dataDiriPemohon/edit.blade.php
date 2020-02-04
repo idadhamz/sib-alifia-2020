@@ -242,7 +242,7 @@
                         <div class="col-6">
                           <div class="form-group">
                             <label>Tanggal Berakhir Masa Studi</label>
-                            <input type="date" class="form-control" name="tgl_berakhir_studi" value="{{$dob->tgl_akhir}}" autocomplete="off">
+                            <input type="date" class="form-control" name="tgl_berakhir_studi" value="{{$dob->tgl_selesai}}" autocomplete="off">
                             @if($errors->has('tgl_berakhir_studi'))
                             <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
                               {{ $errors->first('tgl_berakhir_studi')}}

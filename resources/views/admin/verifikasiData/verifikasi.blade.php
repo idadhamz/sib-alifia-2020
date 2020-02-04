@@ -73,13 +73,29 @@
                     {{csrf_field()}}
                     <input type="text" class="form-control" name="id_berkas" id="id_berkas" style="display: none;">
                     <p style="font-weight: bold;">Surat Alasan Perpanjangan dari Pemohon (tertanda dari Atasan Pemohon) : <input type="text" class="form-control" name="surat_alasan_perpanjangan" id="surat_alasan_perpanjangan" readonly></p>
+                    <iframe id="frame_surat_alasan_perpanjangan" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Surat Keterangan Sehat Jasmani dari Dokter : <input type="text" class="form-control" name="surat_keterangan_sehat" id="surat_keterangan_sehat" readonly></p>
+                    <iframe id="frame_surat_keterangan_sehat" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Fotokopi SK CPNS/PNS : <input type="text" class="form-control" name="sk_cpns_pns" id="sk_cpns_pns" readonly></p>
+                    <iframe id="frame_sk_cpns_pns" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Fotokopi SK Jabatan Terakhir (Saat Studi) : <input type="text" class="form-control" name="sk_jabatan_terakhir" id="sk_jabatan_terakhir" readonly></p>
+                    <iframe id="frame_sk_jabatan_terakhir" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Fotokopi Surat Keterangan / Rekomendasi / Pengumuman Resmi Lulus Diterima dari Tempat Studi : <input type="text" class="form-control" name="sk_lulus" id="sk_lulus" readonly></p>
+                    <iframe id="frame_sk_lulus" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Fotokopi Jaminan Pembiayaan Tugas Belajar : <input type="text" class="form-control" name="jam_pem_belajar" id="jam_pem_belajar" readonly></p>
+                    <iframe id="frame_jam_pem_belajar" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Surat Rekomendasi Perpanjangan Studi dari Tempat Studi : <input type="text" class="form-control" name="rek_per_studi" id="rek_per_studi" readonly></p>
+                    <iframe id="frame_rek_per_studi" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Fotokopi Surat Persetujuan Perpanjangan Penugasan Studi dari Sekretariat Negara (SETNEG) jika studi ke LUAR NEGERI : <input type="text" class="form-control" name="surat_set_per_pen_studi" id="surat_set_per_pen_studi" readonly></p>
+                    <iframe id="frame_surat_set_per_pen_studi" frameborder="0" style="width:80%;min-height:300px;display: none;"></iframe>
+                    <hr/>
                     <p style="font-weight: bold;">Verifikasi Pemohon : 
                       <div class="id_status">
                         <select class="form-control" name="id_status">
@@ -88,6 +104,7 @@
                         </select>
                       </div>
                     </p>
+                    <hr/>
                     <p style="font-weight: bold;">
                       Keterangan :
                       <textarea name="keterangan" class="form-control" id="keterangan" rows="3" autocomplete="off"></textarea>
