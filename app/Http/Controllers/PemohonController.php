@@ -12,6 +12,7 @@ use App\Models\data_diri_pemohon;
 use App\Models\berkas_pemohon;
 use App\Models\verifikasi_data;
 use App\Models\tracking_verifikasi;
+use App\Models\validasi_verifikasi;
 use App\User;
 
 use File;
@@ -379,6 +380,21 @@ class PemohonController extends Controller
         ->get();
  
         return view('pemohon.trackingVerifikasi.index', compact('data_tracking'));
+ 
+    }
+
+    public function index_cetak_idp()
+    {
+
+        $data_cetak_idp = validasi_verifikasi::leftJoin('verifikasi_data', 'validasi_verifikasi.id_verifikasi', '=', 'verifikasi_data.id')
+        ->leftJoin('berkas_pemohon', 'verifikasi_data.id_berkas', '=', 'berkas_pemohon.id_berkas')
+        ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
+        ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
+        ->select('validasi_verifikasi.izin_dinas_perpanjangan', 'pemohon.*', 'users.name')
+        ->where('pemohon.kd_user', Auth::user()->kd_user)
+        ->get();
+ 
+        return view('pemohon.cetak_idp.index', compact('data_cetak_idp'));
  
     }
 }

@@ -68,9 +68,10 @@
                                   <span style="color: #78828a;font-style: italic;font-weight: bold">Binbangkum</span>
                                   @endif
                                 </p>
-                                <a href="{{url('/dataUser/create')}}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-edit" style="margin-right: 5px;"></i>Edit Akun</a>
+                                <a href="/setting-akun/edit/{{ $akun->id }}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-edit" style="margin-right: 5px;"></i>Edit Akun</a>
                                 <hr style="margin: 2rem 0px" />
                                 <div class="row" style="text-align: center;">
+                                  @if($akun->kd_user != null)
                                   <div class="col-4">
                                       <span style="font-weight: bold;font-size: 16px;">Kode User</span>
                                       <p style="text-decoration: underline;">{{ $akun->kd_user }}</p>
@@ -83,6 +84,16 @@
                                       <span style="font-weight: bold;font-size: 16px;">Email</span>
                                       <p style="text-decoration: underline;">{{ $akun->email }}</p>
                                   </div>
+                                  @else
+                                  <div class="col-6">
+                                      <span style="font-weight: bold;font-size: 16px;">Nama</span>
+                                      <p style="text-decoration: underline;">{{ $akun->name }}</p>
+                                  </div>
+                                  <div class="col-6">
+                                      <span style="font-weight: bold;font-size: 16px;">Email</span>
+                                      <p style="text-decoration: underline;">{{ $akun->email }}</p>
+                                  </div>
+                                  @endif
                                 </div>
                               @endforeach
                             </div>

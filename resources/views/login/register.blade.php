@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/bpk-logo.png') }}">
     <!-- <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}"> -->
 
-    <title>Login | Aplikasi Perpanjangan Surat Izin Belajar</title>
+    <title>Register | Aplikasi Perpanjangan Surat Izin Belajar</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -34,6 +34,17 @@
 
 <body>
 
+    @if(session()->has('message'))
+    <div class="alert alert-success alert-dismissible show fade">
+      <div class="alert-body">
+        <button class="close" data-dismiss="alert">
+          <span>&times;</span>
+      </button>
+      {{ session()->get('message') }}
+      </div>
+    </div>
+    @endif
+    
     <div id="wrapper">
         <div class="vertical-align-wrap">
             <div class="vertical-align-middle">
@@ -41,40 +52,37 @@
                     <div class="left">
                         <div class="content">
                             <div class="header">
-                                <div class="logo text-center"><img src="{{asset('assets/img/bpk-logo.jpg')}}" alt="BPK RI Logo" style="width: 125px;"></div>
+                                <div class="logo text-center"><img src="{{asset('assets/img/bpk-logo.jpg')}}" alt="BPK RI Logo" style="width: 100px;"></div>
                             </div>
-                            <form class="form-auth-small" action="{{ route('login') }}" method="POST">
+                            <form action="/register" method="post" role="form">
                                 {{csrf_field()}}
                                 <div class="form-group">
-                                    <label for="signin-email" class="control-label sr-only">Email</label>
-                                    <input name="email" type="email" class="form-control" id="signin-email" placeholder="Email" value="{{ old('email') }}" autocomplete="off" required>
+                                    <label for="email" class="control-label sr-only">Email</label>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" autocomplete="off" required>
                                     <div class="invalid-feedback">
-                                        Username tidak boleh kosong
+                                        Email tidak boleh kosong
                                     </div>
-                                    @error('username')
-                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="signin-password" class="control-label sr-only">Password</label>
-                                    <input name="password" type="password" class="form-control" id="signin-password" placeholder="Password" value="{{ old('password') }}" required>
+                                    <label for="password" class="control-label sr-only">Password</label>
+                                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
                                     <div class="invalid-feedback">
                                         Password tidak boleh kosong
                                     </div>
-                                    @error('password')
-                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                        {{ $message }}
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label sr-only">Nama</label>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Nama" required>
+                                    <div class="invalid-feedback">
+                                        Nama tidak boleh kosong
                                     </div>
-                                    @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col-6" style="padding-right: 5px;">
-                                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 5px;">Masuk</button>
+                                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 5px;">Daftar</button>
                                     </div>
                                     <div class="col-6" style="padding-left: 5px;">
-                                        <a href="/daftarPemohon" class="btn btn-outline-primary btn-block" style="font-size: 15px;margin-top: 5px;">Daftar Pemohon</a>
+                                        <a href="/login" class="btn btn-outline-primary btn-block" style="font-size: 15px;margin-top: 5px;">Batal</a>
                                     </div>
                                 </div>
                             </form>
@@ -112,7 +120,7 @@
     <script src="{{asset('assets/js/custom.js')}}"></script>
 
     <script>
-        $('#signin-email').focus();
+        $('#email').focus();
     </script>
 </body>
 

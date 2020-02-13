@@ -69,7 +69,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12 col-md-10">
-                  <form action="/verifikasi/store" method="post" role="form" autocomplete="off" class="row-verifikasi">
+                  <form action="" method="post" role="form" autocomplete="off" class="row-verifikasi" id="row-verifikasi">
                     {{csrf_field()}}
                     <input type="text" class="form-control" name="id_berkas" id="id_berkas" style="display: none;">
                     <p style="font-weight: bold;">Surat Alasan Perpanjangan dari Pemohon (tertanda dari Atasan Pemohon) : <input type="text" class="form-control" name="surat_alasan_perpanjangan" id="surat_alasan_perpanjangan" readonly></p>
@@ -116,7 +116,7 @@
                     </p>
                     <hr/>
                     <div style="float: left;">
-                      <button type="submit" class="btn btn-success" style="border-radius: 0px;">Simpan Data Verifikasi</button>
+                      <button type="submit" class="btn btn-success btn-verifikasi" style="border-radius: 0px;">Simpan Data Verifikasi</button>
                     </div>
                   </form>
                 </div>

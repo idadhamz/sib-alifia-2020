@@ -12,6 +12,7 @@ use App\Models\data_diri_pemohon;
 use App\Models\berkas_pemohon;
 use App\Models\verifikasi_data;
 use App\Models\tracking_verifikasi;
+use App\Models\validasi_verifikasi;
 use App\User;
 
 use File;
@@ -20,6 +21,22 @@ use Auth;
 class AdminController extends Controller
 {
     
+    public function register_akun(Request $request)
+    {
+
+        $DataRegister = new User;
+        $DataRegister->id_role = 2;
+        $DataRegister->kd_user = Str::random(10);
+        $DataRegister->email = request('email');
+        $DataRegister->password = request('password');
+        $DataRegister->name = request('name');
+        $DataRegister->remember_token = Str::random(60);
+        $DataRegister->created_at = now();
+        $DataRegister->save();
+
+        return redirect('/daftarPemohon')->with('message', 'Akun berhasil dibuat!');
+    }
+
     // Data User
     public function index_data_user()
     {
@@ -310,12 +327,19 @@ class AdminController extends Controller
         return redirect('/dataDiriPemohon/index')->with('message_edit', 'Data Berhasil diubah!');
     }
 
-    public function delete_data_diri($id)
-    {
-        // menghapus data jabatan berdasarkan id yang dipilih
-        data_diri_pemohon::where('id_pemohon',$id)->delete();
+    // public function delete_data_diri($id)
+    // {
+    //     // menghapus data jabatan berdasarkan id yang dipilih
+    //     data_diri_pemohon::where('id_pemohon',$id)->delete();
             
-        // alihkan halaman ke halaman jabatan
+    //     // alihkan halaman ke halaman jabatan
+    //     return redirect('/dataDiriPemohon/index')->with('message_delete', 'Data Berhasil dihapus!');
+    // }
+
+    public function delete_data_diri(Request $request)
+    {
+        data_diri_pemohon::where('id_pemohon', $request->id)->delete();
+        berkas_pemohon::where('id_pemohon', $request->id)->delete();
         return redirect('/dataDiriPemohon/index')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
@@ -493,24 +517,26 @@ class AdminController extends Controller
 
         $customMessages = [
             'keterangan.required' => 'Keterangan wajib diisi!',
-         ];
+        ];
 
         $this->validate($request, $rules, $customMessages);
 
-        $cekData = verifikasi_data::where('id_berkas', request('id_berkas'))->first();
+        $cekData = verifikasi_data::where('id_berkas', $request->id_berkas)->first();
+        $verifikasi_data = verifikasi_data::orderBy('created_at', 'DESC')->first();
+        // dd($DataVerifikasi->no_surat + 1);
 
         if($cekData['id_berkas'] != null){
             verifikasi_data::where('id_berkas', $request->id_berkas)->update([
-                'id_berkas' => request('id_berkas'),
+                'id_berkas' => $request->id_berkas,
                 'id_user' => Auth::user()->id,
-                'id_status' => request('id_status'),
-                'keterangan' => request('keterangan'),
+                'id_status' => $request->id_status,
+                'keterangan' => $request->keterangan,
                 'updated_at' => now()
             ]);
 
             $TrackingVerifikasi = new tracking_verifikasi;
-            $TrackingVerifikasi->id_berkas = request('id_berkas');
-            $TrackingVerifikasi->id_status = request('id_status');
+            $TrackingVerifikasi->id_berkas = $request->id_berkas;
+            $TrackingVerifikasi->id_status = $request->id_status;
             $TrackingVerifikasi->created_at = now();
             $TrackingVerifikasi->save();
 
@@ -518,21 +544,36 @@ class AdminController extends Controller
 
         }else{
             $DataVerifikasi = new verifikasi_data;
-            $DataVerifikasi->id_berkas = request('id_berkas');
+            $DataVerifikasi->id_berkas = $request->id_berkas;
             $DataVerifikasi->id_user = Auth::user()->id;
-            $DataVerifikasi->id_status = request('id_status');
-            $DataVerifikasi->keterangan = request('keterangan');
+            $DataVerifikasi->id_status = $request->id_status;
+            $DataVerifikasi->keterangan = $request->keterangan;
+            $DataVerifikasi->no_surat = $verifikasi_data->no_surat + 1;
             $DataVerifikasi->created_at = now();
             $DataVerifikasi->save();
 
             $TrackingVerifikasi = new tracking_verifikasi;
-            $TrackingVerifikasi->id_berkas = request('id_berkas');
-            $TrackingVerifikasi->id_status = request('id_status');
+            $TrackingVerifikasi->id_berkas = $request->id_berkas;
+            $TrackingVerifikasi->id_status = $request->id_status;
             $TrackingVerifikasi->created_at = now();
             $TrackingVerifikasi->save();
 
             return redirect('/verifikasi/index')->with('message', 'Verifikasi berhasil!');
         }
+    }
+
+    public function index_cetak_idp()
+    {
+
+        $data_cetak_idp = validasi_verifikasi::leftJoin('verifikasi_data', 'validasi_verifikasi.id_verifikasi', '=', 'verifikasi_data.id')
+        ->leftJoin('berkas_pemohon', 'verifikasi_data.id_berkas', '=', 'berkas_pemohon.id_berkas')
+        ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
+        ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
+        ->select('validasi_verifikasi.izin_dinas_perpanjangan', 'pemohon.*', 'users.name')
+        ->get();
+ 
+        return view('admin.cetak_idp.index', compact('data_cetak_idp'));
+ 
     }
 
 }

@@ -62,6 +62,21 @@ class Data extends Migration
             $table->integer('id_user');
             $table->integer('id_status');
             $table->text('keterangan')->nullable();
+            $table->integer('no_surat')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('validasi_verifikasi', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->date('tgl_surat');
+            $table->date('tgl_validasi')->nullable();
+            $table->integer('id_verifikasi');
+            $table->integer('id_user');
+            $table->text('surat_izin_belajar')->nullable();
+            $table->text('izin_dinas_perpanjangan')->nullable();
+            $table->text('keterangan')->nullable();
+            $table->integer('status');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -90,6 +105,7 @@ class Data extends Migration
         Schema::dropIfExists('pemohon');
         Schema::dropIfExists('berkas_pemohon');
         Schema::dropIfExists('verifikasi_data');
+        Schema::dropIfExists('validasi_verifikasi');
         Schema::dropIfExists('status');
     }
 }

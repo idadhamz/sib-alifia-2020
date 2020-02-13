@@ -9,40 +9,9 @@
                     <!-- <h1>Data Akun</h1> -->
                     <div class="section-header-breadcrumb">
                       <div class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></div>
-                      <div class="breadcrumb-item"><a href="{{url('/dataDiriPemohon/index')}}">Data Diri Pemohon</a></div>
+                      <div class="breadcrumb-item"><a href="{{url('/dataDiriPemohonSpk/index')}}">Data Diri Pemohon</a></div>
                   </div>
               </div>
-
-              @if(session()->has('message'))
-                <div class="alert alert-success alert-dismissible show fade">
-                  <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                          <span>&times;</span>
-                    </button>
-                    {{ session()->get('message') }}
-                  </div>
-                </div>
-              @endif
-              @if(session()->has('message_edit'))
-                <div class="alert alert-warning alert-dismissible show fade">
-                  <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                          <span>&times;</span>
-                    </button>
-                    {{ session()->get('message_edit') }}
-                  </div>
-                </div>
-              @endif
-              @if(session()->has('message_delete'))
-                <div class="alert alert-danger alert-dismissible show fade">
-                  <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                          <span>&times;</span>
-                    </button>
-                    {{ session()->get('message_delete') }}
-                  </div>
-                </div>
-              @endif
 
               <div class="section-body">
                 <div class="row">
@@ -52,10 +21,6 @@
                         <h4>Data Diri Pemohon</h4>
                     </div>
                     <div class="card-body">
-                        <div style="margin:0px 0px 10px 0px;"> 
-                            <a href="{{url('/dataDiriPemohon/create')}}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;">Tambah Data</a>
-                        </div>
-                        <hr/>
                         <div class="table-responsive">
                           <table class="table table-striped table-bordered table-md" id="data-pemohon">
                             <thead style="background-color: #95b9c7;">
@@ -99,10 +64,7 @@
                                     <td style="color: #000000;">{{$row->beasiswa}}</td>
                                     <td style="color: #000000;">{{$row->jml_wkt_perp}}</td> -->
                                     <td>
-                                        <a href="/dataDiriPemohon/lihat/{{ $row->id_pemohon }}" class="btn btn-outline-success" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
-                                        <a href="/dataDiriPemohon/edit/{{ $row->id_pemohon }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
-                                        <!-- <a href="/dataDiriPemohon/delete/{{ $row->id_pemohon }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a> -->
-                                        <a href="" class="btn btn-outline-danger btn-hapus-data-diri" data-id="{{$row->id_pemohon}}" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="/dataDiriPemohonSpk/lihat/{{ $row->id_pemohon }}" class="btn btn-outline-success" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -29,14 +29,14 @@
         </ul>
       </li>
       <li class="{{ (request()->is('verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Data</span></a></li>
-      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
+      <li class="nav-item dropdown {{ (request()->is('suratIzinBelajar/index')) || (request()->is('validasi/index')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i> <span>Surat Izin Belajar</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/dataUser')}}">Buat Surat Izin</a></li>
-          <li><a class="nav-link" href="{{url('/dataUser')}}">Validasi Surat Izin</a></li>
+          <li><a class="nav-link" href="{{url('suratIzinBelajar/index')}}">Buat Surat Izin</a></li>
+          <li><a class="nav-link" href="{{url('validasi/index')}}">Validasi Surat Izin</a></li>
         </ul>
       </li>
-      <li class="{{ (request()->is('laporanKeuangan')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/laporanKeuangan')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
+      <li class="{{ (request()->is('cetakIdpAdmin/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/cetakIdpAdmin/index')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
       <li class="nav-item dropdown {{ (request()->is('dataUser/index')) || (request()->is('/dataUser/create')) ? 'active' : '' }}">
         <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>Manajemen User</span></a>
         <ul class="dropdown-menu">
@@ -55,29 +55,24 @@
         </ul>
       </li>
       <li class="{{ (request()->is('trackingVerifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/trackingVerifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Tracking Verifikasi</span></a></li>
-      <li class="{{ (request()->is('cetak-idp/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('cetak-idp/index')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
+      <li class="{{ (request()->is('cetakIdp/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('cetakIdp/index')}}"><i class="fas fa-print"></i> <span>Cetak IDP</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '3')
+      <li class="{{ (request()->is('dataDiriPemohonSpk/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohonSpk/index')}}"><i class="fas fa-user"></i> <span>Data Pemohon</span></a></li>
       <li class="{{ (request()->is('verifikasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/verifikasi/index')}}"><i class="fas fa-user-check"></i> <span>Verifikasi Pemohon</span></a></li>
       <li class="{{ (request()->is('suratIzinBelajar/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/suratIzinBelajar/index')}}"><i class="fas fa-file-alt"></i> <span>Buat Surat Izin Belajar</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       
       @if(auth()->user()->id_role == '4')
-      <li class="{{ (request()->is('dataDiriPemohon/create')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/dataDiriPemohon/create')}}"><i class="fas fa-user-alt"></i> <span>Validasi Surat Izin Belajar</span></a></li>
+      <li class="{{ (request()->is('validasi/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/validasi/index')}}"><i class="fas fa-file-alt"></i> <span>Validasi Surat Izin</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
 
       @if(auth()->user()->id_role == '5')
-      <li class="nav-item dropdown {{ (request()->is('dataUser')) || (request()->is('tambahDataUser')) ? 'active' : '' }}">
-        <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user-alt"></i> <span>IDP</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{url('/dataUser')}}">Buat IDP</a></li>
-          <li><a class="nav-link" href="{{url('/dataUser')}}">Cetak IDP</a></li>
-        </ul>
-      </li>
+      <li class="{{ (request()->is('idp/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/idp/index')}}"><i class="fas fa-file-alt"></i> <span>Kelola IDP</span></a></li>
       <li class="{{ (request()->is('setting-akun/index')) ? 'active' : '' }}"><a class="nav-link" href="{{url('/setting-akun/index')}}"><i class="fas fa-user-cog"></i> <span>Setting Akun</span></a></li>
       @endif
       

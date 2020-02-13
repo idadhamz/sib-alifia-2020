@@ -39,14 +39,7 @@
                                             </div>
                                             <div class="form-group">
                                               <label>Email</label>
-                                              <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                  <div class="input-group-text">
-                                                    <i class="fas fa-user-alt"></i>
-                                                  </div>
-                                                </div>
-                                                <input type="email" class="form-control" name="email" autocomplete="off">
-                                              </div>
+                                              <input type="email" class="form-control" name="email" autocomplete="off">
                                               @if($errors->has('email'))
                                                 <div class="text-danger" style="padding: 5px;">
                                                     {{ $errors->first('email')}}

@@ -137,6 +137,130 @@
 
           $('#nip').focus();
 
+          var weekday = new Array(7);
+          weekday[0] = "Minggu";
+          weekday[1] = "Senin";
+          weekday[2] = "Selasa";
+          weekday[3] = "Rabu";
+          weekday[4] = "Kamis";
+          weekday[5] = "Jumat";
+          weekday[6] = "Sabtu";
+
+          var bulan = [
+                'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember',
+            ];
+
+            var d = new Date();
+
+            var tanggal = d.getDate();
+            var _bulan = d.getMonth();
+            var _tahun = d.getYear();
+            var hari = weekday[d.getDay()];
+
+            var bulan = bulan[_bulan];
+            var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+            var today = hari + ', ' + tanggal + ' ' + bulan + ' ' + tahun;
+
+            // Set value tanggal
+            // document.getElementById("tanggal").value = today;
+          $("#tanggal").val(today);
+
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+
+          $(document).on('click', '.btn-hapus-data-diri-pemohon', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin menghapus Data Pemohon ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/dataDiriPemohon/delete')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/dataDiriPemohon/index';
+              });
+            });
+
+          $(document).on('click', '.btn-hapus-data-diri', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin menghapus Data Pemohon ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/dataDiriPemohon/delete')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/dataDiriPemohon/index';
+              });
+            });
+
+          $(document).on('click', '.btn-verifikasi', function (e) {
+              e.preventDefault();
+
+              var data_verifikasi = $("#row-verifikasi").serializeArray();
+              // console.log(data_verifikasi);
+
+              swal({
+                title: "Anda yakin ingin dengan verifikasi ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/verifikasi/store')}}",
+                  data: {
+                    id_berkas: data_verifikasi[1].value,
+                    id_status: data_verifikasi[10].value, 
+                    keterangan: data_verifikasi[11].value,
+                  },
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/verifikasi/index';
+              });
+            });
+
           $('.btn-cari-pemohon').on('click',function(e)
           {
 
