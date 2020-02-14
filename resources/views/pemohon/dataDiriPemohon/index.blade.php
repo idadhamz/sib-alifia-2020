@@ -101,7 +101,7 @@
                                     <td>
                                         <a href="/inputDataDiri/lihat/{{ $row->id_pemohon }}" class="btn btn-outline-success" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-eye"></i></a>
                                         <a href="/inputDataDiri/edit/{{ $row->id_pemohon }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/inputDataDiri/delete/{{ $row->id_pemohon }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="" class="btn btn-outline-danger btn-hapus-data-diri" data-id="{{ $row->id_pemohon }}"style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

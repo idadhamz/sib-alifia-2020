@@ -26,6 +26,7 @@ class BinbangkumController extends Controller
         ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
         ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
         ->select('validasi_verifikasi.*', 'pemohon.*', 'users.name')
+        ->where('validasi_verifikasi.status', 1)
         ->get();
  
         return view('binbangkum.idp.index', compact('data_idp'));

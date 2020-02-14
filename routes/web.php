@@ -43,7 +43,8 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	    Route::post('store','AdminController@store_data_user'); 
 	    Route::get('edit/{id}','AdminController@edit_data_user');
 	    Route::post('update/{id}','AdminController@update_data_user');
-	    Route::get('delete/{id}','AdminController@delete_data_user');
+	    // Route::get('delete/{id}','AdminController@delete_data_user');
+	    Route::post('delete','AdminController@delete_data_user');
 	});	
 
 	Route::prefix('dataDiriPemohon')->group(function () {
@@ -107,7 +108,8 @@ Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
 	    Route::post('store','PemohonController@store_input_data_diri'); 
 	    Route::get('edit/{id}','PemohonController@edit_input_data_diri');
 	    Route::post('update/{id}','PemohonController@update_input_data_diri');
-	    Route::get('delete/{id}','PemohonController@delete_input_data_diri');
+	    // Route::get('delete/{id}','PemohonController@delete_input_data_diri');
+	    Route::post('delete','PemohonController@delete_input_data_diri');
 	    Route::get('lihat/{id}','PemohonController@view_input_data_diri');
 	});
 
@@ -132,8 +134,10 @@ Route::group(['middleware' => ['auth', 'checkRole:1,4']], function(){
 
 	Route::prefix('validasi')->group(function () {
 	    Route::get('index','KepalaBagianController@index_validasi_surat_izin_belajar');
-	    Route::get('validasi/{id}','KepalaBagianController@validasi_surat_izin_belajar');
-	    Route::get('cancel/{id}','KepalaBagianController@batal_validasi_surat_izin_belajar');
+	    // Route::get('validasi/{id}','KepalaBagianController@validasi_surat_izin_belajar');
+	    Route::post('validasi','KepalaBagianController@validasi_surat_izin_belajar');
+	    // Route::get('cancel/{id}','KepalaBagianController@batal_validasi_surat_izin_belajar');
+	    Route::post('cancel','KepalaBagianController@batal_validasi_surat_izin_belajar');
 	    Route::get('delete/{id}','KepalaBagianController@delete_surat_izin_belajar');
 	    Route::get('view/{id}','KepalaBagianController@view_surat_izin_belajar');
 	});

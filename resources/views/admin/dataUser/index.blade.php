@@ -87,7 +87,7 @@
                                     </td>
                                     <td>
                                         <a href="/dataUser/edit/{{ $dok->id }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dataUser/delete/{{ $dok->id }}" class="btn btn-outline-danger" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="" class="btn btn-outline-danger btn-hapus-user" data-id="{{ $dok->id }}" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

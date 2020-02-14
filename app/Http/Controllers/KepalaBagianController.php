@@ -134,10 +134,10 @@ class KepalaBagianController extends Controller
  
     }
 
-    public function validasi_surat_izin_belajar($id)
+    public function validasi_surat_izin_belajar(Request $request)
     {
 
-        validasi_verifikasi::where('id', $id)->update([
+        validasi_verifikasi::where('id', $request->id)->update([
             'tgl_validasi' => now(),
             'status' => 1,
         ]);
@@ -146,12 +146,13 @@ class KepalaBagianController extends Controller
  
     }
 
-    public function batal_validasi_surat_izin_belajar($id)
+    public function batal_validasi_surat_izin_belajar(Request $request)
     {
 
-        validasi_verifikasi::where('id', $id)->update([
+        validasi_verifikasi::where('id', $request->id)->update([
             'tgl_validasi' => null,
             'status' => 0,
+            'izin_dinas_perpanjangan' => null
         ]);
  
         return redirect('/validasi/index')->with('message_delete', 'Validasi Dibatalkan!');

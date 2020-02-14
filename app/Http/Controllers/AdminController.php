@@ -124,10 +124,10 @@ class AdminController extends Controller
         return redirect('/dataUser/index')->with('message_edit', 'Data Berhasil diubah!');
     }
 
-    public function delete_data_user($id)
+    public function delete_data_user(Request $request)
     {
         // menghapus data jabatan berdasarkan id yang dipilih
-        User::where('id',$id)->delete();
+        User::where('id',$request->id)->delete();
             
         // alihkan halaman ke halaman jabatan
         return redirect('/dataUser/index')->with('message_delete', 'Data Berhasil dihapus!');

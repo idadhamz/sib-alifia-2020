@@ -86,6 +86,8 @@
                                       <span style="font-weight: bold; color: red;"><i class="fas fa-times-circle" style="padding: 0px 5px 10px 0px; color: red;"></i>Belum divalidasi</span>
                                       <br>
                                       <span><span style="text-decoration: underline;">Keterangan</span> : <br>{{$row->keterangan}}</span>
+                                      <br>
+                                      <a href="../{{$row->surat_izin_belajar}}" style="font-weight: bold;font-size: 12px;border-radius: 0px;border-width: 1.5px;">Lihat Surat Izin Belajar</a>
                                       @else
                                       <span style="font-weight: bold; color: blue;"><i class="fas fa-check-circle" style="padding: 0px 5px 10px 0px; color: blue;"></i>Sudah divalidasi</span>
                                       <br>
@@ -103,9 +105,9 @@
                                     </td> -->
                                     <td> 
                                         @if($row->status == 0)
-                                        <a href="/validasi/validasi/{{ $row->id }}" class="btn btn-outline-warning" style="font-weight: bold;font-size: 12px;border-radius: 0px;border-width: 1.5px;">Validasi</a>
+                                        <a href="" class="btn btn-outline-info btn-validasi" data-id="{{ $row->id }}" style="font-weight: bold;font-size: 12px;border-radius: 0px;border-width: 1.5px;">Validasi</a>
                                         @else
-                                        <a href="/validasi/cancel/{{ $row->id }}" class="btn btn-outline-danger" style="font-weight: bold;font-size: 12px;border-radius: 0px;border-width: 1.5px;">Batal Validasi</a>
+                                        <a href="" class="btn btn-outline-danger btn-validasi-batal" data-id="{{ $row->id }}" style="font-weight: bold;font-size: 12px;border-radius: 0px;border-width: 1.5px;">Batal Validasi</a>
                                         @endif
                                     </td>
                                 </tr>

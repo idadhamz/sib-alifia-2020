@@ -210,6 +210,78 @@
               e.preventDefault();
               var id = $(this).data('id');
               swal({
+                title: "Anda yakin ingin menghapus Data Diri ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/inputDataDiri/delete')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                // window.location.href='http://127.0.0.1:8000/inputDataDiri/index';
+              });
+            });
+
+          $(document).on('click', '.btn-validasi', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin memvalidasi permohonan ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/validasi/validasi')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/validasi/index';
+              });
+            });
+
+          $(document).on('click', '.btn-validasi-batal', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin membatalkan validasi permohonan ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/validasi/cancel')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/validasi/index';
+              });
+            });
+
+          $(document).on('click', '.btn-hapus-data-diri', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
                 title: "Anda yakin ingin menghapus Data Pemohon ini?",
                 type: "warning",
                 confirmButtonClass: "btn-danger",
@@ -227,6 +299,30 @@
                 });
 
                 window.location.href='http://127.0.0.1:8000/dataDiriPemohon/index';
+              });
+            });
+
+          $(document).on('click', '.btn-hapus-user', function (e) {
+              e.preventDefault();
+              var id = $(this).data('id');
+              swal({
+                title: "Anda yakin ingin menghapus User ini?",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Ya",
+                showCancelButton: true,
+              },
+              function() {
+                $.ajax({
+                  type: "POST",
+                  url: "{{url('/dataUser/delete')}}",
+                  data: {id:id},
+                  success: function (data) {
+                    console.log(data);
+                  }         
+                });
+
+                window.location.href='http://127.0.0.1:8000/dataUser/index';
               });
             });
 

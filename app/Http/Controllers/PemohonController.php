@@ -214,10 +214,10 @@ class PemohonController extends Controller
         return redirect('/inputDataDiri/index')->with('message_edit', 'Data Berhasil diubah!');
     }
 
-    public function delete_input_data_diri($id)
+    public function delete_input_data_diri(Request $request)
     {
         // menghapus data jabatan berdasarkan id yang dipilih
-        data_diri_pemohon::where('id_pemohon',$id)->delete();
+        data_diri_pemohon::where('id_pemohon',$request->id)->delete();
             
         // alihkan halaman ke halaman jabatan
         return redirect('/inputDataDiri/index')->with('message_delete', 'Data Berhasil dihapus!');
