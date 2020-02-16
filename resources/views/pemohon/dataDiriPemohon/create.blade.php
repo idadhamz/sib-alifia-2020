@@ -287,7 +287,7 @@
                         <div class="col-4">
                           <div class="form-group">
                             <label>Durasi Perpanjangan (Dalam Hari)</label>
-                            <input type="text" class="form-control" name="jml_wkt_perp" autocomplete="off">
+                            <input type="number" class="form-control" name="jml_wkt_perp" autocomplete="off">
                             @if($errors->has('jml_wkt_perp'))
                             <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
                               {{ $errors->first('jml_wkt_perp')}}

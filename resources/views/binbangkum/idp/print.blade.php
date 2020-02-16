@@ -52,7 +52,7 @@
       </tbody>
     </table>
     <p style="margin: 2rem 0px;font-size: 16px;text-align: justify;"> 
-      Untuk melanjutkan pendidikan melalui program beasiswa dari <b>PT Mandiri Sentosa Transport</b> program {{$row->beasiswa}} <b>tahun {{ date('Y') }} mulai {{ Carbon\Carbon::parse($row->tgl_mulai)->formatLocalized('%d/%m/%Y') }} sampai {{ Carbon\Carbon::parse($row->tgl_selesai)->formatLocalized('%d/%m/%Y') }}</b> dengan catatan segala biaya dan fasiitas yang diperlukan selama pendidikan ditanggung oleh pemberi beasiswa/pihak sponsor.
+      Untuk melanjutkan pendidikan melalui program beasiswa dari <b>PT Mandiri Sentosa Transport</b> program {{$row->beasiswa}} <b>tahun {{ date('Y') }} mulai {{ Carbon\Carbon::parse($row->tgl_selesai)->formatLocalized('%d/%m/%Y') }} sampai {{ Carbon\Carbon::parse($row->tgl_perp)->formatLocalized('%d/%m/%Y') }}</b> dengan catatan segala biaya dan fasiitas yang diperlukan selama pendidikan ditanggung oleh pemberi beasiswa/pihak sponsor.
     </p>
     <p style="margin: 2rem 0px;font-size: 16px;text-align: justify;"> 
       Demikian surat izin belajar ini dibuat agar dapat dipergunankan sebagaimana mestinya.

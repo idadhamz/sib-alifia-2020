@@ -86,8 +86,10 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if($dok->id_role != 1 || $dok->id == $id)
                                         <a href="/dataUser/edit/{{ $dok->id }}" class="btn btn-outline-warning" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="" class="btn btn-outline-danger btn-hapus-user" data-id="{{ $dok->id }}" style="border-radius: 0px;border-width: 1.5px;"><i class="fas fa-trash-alt"></i></a>
+                                        @endif
+                                        <a href="" class="btn btn-outline-danger btn-hapus-user" data-id="{{ $dok->id }}" style="border-radius: 0px;border-width: 1.5px;">Non Aktif</a>
                                     </td>
                                 </tr>
                                 @endforeach

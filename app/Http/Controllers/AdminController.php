@@ -43,10 +43,11 @@ class AdminController extends Controller
 
         // get data
         $data_user = User::orderBy("id_role", "asc")->get();
+        $id = Auth::user()->id;
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
-        return view('admin.dataUser.index', compact('data_user'));
+        return view('admin.dataUser.index', compact('data_user', 'id'));
  
     }
 
@@ -237,7 +238,7 @@ class AdminController extends Controller
         $DataDiriPemohon->beasiswa = request('beasiswa');
         $DataDiriPemohon->alasan_perp = request('alasan_perp');
         $DataDiriPemohon->jml_wkt_perp = request('jml_wkt_perp');
-        $DataDiriPemohon->tgl_perp = null;
+        $DataDiriPemohon->tgl_perp = (new Carbon($request->tgl_selesai))->addDays((int) request('jml_wkt_perp'));
         $DataDiriPemohon->created_at = now();
         $DataDiriPemohon->save();
 
@@ -320,7 +321,7 @@ class AdminController extends Controller
             'beasiswa' => $request->beasiswa,
             'alasan_perp' => $request->alasan_perp,
             'jml_wkt_perp' => $request->jml_wkt_perp,
-            'tgl_perp' => null,
+            'tgl_perp' => (new Carbon($request->tgl_berakhir_studi))->addDays((int) $request->jml_wkt_perp),
             'updated_at' => now()
         ]);
 

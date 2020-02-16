@@ -33,6 +33,9 @@ class data_diri_pemohon extends Model
     	'tgl_akhir',
     	'beasiswa',
     	'alasan_perp',
-    	'jml_wkt_perp'
+    	'jml_wkt_perp',
+        'tgl_perp',
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
 }
