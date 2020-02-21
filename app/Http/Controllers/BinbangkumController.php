@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use App\Models\verifikasi_data;
 use App\Models\validasi_verifikasi;
 use App\Models\tracking_verifikasi;
+use App\Models\petugas;
 
 use Auth;
 use PDF;
@@ -37,18 +38,20 @@ class BinbangkumController extends Controller
     {
         
         $name = Auth::user()->name;
+        $petugas = petugas::select('nip', 'jabatan')->where('id_user', Auth::user()->id)->get();
 
         $data_idp_print = validasi_verifikasi::leftJoin('verifikasi_data', 'validasi_verifikasi.id_verifikasi', '=', 'verifikasi_data.id')
         ->leftJoin('berkas_pemohon', 'verifikasi_data.id_berkas', '=', 'berkas_pemohon.id_berkas')
         ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
         ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
+        ->leftJoin('petugas', 'users.id', '=', 'petugas.id_user')
         ->select('validasi_verifikasi.*', 'pemohon.*', 'users.name', 'verifikasi_data.id_berkas')
         ->where('validasi_verifikasi.id', $id)
         ->get();
 
         // return view('kepala_bagian.suratIzinBelajar.print', compact('data_permohonan_surat_print'));
         $customPaper = array(0,0,612.00,1008.00);
-        $pdf = PDF::loadview('binbangkum.idp.print', compact('data_idp_print', 'name'))->setPaper($customPaper);
+        $pdf = PDF::loadview('binbangkum.idp.print', compact('data_idp_print', 'name', 'petugas'))->setPaper($customPaper);
         return $pdf->download('IDP oleh ' . $name . '.pdf');
  
     }

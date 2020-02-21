@@ -41,7 +41,8 @@ class KepalaBagianController extends Controller
         $data_permohonan_surat_print = verifikasi_data::leftJoin('berkas_pemohon', 'verifikasi_data.id_berkas', '=', 'berkas_pemohon.id_berkas')
         ->leftJoin('pemohon', 'berkas_pemohon.id_pemohon', '=', 'pemohon.id_pemohon')
         ->leftJoin('users', 'verifikasi_data.id_user', '=', 'users.id')
-        ->select('verifikasi_data.*', 'pemohon.*', 'users.name')
+        ->leftJoin('petugas', 'users.id', '=', 'petugas.id_user')
+        ->select('verifikasi_data.*', 'pemohon.*', 'users.name', 'petugas.nip', 'petugas.jabatan')
         ->where('verifikasi_data.id', $id)
         ->get();
 

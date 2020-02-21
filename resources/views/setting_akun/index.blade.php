@@ -68,7 +68,11 @@
                                   <span style="color: #78828a;font-style: italic;font-weight: bold">Binbangkum</span>
                                   @endif
                                 </p>
-                                <a href="/setting-akun/edit/{{ $akun->id }}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-edit" style="margin-right: 5px;"></i>Edit Akun</a>
+                                @if($id_role == 2)
+                                <a href="/setting-akun/edit/{{ $akun->id }}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-edit" style="margin-right: 5px;"></i>Ubah Akun</a>
+                                @elseif($id_role != 2)
+                                <a href="/setting-akun/edit/{{ $akun->id }}"class="btn btn-outline-primary" style="font-weight: bold;font-size: 13px;border-radius: 0px;border-width: 1.5px;"><i class="fas fa-edit" style="margin-right: 5px;"></i>Ubah Data Diri</a>
+                                @endif
                                 <hr style="margin: 2rem 0px" />
                                 <div class="row" style="text-align: center;">
                                   @if($akun->kd_user != null)

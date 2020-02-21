@@ -60,14 +60,16 @@
     <p style="margin-top: 5rem;font-size: 16px;text-align: center;float: right;"> 
       <span><b>Jakarta, {{ date('d-m-Y') }}</b>
       <br>BADAN PEMERIKSA KEUANGAN 
-      <br>SEKRETARIAT JENDRAL
+      @foreach($petugas as $petugas)
+      <br><span style="text-transform: uppercase;">{{$petugas->jabatan}}</span>
       <br>BINBANGKUM</span>
       <br>
       <br>
       <br>
       <b>
       <br>{{$name}}
-      <br>240001937
+      <br>{{$petugas->nip}}
+      @endforeach
       </b>
     </p>
   </div>

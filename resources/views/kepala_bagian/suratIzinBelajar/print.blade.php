@@ -60,14 +60,14 @@
     <p style="margin-top: 5rem;font-size: 16px;text-align: center;float: right;"> 
       <span><b>Jakarta, {{ date('d-m-Y') }}</b>
       <br>BADAN PEMERIKSA KEUANGAN 
-      <br>SEKRETARIAT JENDRAL
+      <br><span style="text-transform: uppercase;">{{$row->jabatan}}</span>
       <br>KEPALA BIRO SUMBER DAYA MANUSIA</span>
       <br>
       <br>
       <br>
       <b>
       <br>{{$row->name}}
-      <br>240001937
+      <br>{{$row->nip}}
       </b>
     </p>
   </div>
