@@ -48,7 +48,9 @@ class PemohonController extends Controller
     public function create_input_data_diri()
     {
 
-        return view('pemohon.dataDiriPemohon.create');
+        $nama_pemohon = Auth::user()->name;
+
+        return view('pemohon.dataDiriPemohon.create', compact('nama_pemohon'));
  
     }
 
@@ -57,8 +59,7 @@ class PemohonController extends Controller
 
         $rules = [
             'nip' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
+            'nama' => 'required',
             'jk' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
@@ -80,8 +81,7 @@ class PemohonController extends Controller
 
         $customMessages = [
             'nip' => 'Data Wajib Diisi!',
-            'nama_depan' => 'Data Wajib Diisi!',
-            'nama_belakang' => 'Data Wajib Diisi!',
+            'nama' => 'Data Wajib Diisi!',
             'jk' => 'Data Wajib Diisi!',
             'tempat_lahir' => 'Data Wajib Diisi!',
             'tgl_lahir' => 'Data Wajib Diisi!',
@@ -106,7 +106,7 @@ class PemohonController extends Controller
         $DataDiriPemohon = new data_diri_pemohon;
         $DataDiriPemohon->kd_user = Auth::user()->kd_user;
         $DataDiriPemohon->nip = request('nip');
-        $DataDiriPemohon->nama = request('nama_depan') . ' ' . request('nama_belakang');
+        $DataDiriPemohon->nama = request('nama');
         $DataDiriPemohon->jk = request('jk');
         $DataDiriPemohon->tempat_lahir = request('tempat_lahir');
         $DataDiriPemohon->tgl_lahir = request('tgl_lahir');

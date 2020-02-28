@@ -30,34 +30,25 @@
                     <span style="font-weight: bold;font-size: 16px;font-size: 16px;">Identitas Pemohon</span>
                     <hr/>
                     <div style="padding: 0px 30px;">
-                      <div class="form-group">
-                        <label>NIP</label>
-                        <input type="text" class="form-control" name="nip" autocomplete="off">
-                        @if($errors->has('nip'))
-                        <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
-                          {{ $errors->first('nip')}}
-                        </div>
-                        @endif
-                      </div>
                       <div class="row">
                         <div class="col-6">
                           <div class="form-group">
-                            <label>Nama Depan</label>
-                            <input type="text" class="form-control" name="nama_depan" autocomplete="off">
-                            @if($errors->has('nama_depan'))
+                            <label>NIP</label>
+                            <input type="text" class="form-control" name="nip" autocomplete="off">
+                            @if($errors->has('nip'))
                             <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
-                              {{ $errors->first('nama_depan')}}
+                              {{ $errors->first('nip')}}
                             </div>
                             @endif
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="form-group">
-                            <label>Nama Belakang</label>
-                            <input type="text" class="form-control" name="nama_belakang" autocomplete="off">
-                            @if($errors->has('nama_belakang'))
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama" value="{{ $nama_pemohon }}" autocomplete="off">
+                            @if($errors->has('nama'))
                             <div class="text-danger" style="padding: 5px;border: 1px solid #eee;margin-top: 3px;">
-                              {{ $errors->first('nama_belakang')}}
+                              {{ $errors->first('nama')}}
                             </div>
                             @endif
                           </div>

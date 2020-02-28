@@ -206,7 +206,7 @@
               });
             });
 
-          $(document).on('click', '.btn-hapus-data-diri', function (e) {
+          $(document).on('click', '.btn-delete-data-diri', function (e) {
               e.preventDefault();
               var id = $(this).data('id');
               swal({
@@ -226,7 +226,7 @@
                   }         
                 });
 
-                // window.location.href='http://127.0.0.1:8000/inputDataDiri/index';
+                window.location.href='http://127.0.0.1:8000/inputDataDiri/index';
               });
             });
 

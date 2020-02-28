@@ -28,10 +28,11 @@
                                     <th style="color: white;">No</th>
                                     <th style="color: white;">NIP</th>
                                     <th style="color: white;">Nama Lengkap</th>
-                                    <th style="color: white;">Tempat Tanggal Lahir</th>
+                                    <!-- <th style="color: white;">Tempat Tanggal Lahir</th> -->
                                     <!-- <th style="color: white;">Alamat</th> -->
                                     <th style="color: white;width: 150px;">Unit Kerja</th>
-                                    <th style="color: white;">Jabatan</th>
+                                    <th style="color: white;">Dari</th>
+                                    <th style="color: white;">Sampai</th>
                                     <!-- <th style="color: white;">Pangkat</th> -->
                                     <!-- <th style="color: white;">Jenjang Pendidikan</th> -->
                                     <!-- <th style="color: white;">Jurusan</th>
@@ -49,12 +50,13 @@
                                     <td style="color: #000000;">{{$index +1}}</td>
                                     <td style="color: #000000;">{{$row->nip}}</td>
                                     <td style="color: #000000;">{{$row->nama}}</td>
-                                    <td style="color: #000000;"><span style="color: #000000;">{{$row->tempat_lahir}}</span> <br>
+                                    <!-- <td style="color: #000000;"><span style="color: #000000;">{{$row->tempat_lahir}}</span> <br>
                                         <span style="color: #000000;">{{ Carbon\Carbon::parse($row->tgl_lahir)->formatLocalized('%d %B %Y') }}</span>
-                                    </td>
+                                    </td> -->
                                     <!-- <td style="color: #000000;">{{$row->alamat}}</td> -->
                                     <td style="color: #000000;">{{$row->unit_kerja}}</td>
-                                    <td style="color: #000000;">{{$row->jabatan}}</td>
+                                    <td style="color: #000000;font-weight: bold;">{{ Carbon\Carbon::parse($row->tgl_selesai)->formatLocalized('%d %B %Y') }}</td>
+                                    <td style="color: #000000;font-weight: bold;">{{ Carbon\Carbon::parse($row->tgl_perp)->formatLocalized('%d %B %Y') }} <br>({{$row->jml_wkt_perp}} Hari)</td>
                                     <!-- <td style="color: #000000;">{{$row->pangkat}}</td>
                                     <td style="color: #000000;">{{$row->jenjang_pend}}</td> -->
                                     <!-- <td style="color: #000000;">{{$row->jurusan}}</td>
