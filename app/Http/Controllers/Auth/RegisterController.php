@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class RegisterController extends Controller
 {
@@ -64,10 +68,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'id' => IdGenerator::generate(['table' => 'users', 'field' => 'id', 'length' => 10, 'prefix' =>'U-']),
+            'kd_user' => Str::random(10),
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
             'id_role' => 2,
+            'remember_token' => Str::random(60),
+            'created_at' => now()
         ]);
     }
 }

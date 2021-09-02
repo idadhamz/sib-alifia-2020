@@ -20,22 +20,25 @@ use Auth;
 
 class AdminController extends Controller
 {
-    
-    public function register_akun(Request $request)
-    {
+    // public function register_akun(Request $request)
+    // {
+    //     $prefix = 'U-';
+    //     $get_last_kode = User::orderBy('id','desc')->first();
+    //     $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id, strlen($prefix), 2)+1 : 1;
+    //     $digit = 5;
+    //     $id = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
 
-        $DataRegister = new User;
-        $DataRegister->id_role = 2;
-        $DataRegister->kd_user = Str::random(10);
-        $DataRegister->email = request('email');
-        $DataRegister->password = request('password');
-        $DataRegister->name = request('name');
-        $DataRegister->remember_token = Str::random(60);
-        $DataRegister->created_at = now();
-        $DataRegister->save();
-
-        return redirect('/daftarPemohon')->with('message', 'Akun berhasil dibuat!');
-    }
+    //     return User::create([
+    //         'id' => $id,
+    //         'kd_user' => Str::random(10),
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => bcrypt($data['password']),
+    //         'id_role' => 2,
+    //         'remember_token' => Str::random(60),
+    //         'created_at' => now()
+    //     ]);
+    // }
 
     // Data User
     public function index_data_user()
@@ -75,7 +78,14 @@ class AdminController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
+        $prefix = 'U-';
+        $get_last_kode = User::orderBy('id','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id, strlen($prefix), 2)+1 : 1;
+        $digit = 5;
+        $id = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
         $DataUser = new User;
+        $DataUser->id = $id;
         if(request('id_role') == 2){
             $DataUser->kd_user = Str::random(10);
         }else {
@@ -549,7 +559,7 @@ class AdminController extends Controller
             $DataVerifikasi->id_user = Auth::user()->id;
             $DataVerifikasi->id_status = $request->id_status;
             $DataVerifikasi->keterangan = $request->keterangan;
-            $DataVerifikasi->no_surat = $verifikasi_data->no_surat + 1;
+            $DataVerifikasi->no_surat = $verifikasi_data == null ? 1 : $verifikasi_data->no_surat + 1;
             $DataVerifikasi->created_at = now();
             $DataVerifikasi->save();
 

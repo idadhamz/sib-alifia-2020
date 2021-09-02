@@ -23,7 +23,7 @@ Route::get('/daftarPemohon', function () {
 	return view('login.register');
 });
 
-Route::post('/register','AdminController@register_akun'); 
+Route::post('/register','\App\Http\Controllers\Auth\RegisterController@create'); 
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
